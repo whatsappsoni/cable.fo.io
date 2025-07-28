@@ -1,0 +1,197 @@
+[
+  {
+    "id": "fo-cable-link-09mm",
+    "name": "KABEL FO GJYXCH-G6571A CABLE LINK 1 CORE 3 SELING 0.9 mm 1000m BOX",
+    "shortDescription": "Kabel serat optik berkualitas tinggi dengan 1 inti dan 3 seling untuk konektivitas handal.",
+    "price": "Rp 730.000,00",
+    "productFolderPath": "products/product-kabel-fo-link/",
+    "mainImage": "main.png",
+    "detailImages": [
+      "detail-1.png",
+      "detail-2.png",
+      "detail-3.png",
+      "detail-4.png"
+    ],
+    "brochurePdf": "products/product-kabel-fo-link/brosur.pdf"
+  },
+  {
+    "id": "fo-falcom-1mm-premium",
+    "name": "KABEL FO GJYXCH-G6571A FALCOM 1 CORE 3 SELING 1 mm 1000m PREMIUM",
+    "shortDescription": "Kabel serat optik premium dengan performa ditingkatkan, cocok untuk jaringan berkecepatan tinggi.",
+    "price": "Rp 830.000,00",
+    "productFolderPath": "products/product-kabel-fo-falcom-1mm/",
+    "mainImage": "main.png",
+    "detailImages": [
+      "detail-1.png",
+      "detail-2.png",
+      "detail-3.png",
+      "detail-4.png"
+    ],
+    "brochurePdf": "products/product-kabel-fo-falcom-1mm/brosur.pdf"
+  },
+  {
+    "id": "fo-falcom-1-2mm-premium",
+    "name": "KABEL FO GJYXCH-G6571A FALCOM 1 CORE 3 SELING 1,2 mm 1000m PREMIUM",
+    "shortDescription": "Kabel premium dengan ketebalan 1.2mm untuk performa yang lebih kokoh.",
+    "price": "Rp 930.000,00",
+    "productFolderPath": "products/product-kabel-fo-falcom-1-2mm/",
+    "mainImage": "main.png",
+    "detailImages": [
+      "detail-1.png",
+      "detail-2.png",
+      "detail-3.png",
+      "detail-4.png"
+    ],
+    "brochurePdf": "products/product-kabel-fo-falcom-1-2mm/brosur.pdf"
+  },
+  {
+    "id": "fo-global-1-2mm-red",
+    "name": "KABEL FO GJYXCH-G6571A GLOBAL 1 CORE 3 SELING 1.2 mm 1000m RED SPECIAL TYPE BOX",
+    "shortDescription": "Kabel desain merah khusus dengan ketahanan yang ditingkatkan.",
+    "price": "Rp 930.000,00",
+    "productFolderPath": "products/product-kabel-fo-global-red/",
+    "mainImage": "main.png",
+    "detailImages": [
+      "detail-1.png",
+      "detail-2.png",
+      "detail-3.png",
+      "detail-4.png"
+    ],
+    "brochurePdf": "products/product-kabel-fo-global-red/brosur.pdf"
+  },
+  {
+    "id": "fo-global-2-core",
+    "name": "KABEL FO GJYXCH-G6571A GLOBAL 2 CORE 3 SELING 1.2 mm 1000m SPECIAL TYPE BOX",
+    "shortDescription": "Kabel tipe khusus dengan 2 inti untuk penggunaan yang lebih lanjut.",
+    "price": "Rp 1.060.000,00",
+    "productFolderPath": "products/product-kabel-fo-global-2core/",
+    "mainImage": "main.png",
+    "detailImages": [
+      "detail-1.png",
+      "detail-2.png",
+      "detail-3.png",
+      "detail-4.png"
+    ],
+    "brochurePdf": "products/product-kabel-fo-global-2core/brosur.pdf"
+  },
+  {
+    "id": "fo-global-4-core",
+    "name": "KABEL FO GJYXCH-G6571A GLOBAL 4 CORE 3 SELING 1.2 mm 1000m SPECIAL TYPE BOX",
+    "shortDescription": "Kabel berkapasitas tinggi dengan 4 inti untuk jaringan kompleks.",
+    "price": "Rp 1.260.000,00",
+    "productFolderPath": "products/product-kabel-fo-global-4core/",
+    "mainImage": "main.png",
+    "detailImages": [
+      "detail-1.png",
+      "detail-2.png",
+      "detail-3.png",
+      "detail-4.png"
+    ],
+    "brochurePdf": "products/product-kabel-fo-global-4core/brosur.pdf"
+  },
+  {
+    "id": "lan-ftp-cat5e-global-double",
+    "name": "KABEL LAN FTP CAT5E GLOBAL OUTDOOR DOUBLE JACKET 305m BOX",
+    "shortDescription": "Kabel outdoor tahan lama dengan pelindung double jacket.",
+    "price": "Rp 680.000,00",
+    "productFolderPath": "products/product-lan-ftp-global-double-cat5e/",
+    "mainImage": "main.png",
+    "detailImages": [
+      "detail-1.png",
+      "detail-2.png",
+      "detail-3.png",
+      "detail-4.png"
+    ],
+    "brochurePdf": "products/product-lan-ftp-global-double-cat5e/brosur.pdf"
+  },
+  {
+    "id": "lan-ftp-cat5e-global-single",
+    "name": "KABEL LAN FTP CAT5E GLOBAL OUTDOOR SINGLE JACKET 305m BOX",
+    "shortDescription": "Kabel outdoor single jacket yang andal, cocok untuk kondisi sedang.",
+    "price": "Rp 580.000,00",
+    "productFolderPath": "products/product-lan-ftp-global-single-cat5e/",
+    "mainImage": "main.png",
+    "detailImages": [
+      "detail-1.png",
+      "detail-2.png",
+      "detail-3.png",
+      "detail-4.png"
+    ],
+    "brochurePdf": "products/product-lan-ftp-global-single-cat5e/brosur.pdf"
+  },
+  {
+    "id": "lan-ftp-cat6-falcom-cca",
+    "name": "KABEL LAN FTP CAT6 CCA FALCOM 23AWG SINGLE JACKET 305m BOX",
+    "shortDescription": "Kabel CCA berperforma tinggi dengan single jacket, dioptimalkan untuk kecepatan.",
+    "price": "Rp 620.000,00",
+    "productFolderPath": "products/product-lan-ftp-falcom-cca-cat6/",
+    "mainImage": "main.png",
+    "detailImages": [
+      "detail-1.png",
+      "detail-2.png",
+      "detail-3.png",
+      "detail-4.png"
+    ],
+    "brochurePdf": "products/product-lan-ftp-falcom-cca-cat6/brosur.pdf"
+  },
+  {
+    "id": "lan-ftp-cat6-falcom-outdoor-nonbox",
+    "name": "KABEL LAN FTP CAT6 FALCOM OUTDOOR DOUBLE JACKET 305m NON BOX",
+    "shortDescription": "Kabel outdoor double jacket yang kuat tanpa box.",
+    "price": "Rp 720.000,00",
+    "productFolderPath": "products/product-lan-ftp-falcom-outdoor-nonbox-cat6/",
+    "mainImage": "main.png",
+    "detailImages": [
+      "detail-1.png",
+      "detail-2.png",
+      "detail-3.png",
+      "detail-4.png"
+    ],
+    "brochurePdf": "products/product-lan-ftp-falcom-outdoor-nonbox-cat6/brosur.pdf"
+  },
+  {
+    "id": "lan-utp-cat5e-falcom-black",
+    "name": "KABEL LAN UTP CAT5E FALCOM BLACK SINGLE JACKET 305m BOX",
+    "shortDescription": "Kabel UTP hitam bergaya dengan single jacket, cocok untuk penggunaan indoor.",
+    "price": "Rp 450.000,00",
+    "productFolderPath": "products/product-lan-utp-falcom-black-cat5e/",
+    "mainImage": "main.png",
+    "detailImages": [
+      "detail-1.png",
+      "detail-2.png",
+      "detail-3.png",
+      "detail-4.png"
+    ],
+    "brochurePdf": "products/product-lan-utp-falcom-black-cat5e/brosur.pdf"
+  },
+  {
+    "id": "lan-utp-cat5e-falcom-grey",
+    "name": "KABEL LAN UTP CAT5E FALCOM GREY SINGLE JACKET 305m BOX",
+    "shortDescription": "Kabel UTP abu-abu tahan lama dengan single jacket, bagus untuk pengaturan kantor.",
+    "price": "Rp 470.000,00",
+    "productFolderPath": "products/product-lan-utp-falcom-grey-cat5e/",
+    "mainImage": "main.png",
+    "detailImages": [
+      "detail-1.png",
+      "detail-2.png",
+      "detail-3.png",
+      "detail-4.png"
+    ],
+    "brochurePdf": "products/product-lan-utp-falcom-grey-cat5e/brosur.pdf"
+  },
+  {
+    "id": "lan-utp-cat6-falcom-standard",
+    "name": "KABEL LAN UTP CAT6 FALCOM SINGLE JACKET 305m BOX",
+    "shortDescription": "Kabel UTP single jacket standar untuk penggunaan yang andal.",
+    "price": "Rp 575.000,00",
+    "productFolderPath": "products/product-lan-utp-falcom-standard-cat6/",
+    "mainImage": "main.png",
+    "detailImages": [
+      "detail-1.png",
+      "detail-2.png",
+      "detail-3.png",
+      "detail-4.png"
+    ],
+    "brochurePdf": "products/product-lan-utp-falcom-standard-cat6/brosur.pdf"
+  }
+]
