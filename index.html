@@ -5,20 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Katalog Produk Kabel & Jaringan</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        /* Custom styles for image strip animation */
         :root {
-            --sb-slide-speed: 56s; /* Kecepatan animasi slider */
+            --sb-slide-speed: 56s;
+            --primary-color: #1e3a8a;
+            --accent-color: #10b981;
+            --gradient-bg: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+            --card-hover-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
         body {
             font-family: 'Poppins', sans-serif;
-            -webkit-font-smoothing: antialiased; /* Haluskan font di WebKit */
-            -moz-osx-font-smoothing: grayscale; /* Haluskan font di Firefox */
+            background: #0f172a;
+            color: #e2e8f0;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Subtle background texture for elegance */
         body::before {
             content: '';
             position: fixed;
@@ -26,34 +30,49 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: radial-gradient(circle, #e2e8f0 1px, transparent 1px); /* Pola titik-titik sangat halus */
-            background-size: 20px 20px;
-            opacity: 0.1; /* Sangat samar */
-            z-index: -1; /* Pastikan di belakang konten */
+            background: var(--gradient-bg);
+            opacity: 0.05;
+            z-index: -1;
         }
 
-        /* Gradient overlays for the image strip */
+        header {
+            background: linear-gradient(135deg, #1e40af, #4f46e5);
+            padding: 5rem 1rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        header h1 {
+            font-size: 4.5rem;
+            font-weight: 900;
+            color: #ffffff;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            letter-spacing: -0.025em;
+        }
+
+        header p {
+            color: #d1d5db;
+            font-size: 1.5rem;
+            font-weight: 300;
+            max-width: 48rem;
+        }
+
         .sb-image-strip-wrap::before,
         .sb-image-strip-wrap::after {
             content: "";
             position: absolute;
             height: 100%;
-            width: 16.666667%; /* Setara dengan w-1/6 di Tailwind */
+            width: 20%;
             top: 0;
             z-index: 10;
-            pointer-events: none; /* Memungkinkan klik melewati overlay */
-        }
-
-        .sb-image-strip-wrap::before {
-            left: 0;
-            /* Memudar dari warna latar belakang header (putih) ke transparan */
-            background: linear-gradient(to right, #f8fafc, transparent); 
+            pointer-events: none;
+            background: linear-gradient(to right, rgba(30, 64, 175, 0.9), transparent);
         }
 
         .sb-image-strip-wrap::after {
             right: 0;
-            /* Memudar dari warna latar belakang header (putih) ke transparan */
-            background: linear-gradient(to left, #f8fafc, transparent); 
+            background: linear-gradient(to left, rgba(30, 64, 175, 0.9), transparent);
         }
 
         .sb-image-strip {
@@ -65,66 +84,72 @@
             display: flex;
             align-items: center;
             width: max-content;
-            animation: slide-left var(--sb-slide-speed) linear infinite; /* Animasi geser */
+            animation: slide-left var(--sb-slide-speed) linear infinite;
         }
 
         .sb-image-strip-content {
             display: flex;
             justify-content: space-around;
-            min-width: 100%; /* Pastikan konten menduduki lebar penuh */
+            min-width: 100%;
         }
 
-        /* Keyframe animation for the image strip */
+        .sb-image-strip-content img {
+            filter: brightness(1.1) drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+
+        .sb-image-strip-content img:hover {
+            transform: scale(1.1);
+            filter: brightness(1.3) drop-shadow(0 0 15px rgba(16, 185, 129, 0.5));
+        }
+
         @keyframes slide-left {
-            from {
-                transform: translateX(0);
-            }
-            to {
-                transform: translateX(-50%); /* Geser sejauh 50% lebar total untuk loop mulus */
-            }
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
         }
 
-        /* Custom scrollbar for modern feel */
         ::-webkit-scrollbar {
             width: 8px;
             height: 8px;
         }
 
         ::-webkit-scrollbar-track {
-            background: #f1f1f1;
+            background: #1e293b;
             border-radius: 10px;
         }
 
         ::-webkit-scrollbar-thumb {
-            background: #a8a8a8; /* Softer gray */
+            background: #4f46e5;
             border-radius: 10px;
         }
 
         ::-webkit-scrollbar-thumb:hover {
-            background: #888;
+            background: #6366f1;
         }
 
-        /* Smooth fade-in/out for modal content */
         .modal-enter-active {
             transition: all 0.3s ease-out;
         }
+
         .modal-leave-active {
             transition: all 0.2s ease-in;
         }
+
         .modal-enter-from,
         .modal-leave-to {
             transform: scale(0.95);
             opacity: 0;
         }
 
-        /* Spinner CSS */
         .loader {
-            border: 4px solid #f3f3f3; /* Light grey */
-            border-top: 4px solid #4f46e5; /* Tailwind indigo-600 */
+            width: 50px;
+            height: 50px;
+            border: 4px solid transparent;
+            border-top: 4px solid var(--accent-color);
+            border-right: 4px solid var(--accent-color);
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
+            animation: spin 0.8s ease-in-out infinite, pulse 1.5s ease-in-out infinite;
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
         }
 
         @keyframes spin {
@@ -132,12 +157,16 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* New CSS for square image frame in modal */
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
         .main-image-display {
             position: relative;
             width: 100%;
-            padding-top: 100%; /* Makes the container square */
-            overflow: hidden; /* Ensure image doesn't spill */
+            padding-top: 100%;
+            overflow: hidden;
         }
 
         .main-image-display img {
@@ -146,21 +175,121 @@
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Ensures the image covers the entire square without distortion */
+            object-fit: cover;
+        }
+
+        .bg-slate-900 {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bg-slate-900::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(79, 70, 229, 0.3) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 0;
+        }
+
+        .bg-slate-900:hover::before {
+            opacity: 1;
+        }
+
+        .bg-slate-900 img {
+            transition: transform 0.5s ease, filter 0.5s ease;
+        }
+
+        .bg-slate-900:hover img {
+            transform: scale(1.15);
+            filter: brightness(1.2);
+        }
+
+        .bg-slate-900 h3 {
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .bg-slate-900 p {
+            color: #94a3b8;
+        }
+
+        .bg-slate-900 .text-emerald-500 {
+            color: var(--accent-color);
+            text-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+        }
+
+        #productModal {
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        #modalContent {
+            background: linear-gradient(145deg, #1e293b 0%, #2d3748 100%);
+            border: 1px solid rgba(79, 70, 229, 0.3);
+            border-radius: 1.5rem;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
+            color: #e2e8f0;
+        }
+
+        #modalContent h2 {
+            color: #ffffff;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        #modalContent .prose {
+            color: #d1d5db;
+        }
+
+        #modalContent .text-emerald-500 {
+            color: var(--accent-color);
+            text-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+        }
+
+        #whatsappLink, #locationLink, #brochureLinkContainer a {
+            background: var(--accent-color);
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        #whatsappLink:hover, #locationLink:hover, #brochureLinkContainer a:hover {
+            background: #059669;
+            box-shadow: 0 0 25px rgba(16, 185, 129, 0.7);
+            transform: scale(1.1);
+        }
+
+        #modalThumbnails img.border-indigo-500 {
+            border-color: var(--accent-color) !important;
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+        }
+
+        .product-card {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .product-card.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800">
-
-    <header class="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-white to-slate-100 relative overflow-hidden shadow-sm">
-        <div class="max-w-7xl mx-auto text-center">
-            <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-slate-900 leading-tight tracking-tight drop-shadow-sm">
+<body class="text-slate-200">
+    <header class="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden shadow-sm">
+        <div id="particles-js" class="absolute inset-0 z-0"></div>
+        <div class="max-w-7xl mx-auto text-center relative z-10">
+            <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-white leading-tight tracking-tight drop-shadow-sm">
                 Jelajahi Rangkaian Produk Premium Kami
             </h1>
-            <p class="mt-6 text-xl sm:text-2xl text-slate-600 max-w-3xl mx-auto opacity-90">
+            <p class="mt-6 text-xl sm:text-2xl text-slate-300 max-w-3xl mx-auto opacity-90">
                 Temukan solusi berkualitas tinggi untuk konektivitas jaringan, dari kabel serat optik hingga solusi LAN yang inovatif.
             </p>
-
             <div class="mt-24 relative">
                 <div class="sb-image-strip-wrap">
                     <div class="sb-image-strip">
@@ -187,47 +316,37 @@
     </header>
 
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <h2 class="text-4xl sm:text-5xl font-bold text-slate-900 mb-12 text-center">Produk Unggulan Kami</h2>
+        <h2 class="text-4xl sm:text-5xl font-bold text-white mb-12 text-center">Produk Unggulan Kami</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8" id="productGrid">
             <div class="col-span-full flex flex-col justify-center items-center py-20">
                 <div class="loader"></div>
-                <p class="mt-4 text-slate-500 text-lg">Memuat produk...</p>
+                <p class="mt-4 text-slate-400 text-lg">Memuat produk...</p>
             </div>
         </div>
     </section>
 
     <div class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-[1000] hidden" id="productModal">
-        <div class="bg-white rounded-2xl shadow-2xl p-8 max-w-2xl w-full relative transform transition-all duration-300 ease-out opacity-0 scale-95 overflow-y-auto max-h-[90vh] border border-slate-200" id="modalContent">
-            <button class="absolute top-4 right-4 text-slate-400 hover:text-slate-800 text-4xl font-light leading-none transition-colors" onclick="closeModal()">×</button>
-            <h2 class="text-3xl font-bold text-slate-900 mb-4" id="modalTitle"></h2>
-            
+        <div class="rounded-2xl shadow-2xl p-8 max-w-2xl w-full relative transform transition-all duration-300 ease-out opacity-0 scale-95 overflow-y-auto max-h-[90vh]" id="modalContent">
+            <button class="absolute top-4 right-4 text-slate-400 hover:text-white text-4xl font-light leading-none transition-colors" onclick="closeModal()">×</button>
+            <h2 class="text-3xl font-bold text-white mb-4" id="modalTitle"></h2>
             <div class="mb-6">
                 <div class="relative w-full overflow-hidden rounded-lg shadow-md main-image-display">
-                    <img id="currentMainModalImage" src="" alt="Main Product Image" 
-                         class="absolute inset-0 w-full h-full object-cover transition-opacity duration-300" 
-                         onerror="this.onerror=null;this.src='https://via.placeholder.com/600x600?text=No+Main+Image';">
+                    <img id="currentMainModalImage" src="" alt="Main Product Image" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-300" onerror="this.onerror=null;this.src='https://via.placeholder.com/600x600?text=No+Main+Image';">
                 </div>
             </div>
-            
-            <div class="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 gap-3 mb-6" id="modalThumbnails">
-                </div>
-            
-            <div class="prose max-w-none text-slate-700 text-base leading-relaxed mb-6" id="modalDescription"></div>
-            
-            <div id="brochureLinkContainer" class="mb-6 flex justify-center">
-                </div>
-            
-            <div class="mb-6 border-t pt-4 border-slate-200">
-                <h3 class="text-xl font-semibold text-slate-800 mb-3">Informasi Kontak</h3>
-                <div class="space-y-3">
-                    <a id="whatsappLink" href="#" target="_blank" class="inline-flex items-center justify-center px-6 py-3 bg-green-500 text-white text-base font-medium rounded-full shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2 transition-all duration-200 transform hover:scale-105 w-full sm:w-auto">
+            <div class="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 gap-3 mb-6" id="modalThumbnails"></div>
+            <div class="prose max-w-none text-slate-300 text-base leading-relaxed mb-6" id="modalDescription"></div>
+            <div id="brochureLinkContainer" class="mb-6 flex justify-center"></div>
+            <div class="mb-8 border-t pt-6 border-slate-700">
+                <h3 class="text-xl font-semibold text-white mb-4">Informasi Kontak</h3>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a id="whatsappLink" href="#" target="_blank" class="inline-flex items-center justify-center px-6 py-3 text-white text-base font-medium rounded-full shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2 transition-all duration-200 transform hover:scale-105 w-full sm:w-auto">
                         <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path d="M12.04 2C6.58 2 2.14 6.22 2.11 11.33c-.04 1.83.48 3.58 1.48 5.09L2 22l5.31-1.38c1.47.8 3.16 1.22 4.9.96 5.56 0 10.09-4.22 10.12-9.33.02-2.73-1.07-5.26-2.92-7.16C17.3 3.06 14.73 2 12.04 2zm5.73 14.78c-.28.16-.67.25-1.09.25-.42 0-.8-.09-1.09-.25-.28-.16-.54-.45-.76-.8-.22-.35-.37-.77-.45-1.23-.09-.45-.16-.9-.07-1.35.09-.45.3-.85.57-1.16.27-.3.59-.44.92-.44.33 0 .61.12.87.37.26.25.46.59.63.99.17.4.28.84.32 1.28.04.44-.01.8-.18 1.15-.17.35-.45.64-.81.85z"/>
                         </svg>
                         Kirim WhatsApp
                     </a>
-                    
-                    <a id="locationLink" href="#" target="_blank" class="inline-flex items-center justify-center px-6 py-3 bg-blue-500 text-white text-base font-medium rounded-full shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 transition-all duration-200 transform hover:scale-105 w-full sm:w-auto">
+                    <a id="locationLink" href="#" target="_blank" class="inline-flex items-center justify-center px-6 py-3 text-white text-base font-medium rounded-full shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 transition-all duration-200 transform hover:scale-105 w-full sm:w-auto">
                         <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
                         </svg>
@@ -235,51 +354,55 @@
                     </a>
                 </div>
             </div>
-            
-            <div class="text-4xl font-extrabold text-indigo-600 text-center" id="modalPrice"></div>
+            <div class="text-4xl font-extrabold text-emerald-500 text-center" id="modalPrice"></div>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script>
         const productModal = document.getElementById('productModal');
         const modalContent = document.getElementById('modalContent');
         const productGrid = document.getElementById('productGrid');
         const brochureLinkContainer = document.getElementById('brochureLinkContainer');
 
-        // URL placeholder default jika gambar tidak ditemukan
         const DEFAULT_IMAGE_PLACEHOLDER = 'https://via.placeholder.com/600x600?text=No+Image';
         const THUMBNAIL_PLACEHOLDER = 'https://via.placeholder.com/80x80?text=Thumb';
 
-        let allProducts = []; // To store all products once loaded
+        let allProducts = [];
 
-        // Function to fetch and display products
+        async function checkImageExists(url) {
+            try {
+                const response = await fetch(url, { method: 'HEAD' });
+                return response.ok;
+            } catch (error) {
+                return false;
+            }
+        }
+
         async function loadProducts() {
             try {
                 const response = await fetch('data/products.json');
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
-                allProducts = await response.json(); // Store products globally
-
-                productGrid.innerHTML = ''; // Clear loading spinner and message
+                allProducts = await response.json();
+                productGrid.innerHTML = '';
 
                 if (allProducts.length === 0) {
-                    productGrid.innerHTML = '<p class="col-span-full text-center text-slate-500 py-10">Tidak ada produk yang ditemukan.</p>';
+                    productGrid.innerHTML = '<p class="col-span-full text-center text-slate-400 py-10">Tidak ada produk yang ditemukan.</p>';
                     return;
                 }
 
                 allProducts.forEach(product => {
                     const productCard = document.createElement('div');
-                    // Enhanced card styles for a modern look
                     productCard.classList.add(
-                        'bg-white', 'rounded-xl', 'shadow-lg', 'hover:shadow-xl',
-                        'transition-all', 'duration-300', 'overflow-hidden', 'group',
-                        'cursor-pointer', 'flex', 'flex-col', 'transform', 'hover:-translate-y-2',
-                        'border', 'border-slate-100', 'hover:border-indigo-200' // Added border for elegance
+                        'bg-slate-900', 'rounded-2xl', 'shadow-xl', 'hover:shadow-2xl',
+                        'transition-all', 'duration-500', 'overflow-hidden', 'group',
+                        'cursor-pointer', 'flex', 'flex-col', 'transform', 'hover:-translate-y-3',
+                        'border', 'border-slate-700', 'hover:border-indigo-500', 'relative', 'product-card'
                     );
-                    productCard.onclick = () => showDetails(product); // Make the entire card clickable
+                    productCard.onclick = () => showDetails(product);
 
                     productCard.innerHTML = `
                         <div class="overflow-hidden">
@@ -288,12 +411,25 @@
                                  onerror="this.onerror=null;this.src='${DEFAULT_IMAGE_PLACEHOLDER.replace('600x600', '300x192')}';">
                         </div>
                         <div class="p-6 flex flex-col flex-grow">
-                            <h3 class="text-xl font-semibold text-slate-900 mb-2 leading-tight line-clamp-2">${product.name}</h3>
-                            <p class="text-slate-600 text-sm mb-4 line-clamp-3 flex-grow">${product.shortDescription}</p>
-                            <div class="mt-auto text-2xl font-bold text-indigo-600">${product.price}</div>
+                            <h3 class="text-xl font-semibold text-white mb-2 leading-tight line-clamp-2">${product.name}</h3>
+                            <p class="text-slate-400 text-sm mb-4 line-clamp-3 flex-grow">${product.shortDescription}</p>
+                            <div class="mt-auto text-2xl font-bold text-emerald-500">${product.price}</div>
                         </div>
                     `;
                     productGrid.appendChild(productCard);
+                });
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.1 });
+
+                document.querySelectorAll('.product-card').forEach(card => {
+                    observer.observe(card);
                 });
 
             } catch (error) {
@@ -301,53 +437,36 @@
                 productGrid.innerHTML = `
                     <div class="col-span-full text-center py-10">
                         <p class="text-red-500 text-lg mb-2">Gagal memuat produk. Silakan coba lagi nanti.</p>
-                        <p class="text-slate-500 text-sm">Pastikan Anda menjalankan file ini melalui server lokal (misalnya, Python http.server atau VS Code Live Server) untuk menghindari masalah CORS.</p>
+                        <p class="text-slate-400 text-sm">Pastikan Anda menjalankan file ini melalui server lokal (misalnya, Python http.server atau VS Code Live Server) untuk menghindari masalah CORS.</p>
                     </div>
                 `;
             }
         }
 
-        // Fungsi pembantu untuk mengecek apakah gambar ada
-        async function checkImageExists(url) {
-            try {
-                const response = await fetch(url, { method: 'HEAD' }); // Menggunakan HEAD request lebih efisien
-                return response.ok;
-            } catch (error) {
-                return false;
-            }
-        }
-
-        // Function to show product details in modal
         async function showDetails(product) {
             document.getElementById('modalTitle').textContent = product.name;
             const currentMainModalImage = document.getElementById('currentMainModalImage');
             const modalThumbnails = document.getElementById('modalThumbnails');
-            modalThumbnails.innerHTML = ''; // Clear previous thumbnails
+            modalThumbnails.innerHTML = '';
 
-            // Fungsi untuk mengatur gambar utama dan menyorot thumbnail yang sesuai
             const setMainImageAndHighlightThumbnail = (imgPath, thumbnailElement) => {
                 currentMainModalImage.src = imgPath;
-                // Hapus sorotan dari semua thumbnail
                 Array.from(modalThumbnails.children).forEach(child => {
                     child.classList.remove('border-indigo-500', 'opacity-100');
                     child.classList.add('border-transparent', 'opacity-70');
                 });
-                // Tambahkan sorotan ke thumbnail yang dipilih
                 if (thumbnailElement) {
                     thumbnailElement.classList.remove('border-transparent', 'opacity-70');
                     thumbnailElement.classList.add('border-indigo-500', 'opacity-100');
                 }
             };
 
-            // Kumpulkan semua gambar untuk thumbnail (gambar utama + gambar detail)
             let allImages = [];
-            // Cek apakah mainImage ada, jika tidak gunakan placeholder
             const mainImagePath = `${product.productFolderPath}${product.mainImage}`;
             if (await checkImageExists(mainImagePath)) {
                 allImages.push(product.mainImage);
             }
 
-            // Cek setiap detailImage, jika ada tambahkan, jika tidak abaikan
             if (product.detailImages && Array.isArray(product.detailImages)) {
                 for (const imgName of product.detailImages) {
                     const detailImagePath = `${product.productFolderPath}${imgName}`;
@@ -356,54 +475,41 @@
                     }
                 }
             }
-            
-            // Jika tidak ada gambar yang valid sama sekali, gunakan placeholder tunggal
+
             if (allImages.length === 0) {
                 currentMainModalImage.src = DEFAULT_IMAGE_PLACEHOLDER;
-                // Tidak ada thumbnail untuk dibuat jika tidak ada gambar
             } else {
-                // Buat thumbnail
-                const thumbnailElements = []; // Simpan elemen thumbnail untuk memudahkan penyorotan nanti
+                const thumbnailElements = [];
                 for (const imgName of allImages) {
                     const imgPath = `${product.productFolderPath}${imgName}`;
                     const thumb = document.createElement('img');
                     thumb.src = imgPath;
-                    thumb.alt = `${product.name} Thumbnail`; // Lebih generik
+                    thumb.alt = `${product.name} Thumbnail`;
                     thumb.classList.add(
                         'w-full', 'h-20', 'object-cover', 'rounded-md', 'shadow-sm', 
                         'cursor-pointer', 'opacity-70', 'hover:opacity-100', 'transition-opacity',
-                        'border-2', 'border-transparent', 'hover:border-indigo-500' // Tambahkan border hover untuk seleksi
+                        'border-2', 'border-transparent', 'hover:border-indigo-500'
                     );
-                    
-                    // Set click handler untuk thumbnail
                     thumb.onclick = () => setMainImageAndHighlightThumbnail(imgPath, thumb);
-                    
-                    // Fallback untuk gambar rusak (seharusnya tidak terpanggil jika checkImageExists berhasil, tapi sebagai jaga-jaga)
                     thumb.onerror = function() { this.onerror=null; this.src=THUMBNAIL_PLACEHOLDER; };
-                    
                     modalThumbnails.appendChild(thumb);
                     thumbnailElements.push(thumb);
                 }
-
-                // Atur gambar utama awal dan sorot thumbnail pertama
                 setMainImageAndHighlightThumbnail(`${product.productFolderPath}${allImages[0]}`, thumbnailElements[0]);
             }
-            
 
             document.getElementById('modalPrice').textContent = product.price;
 
-            // Logika untuk link brosur
-            brochureLinkContainer.innerHTML = ''; // Hapus link brosur sebelumnya
+            brochureLinkContainer.innerHTML = '';
             if (product.brochurePdf) {
-                // Cek apakah file PDF brosur ada sebelum membuat link
                 const brochurePdfPath = product.brochurePdf;
-                if (await checkImageExists(brochurePdfPath)) { // checkImageExists bisa juga digunakan untuk PDF
+                if (await checkImageExists(brochurePdfPath)) {
                     const brochureLink = document.createElement('a');
                     brochureLink.href = brochurePdfPath;
-                    brochureLink.target = '_blank'; // Buka di tab baru
-                    brochureLink.download = `${product.name.replace(/[^a-zA-Z0-9\s]/g, '').trim().replace(/\s+/g, '_')}_Brosur.pdf`; 
+                    brochureLink.target = '_blank';
+                    brochureLink.download = `${product.name.replace(/[^a-zA-Z0-9\s]/g, '').trim().replace(/\s+/g, '_')}_Brosur.pdf`;
                     brochureLink.classList.add(
-                        'inline-flex', 'items-center', 'px-6', 'py-3', 'bg-indigo-600', 'text-white', 
+                        'inline-flex', 'items-center', 'px-6', 'py-3', 'text-white', 
                         'text-base', 'font-medium', 'rounded-full', 'shadow-md', 'hover:bg-indigo-700', 
                         'focus:outline-none', 'focus:ring-2', 'focus:ring-indigo-500', 
                         'focus:ring-offset-2', 'transition-all', 'duration-200', 'transform', 'hover:scale-105'
@@ -416,52 +522,38 @@
                     `;
                     brochureLinkContainer.appendChild(brochureLink);
                 } else {
-                    brochureLinkContainer.innerHTML = '<p class="text-slate-500 text-sm text-center">Brosur tidak tersedia untuk produk ini.</p>';
+                    brochureLinkContainer.innerHTML = '<p class="text-slate-400 text-sm text-center">Brosur tidak tersedia untuk produk ini.</p>';
                 }
             } else {
-                brochureLinkContainer.innerHTML = '<p class="text-slate-500 text-sm text-center">Brosur tidak tersedia untuk produk ini.</p>';
+                brochureLinkContainer.innerHTML = '<p class="text-slate-400 text-sm text-center">Brosur tidak tersedia untuk produk ini.</p>';
             }
 
-            // Mengambil deskripsi lengkap dari file Markdown (.md)
             try {
                 const descriptionResponse = await fetch(`${product.productFolderPath}description.md`);
                 if (!descriptionResponse.ok) {
-                    // Jika file tidak ditemukan atau ada error HTTP, tampilkan pesan ramah pengguna
                     console.warn(`Description.md not found for ${product.id}. Status: ${descriptionResponse.status}`);
-                    document.getElementById('modalDescription').innerHTML = '<p class="text-slate-500 italic">Deskripsi lengkap tidak tersedia.</p>';
+                    document.getElementById('modalDescription').innerHTML = '<p class="text-slate-400 italic">Deskripsi lengkap tidak tersedia.</p>';
                 } else {
                     const markdownText = await descriptionResponse.text();
                     document.getElementById('modalDescription').innerHTML = marked.parse(markdownText);
                 }
             } catch (error) {
-                // Tangani error jaringan atau lainnya saat fetching
                 console.error('Error fetching or parsing description:', error);
                 document.getElementById('modalDescription').innerHTML = '<p class="text-red-500">Gagal memuat deskripsi produk.</p>';
             }
 
-            // --- Logika untuk WhatsApp dan Lokasi ---
             const whatsappLink = document.getElementById('whatsappLink');
             const locationLink = document.getElementById('locationLink');
-
-            const phoneNumber = '62895331244803'; // Nomor WA dalam format internasional
-            const productName = product.name; // Ambil nama produk dari objek produk
-            const locationAddress = 'Tuminting, Manado, Sulawesi Utara'; // Alamat spesifik untuk pencarian Google Maps
-
-            // Template pesan WhatsApp, termasuk nama produk
+            const phoneNumber = '62895331244803';
+            const productName = product.name;
+            const locationAddress = 'Tuminting, Manado, Sulawesi Utara';
             const whatsappMessage = encodeURIComponent(`Halo, saya tertarik dengan produk ${productName}. Saya ingin bertanya lebih lanjut. Lokasi saya di ${locationAddress}.`);
-            
             whatsappLink.href = `https://wa.me/${phoneNumber}?text=${whatsappMessage}`;
-
-            // Link Google Maps untuk Tuminting
             const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(locationAddress)}`;
             locationLink.href = mapsUrl;
 
-
-            // Tampilkan modal dan terapkan animasi
             productModal.classList.remove('hidden');
-            productModal.classList.add('flex'); // Pastikan flex untuk centering
-
-            // Beri sedikit penundaan untuk memicu transisi CSS
+            productModal.classList.add('flex');
             setTimeout(() => {
                 modalContent.classList.remove('opacity-0', 'scale-95');
                 modalContent.classList.add('opacity-100', 'scale-100');
@@ -469,26 +561,39 @@
         }
 
         function closeModal() {
-            // Reverse animation
             modalContent.classList.remove('opacity-100', 'scale-100');
             modalContent.classList.add('opacity-0', 'scale-95');
-            
-            // Hide after animation
             setTimeout(() => {
                 productModal.classList.add('hidden');
                 productModal.classList.remove('flex');
-            }, 300); // Match transition duration
+            }, 300);
         }
 
-        // Close modal when clicking outside of it
         productModal.addEventListener('click', function(event) {
             if (event.target === productModal) {
                 closeModal();
             }
         });
 
-        // Load products when the page finishes loading
         document.addEventListener('DOMContentLoaded', loadProducts);
+
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 50, density: { enable: true, value_area: 800 } },
+                color: { value: '#ffffff' },
+                shape: { type: 'circle' },
+                opacity: { value: 0.5, random: true },
+                size: { value: 3, random: true },
+                line_linked: { enable: true, distance: 150, color: '#ffffff', opacity: 0.4, width: 1 },
+                move: { enable: true, speed: 2, direction: 'none', random: true, out_mode: 'out' }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: { onhover: { enable: true, mode: 'grab' }, onclick: { enable: true, mode: 'push' }, resize: true },
+                modes: { grab: { distance: 200, line_linked: { opacity: 1 } }, push: { particles_nb: 4 } }
+            },
+            retina_detect: true
+        });
     </script>
 </body>
 </html>
