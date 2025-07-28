@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Katalog Produk Kabel & Jaringan</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         /* Custom styles for image strip animation */
         :root {
@@ -14,6 +14,22 @@
 
         body {
             font-family: 'Poppins', sans-serif;
+            -webkit-font-smoothing: antialiased; /* Haluskan font di WebKit */
+            -moz-osx-font-smoothing: grayscale; /* Haluskan font di Firefox */
+        }
+
+        /* Subtle background texture for elegance */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle, #e2e8f0 1px, transparent 1px); /* Pola titik-titik sangat halus */
+            background-size: 20px 20px;
+            opacity: 0.1; /* Sangat samar */
+            z-index: -1; /* Pastikan di belakang konten */
         }
 
         /* Gradient overlays for the image strip */
@@ -30,13 +46,13 @@
 
         .sb-image-strip-wrap::before {
             left: 0;
-            /* Gradient yang memudar dari warna latar belakang (putih ke transparan) */
+            /* Memudar dari warna latar belakang header (putih) ke transparan */
             background: linear-gradient(to right, #f8fafc, transparent); 
         }
 
         .sb-image-strip-wrap::after {
             right: 0;
-            /* Gradient yang memudar dari warna latar belakang (putih ke transparan) */
+            /* Memudar dari warna latar belakang header (putih) ke transparan */
             background: linear-gradient(to left, #f8fafc, transparent); 
         }
 
@@ -80,15 +96,15 @@
         }
 
         ::-webkit-scrollbar-thumb {
-            background: #888;
+            background: #a8a8a8; /* Softer gray */
             border-radius: 10px;
         }
 
         ::-webkit-scrollbar-thumb:hover {
-            background: #555;
+            background: #888;
         }
 
-        /* Smooth fade-in/out for modal content (Tailwind's transition-all juga akan membantu) */
+        /* Smooth fade-in/out for modal content */
         .modal-enter-active {
             transition: all 0.3s ease-out;
         }
@@ -100,109 +116,123 @@
             transform: scale(0.95);
             opacity: 0;
         }
+
+        /* Spinner CSS */
+        .loader {
+            border: 4px solid #f3f3f3; /* Light grey */
+            border-top: 4px solid #4f46e5; /* Tailwind indigo-600 */
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800 antialiased">
+<body class="bg-slate-50 text-slate-800">
 
-    <header class="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-100 to-white relative overflow-hidden">
+    <header class="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-white to-slate-100 relative overflow-hidden shadow-sm">
         <div class="max-w-7xl mx-auto text-center">
-            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight tracking-tight animate-fade-in-down">
+            <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-slate-900 leading-tight tracking-tight drop-shadow-sm">
                 Jelajahi Rangkaian Produk Premium Kami
             </h1>
-            <p class="mt-4 text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto animate-fade-in-up">
-                Temukan solusi berkualitas tinggi untuk kebutuhan jaringan Anda, dari kabel serat optik hingga kabel LAN.
+            <p class="mt-6 text-xl sm:text-2xl text-slate-600 max-w-3xl mx-auto opacity-90">
+                Temukan solusi berkualitas tinggi untuk konektivitas jaringan, dari kabel serat optik hingga solusi LAN yang inovatif.
             </p>
 
-            <div class="mt-20 relative">
-			<div class="sb-image-strip-wrap">
-				<div class="sb-image-strip">
-					<div class="sb-image-strip-track">
-						<div class="sb-image-strip-content">
-							<img alt="Brand Logo Link" src="data/logos/falcom-logo.png" class="h-16 mx-8 object-contain hover:grayscale-0 transition-all duration-300" onerror="this.onerror=null;this.src='https://via.placeholder.com/120x60/d1d5db/ffffff?text=Link';">
-							<img alt="Brand Logo Global" src="data/logos/global-logo.png" class="h-16 mx-8 object-contain hover:grayscale-0 transition-all duration-300" onerror="this.onerror=null;this.src='https://via.placeholder.com/120x60/d1d5db/ffffff?text=Global';">
-							<img alt="Brand Logo Falcom" src="data/logos/falcom-logo.png" class="h-16 mx-8 object-contain hover:grayscale-0 transition-all duration-300" onerror="this.onerror=null;this.src='https://via.placeholder.com/120x60/d1d5db/ffffff?text=Falcom';">
-							<img alt="Brand Logo Lainnya" src="data/logos/global-logo.png" class="h-16 mx-8 object-contain hover:grayscale-0 transition-all duration-300" onerror="this.onerror=null;this.src='https://via.placeholder.com/120x60/d1d5db/ffffff?text=Brand+X';">
-							<img alt="Brand Logo Network" src="data/logos/falcom-logo.png" class="h-16 mx-8 object-contain hover:grayscale-0 transition-all duration-300" onerror="this.onerror=null;this.src='https://via.placeholder.com/120x60/d1d5db/ffffff?text=Network';">
-						</div>
-						<div class="sb-image-strip-content">
-							<img alt="Brand Logo Link" src="data/logos/falcom-logo.png" class="h-16 mx-8 object-contain hover:grayscale-0 transition-all duration-300" onerror="this.onerror=null;this.src='https://via.placeholder.com/120x60/d1d5db/ffffff?text=Link';">
-							<img alt="Brand Logo Global" src="data/logos/global-logo.png" class="h-16 mx-8 object-contain hover:grayscale-0 transition-all duration-300" onerror="this.onerror=null;this.src='https://via.placeholder.com/120x60/d1d5db/ffffff?text=Global';">
-							<img alt="Brand Logo Falcom" src="data/logos/falcom-logo.png" class="h-16 mx-8 object-contain hover:grayscale-0 transition-all duration-300" onerror="this.onerror=null;this.src='https://via.placeholder.com/120x60/d1d5db/ffffff?text=Falcom';">
-							<img alt="Brand Logo Lainnya" src="data/logos/global-logo.png" class="h-16 mx-8 object-contain hover:grayscale-0 transition-all duration-300" onerror="this.onerror=null;this.src='https://via.placeholder.com/120x60/d1d5db/ffffff?text=Brand+X';">
-							<img alt="Brand Logo Network" src="data/logos/falcom-logo.png" class="h-16 mx-8 object-contain hover:grayscale-0 transition-all duration-300" onerror="this.onerror=null;this.src='https://via.placeholder.com/120x60/d1d5db/ffffff?text=Network';">
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+            <div class="mt-24 relative">
+                <div class="sb-image-strip-wrap">
+                    <div class="sb-image-strip">
+                        <div class="sb-image-strip-track">
+                            <div class="sb-image-strip-content">
+                                <img alt="Brand Logo Link" src="data/logos/falcom-logo.png" class="h-16 mx-8 object-contain transition-all duration-300" onerror="this.onerror=null;this.src='https://via.placeholder.com/120x60/d1d5db/ffffff?text=Link';">
+                                <img alt="Brand Logo Global" src="data/logos/global-logo.png" class="h-16 mx-8 object-contain transition-all duration-300" onerror="this.onerror=null;this.src='https://via.placeholder.com/120x60/d1d5db/ffffff?text=Global';">
+                                <img alt="Brand Logo Falcom" src="data/logos/falcom-logo.png" class="h-16 mx-8 object-contain transition-all duration-300" onerror="this.onerror=null;this.src='https://via.placeholder.com/120x60/d1d5db/ffffff?text=Falcom';">
+                                <img alt="Brand Logo Lainnya" src="data/logos/global-logo.png" class="h-16 mx-8 object-contain transition-all duration-300" onerror="this.onerror=null;this.src='https://via.placeholder.com/120x60/d1d5db/ffffff?text=Brand+X';">
+                                <img alt="Brand Logo Network" src="data/logos/falcom-logo.png" class="h-16 mx-8 object-contain transition-all duration-300" onerror="this.onerror=null;this.src='https://via.placeholder.com/120x60/d1d5db/ffffff?text=Network';">
+                            </div>
+                            <div class="sb-image-strip-content">
+                                <img alt="Brand Logo Link" src="data/logos/falcom-logo.png" class="h-16 mx-8 object-contain transition-all duration-300" onerror="this.onerror=null;this.src='https://via.placeholder.com/120x60/d1d5db/ffffff?text=Link';">
+                                <img alt="Brand Logo Global" src="data/logos/global-logo.png" class="h-16 mx-8 object-contain transition-all duration-300" onerror="this.onerror=null;this.src='https://via.placeholder.com/120x60/d1d5db/ffffff?text=Global';">
+                                <img alt="Brand Logo Falcom" src="data/logos/falcom-logo.png" class="h-16 mx-8 object-contain transition-all duration-300" onerror="this.onerror=null;this.src='https://via.placeholder.com/120x60/d1d5db/ffffff?text=Falcom';">
+                                <img alt="Brand Logo Lainnya" src="data/logos/global-logo.png" class="h-16 mx-8 object-contain transition-all duration-300" onerror="this.onerror=null;this.src='https://via.placeholder.com/120x60/d1d5db/ffffff?text=Brand+X';">
+                                <img alt="Brand Logo Network" src="data/logos/falcom-logo.png" class="h-16 mx-8 object-contain transition-all duration-300" onerror="this.onerror=null;this.src='https://via.placeholder.com/120x60/d1d5db/ffffff?text=Network';">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </header>
 
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-8 text-center">Produk Unggulan Kami</h2>
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <h2 class="text-4xl sm:text-5xl font-bold text-slate-900 mb-12 text-center">Produk Unggulan Kami</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8" id="productGrid">
-            <p class="col-span-full text-center text-gray-500 py-10">Memuat produk...</p>
+            <div class="col-span-full flex flex-col justify-center items-center py-20">
+                <div class="loader"></div>
+                <p class="mt-4 text-slate-500 text-lg">Memuat produk...</p>
+            </div>
         </div>
     </section>
 
     <div class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-[1000] hidden" id="productModal">
-        <div class="bg-white rounded-xl shadow-2xl p-8 max-w-2xl w-full relative transform transition-all duration-300 ease-out opacity-0 scale-95 overflow-y-auto max-h-[90vh]" id="modalContent">
-            <button class="absolute top-4 right-4 text-gray-400 hover:text-gray-800 text-4xl font-light leading-none transition-colors" onclick="closeModal()">&times;</button>
-            <h2 class="text-3xl font-bold text-gray-900 mb-4" id="modalTitle"></h2>
+        <div class="bg-white rounded-2xl shadow-2xl p-8 max-w-2xl w-full relative transform transition-all duration-300 ease-out opacity-0 scale-95 overflow-y-auto max-h-[90vh] border border-slate-200" id="modalContent">
+            <button class="absolute top-4 right-4 text-slate-400 hover:text-slate-800 text-4xl font-light leading-none transition-colors" onclick="closeModal()">&times;</button>
+            <h2 class="text-3xl font-bold text-slate-900 mb-4" id="modalTitle"></h2>
             
             <div class="image-gallery grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mb-6" id="modalImageGallery">
                 </div>
             
-            <div class="prose max-w-none text-gray-700 text-base leading-relaxed mb-6" id="modalDescription"></div>
+            <div class="prose max-w-none text-slate-700 text-base leading-relaxed mb-6" id="modalDescription"></div>
             
             <div id="brochureLinkContainer" class="mb-6 flex justify-center">
                 </div>
             
-            <div class="text-4xl font-extrabold text-blue-700 text-center" id="modalPrice"></div>
+            <div class="text-4xl font-extrabold text-indigo-600 text-center" id="modalPrice"></div>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
     <script>
-        // Mendapatkan referensi elemen DOM
         const productModal = document.getElementById('productModal');
         const modalContent = document.getElementById('modalContent');
         const productGrid = document.getElementById('productGrid');
         const brochureLinkContainer = document.getElementById('brochureLinkContainer');
 
-        let allProducts = []; // Variabel untuk menyimpan semua data produk setelah dimuat
+        let allProducts = []; // To store all products once loaded
 
-        // Fungsi untuk mengambil dan menampilkan produk
+        // Function to fetch and display products
         async function loadProducts() {
             try {
-                // Mengambil data produk dari products.json
                 const response = await fetch('data/products.json');
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
-                allProducts = await response.json(); // Simpan data produk
+                allProducts = await response.json(); // Store products globally
 
-                productGrid.innerHTML = ''; // Hapus pesan "Memuat produk..."
+                productGrid.innerHTML = ''; // Clear loading spinner and message
 
-                // Jika tidak ada produk
                 if (allProducts.length === 0) {
-                    productGrid.innerHTML = '<p class="col-span-full text-center text-gray-500 py-10">Tidak ada produk yang ditemukan.</p>';
+                    productGrid.innerHTML = '<p class="col-span-full text-center text-slate-500 py-10">Tidak ada produk yang ditemukan.</p>';
                     return;
                 }
 
-                // Iterasi setiap produk dan buat kartu produk
                 allProducts.forEach(product => {
                     const productCard = document.createElement('div');
-                    // Menambahkan kelas Tailwind CSS untuk styling kartu produk
+                    // Enhanced card styles for a modern look
                     productCard.classList.add(
-                        'bg-white', 'rounded-xl', 'shadow-lg', 'hover:shadow-xl', 
-                        'transition-all', 'duration-300', 'overflow-hidden', 'group', 
-                        'cursor-pointer', 'flex', 'flex-col', 'transform', 'hover:-translate-y-2'
+                        'bg-white', 'rounded-xl', 'shadow-lg', 'hover:shadow-xl',
+                        'transition-all', 'duration-300', 'overflow-hidden', 'group',
+                        'cursor-pointer', 'flex', 'flex-col', 'transform', 'hover:-translate-y-2',
+                        'border', 'border-slate-100', 'hover:border-indigo-200' // Added border for elegance
                     );
-                    productCard.onclick = () => showDetails(product); // Menjadikan seluruh kartu bisa diklik
+                    productCard.onclick = () => showDetails(product); // Make the entire card clickable
 
-                    // Struktur HTML untuk setiap kartu produk
                     productCard.innerHTML = `
                         <div class="overflow-hidden">
                             <img src="${product.productFolderPath}${product.mainImage}" alt="${product.name}" 
@@ -210,45 +240,46 @@
                                  onerror="this.onerror=null;this.src='https://via.placeholder.com/300x192?text=No+Image';">
                         </div>
                         <div class="p-6 flex flex-col flex-grow">
-                            <h3 class="text-xl font-semibold text-gray-900 mb-2 leading-tight line-clamp-2">${product.name}</h3>
-                            <p class="text-gray-600 text-sm mb-4 line-clamp-3 flex-grow">${product.shortDescription}</p>
-                            <div class="mt-auto text-2xl font-bold text-blue-700">${product.price}</div>
+                            <h3 class="text-xl font-semibold text-slate-900 mb-2 leading-tight line-clamp-2">${product.name}</h3>
+                            <p class="text-slate-600 text-sm mb-4 line-clamp-3 flex-grow">${product.shortDescription}</p>
+                            <div class="mt-auto text-2xl font-bold text-indigo-600">${product.price}</div>
                         </div>
                     `;
-                    productGrid.appendChild(productCard); // Tambahkan kartu ke grid
+                    productGrid.appendChild(productCard);
                 });
 
             } catch (error) {
                 console.error('Error loading products:', error);
-                productGrid.innerHTML = '<p class="col-span-full text-red-500 text-center py-10">Gagal memuat produk. Silakan coba lagi nanti.</p>';
+                productGrid.innerHTML = `
+                    <div class="col-span-full text-center py-10">
+                        <p class="text-red-500 text-lg mb-2">Gagal memuat produk. Silakan coba lagi nanti.</p>
+                        <p class="text-slate-500 text-sm">Pastikan Anda menjalankan file ini melalui server lokal (misalnya, Python http.server atau VS Code Live Server) untuk menghindari masalah CORS.</p>
+                    </div>
+                `;
             }
         }
 
-        // Fungsi untuk menampilkan detail produk di modal
+        // Function to show product details in modal
         async function showDetails(product) {
             document.getElementById('modalTitle').textContent = product.name;
             const gallery = document.getElementById('modalImageGallery');
-            gallery.innerHTML = ''; // Hapus gambar sebelumnya
+            gallery.innerHTML = ''; // Clear previous images
 
-            // Tambahkan gambar utama terlebih dahulu
+            // Add main image first
             const mainImg = document.createElement('img');
             mainImg.src = `${product.productFolderPath}${product.mainImage}`;
             mainImg.alt = product.name;
-            // Kelas Tailwind untuk gambar utama
             mainImg.classList.add('w-full', 'h-56', 'object-cover', 'rounded-lg', 'shadow-md', 'col-span-full', 'mb-2');
-            // Fallback jika gambar tidak ditemukan
             mainImg.onerror = function() { this.onerror=null; this.src='https://via.placeholder.com/600x200?text=No+Main+Image'; };
             gallery.appendChild(mainImg);
 
-            // Tambahkan gambar detail
+            // Add detail images
             if (product.detailImages && product.detailImages.length > 0) {
                 product.detailImages.forEach((imgName, index) => {
                     const img = document.createElement('img');
                     img.src = `${product.productFolderPath}${imgName}`;
                     img.alt = `${product.name} - Detail ${index + 1}`;
-                    // Kelas Tailwind untuk gambar detail
-                    img.classList.add('w-full', 'h-24', 'object-cover', 'rounded-md', 'shadow-sm', 'cursor-pointer', 'hover:opacity-80', 'transition-opacity');
-                    // Fallback jika gambar detail tidak ditemukan
+                    img.classList.add('w-full', 'h-24', 'object-cover', 'rounded-md', 'shadow-sm', 'cursor-pointer', 'opacity-90', 'hover:opacity-100', 'transition-opacity'); // Subtle opacity
                     img.onerror = function() { this.onerror=null; this.src='https://via.placeholder.com/150x96?text=No+Detail+Image'; };
                     gallery.appendChild(img);
                 });
@@ -256,42 +287,38 @@
 
             document.getElementById('modalPrice').textContent = product.price;
 
-            // Logika untuk link brosur
-            brochureLinkContainer.innerHTML = ''; // Hapus link brosur sebelumnya
+            // Brochure link
+            brochureLinkContainer.innerHTML = ''; // Clear previous brochure link
             if (product.brochurePdf) {
                 const brochureLink = document.createElement('a');
                 brochureLink.href = product.brochurePdf;
-                brochureLink.target = '_blank'; // Buka di tab baru
-                // Atur nama file yang diunduh agar lebih rapi
+                brochureLink.target = '_blank';
                 brochureLink.download = `${product.name.replace(/[^a-zA-Z0-9\s]/g, '').trim().replace(/\s+/g, '_')}_Brosur.pdf`; 
-                // Kelas Tailwind untuk tombol unduh brosur
                 brochureLink.classList.add(
-                    'inline-flex', 'items-center', 'px-6', 'py-3', 'bg-green-600', 'text-white', 
-                    'text-base', 'font-medium', 'rounded-full', 'shadow-md', 'hover:bg-green-700', 
-                    'focus:outline-none', 'focus:ring-2', 'focus:ring-green-500', 
+                    'inline-flex', 'items-center', 'px-6', 'py-3', 'bg-indigo-600', 'text-white', // Changed to indigo
+                    'text-base', 'font-medium', 'rounded-full', 'shadow-md', 'hover:bg-indigo-700', // Changed to indigo
+                    'focus:outline-none', 'focus:ring-2', 'focus:ring-indigo-500', // Changed to indigo
                     'focus:ring-offset-2', 'transition-all', 'duration-200', 'transform', 'hover:scale-105'
                 );
-                // Menambahkan ikon SVG ke tombol
                 brochureLink.innerHTML = `
                     <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v3.586L7.707 9.293a1 1 0 00-1.414 1.414l3 3a1 10001.414 0l3-3a1 000-1.414-1.414L11 10.586V7z" clip-rule="evenodd"></path>
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v3.586L7.707 9.293a1 1000-1.414 1.414l3 3a1 10001.414 0l3-3a1 000-1.414-1.414L11 10.586V7z" clip-rule="evenodd"></path>
                     </svg> 
                     Unduh Brosur Produk
                 `;
                 brochureLinkContainer.appendChild(brochureLink);
             } else {
-                brochureLinkContainer.innerHTML = '<p class="text-gray-500 text-sm text-center">Brosur tidak tersedia untuk produk ini.</p>';
+                brochureLinkContainer.innerHTML = '<p class="text-slate-500 text-sm text-center">Brosur tidak tersedia untuk produk ini.</p>';
             }
 
-            // Mengambil deskripsi lengkap dari file Markdown (.md)
+            // Fetch the long description from the Markdown file
             try {
                 const descriptionResponse = await fetch(`${product.productFolderPath}description.md`);
                 if (!descriptionResponse.ok) {
                     console.warn(`Description.md not found for ${product.id}. Status: ${descriptionResponse.status}`);
-                    document.getElementById('modalDescription').innerHTML = '<p class="text-gray-500 italic">Deskripsi lengkap tidak tersedia.</p>';
+                    document.getElementById('modalDescription').innerHTML = '<p class="text-slate-500 italic">Deskripsi lengkap tidak tersedia.</p>';
                 } else {
                     const markdownText = await descriptionResponse.text();
-                    // Menggunakan Marked.js untuk mengonversi Markdown ke HTML
                     document.getElementById('modalDescription').innerHTML = marked.parse(markdownText);
                 }
             } catch (error) {
@@ -299,38 +326,37 @@
                 document.getElementById('modalDescription').innerHTML = '<p class="text-red-500">Gagal memuat deskripsi produk.</p>';
             }
 
-            // Tampilkan modal dan terapkan animasi
+            // Show modal and apply animations
             productModal.classList.remove('hidden');
-            productModal.classList.add('flex'); // Pastikan flex untuk centering
-
-            // Beri sedikit penundaan untuk memicu transisi CSS
+            productModal.classList.add('flex'); // Ensure flex for centering
+            
+            // Trigger animation
             setTimeout(() => {
                 modalContent.classList.remove('opacity-0', 'scale-95');
                 modalContent.classList.add('opacity-100', 'scale-100');
-            }, 50); 
+            }, 50); // Small delay to allow 'hidden' removal to register
         }
 
-        // Fungsi untuk menutup modal
         function closeModal() {
-            // Balikkan animasi
+            // Reverse animation
             modalContent.classList.remove('opacity-100', 'scale-100');
             modalContent.classList.add('opacity-0', 'scale-95');
             
-            // Sembunyikan modal setelah animasi selesai
+            // Hide after animation
             setTimeout(() => {
                 productModal.classList.add('hidden');
                 productModal.classList.remove('flex');
-            }, 300); // Sesuaikan dengan durasi transisi di CSS
+            }, 300); // Match transition duration
         }
 
-        // Tutup modal saat mengklik di luar area modal
+        // Close modal when clicking outside of it
         productModal.addEventListener('click', function(event) {
             if (event.target === productModal) {
                 closeModal();
             }
         });
 
-        // Muat produk saat halaman selesai dimuat
+        // Load products when the page finishes loading
         document.addEventListener('DOMContentLoaded', loadProducts);
     </script>
 </body>
