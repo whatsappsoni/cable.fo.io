@@ -7,286 +7,454 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
+        /* Custom styles for a sleek, modern, and sophisticated look */
         :root {
-            --primary-bg: #ffffff; /* Latar belakang putih seperti Falcom */
-            --accent-color: #007bff; /* Biru dari tombol Falcom */
-            --secondary-accent: #00eaff; /* Neon biru untuk sentuhan futuristik */
-            --gradient-bg: linear-gradient(135deg, #f0f4f8 0%, #e0e7ff 70%, #d1e4ff 100%); /* Gradient lembut biru muda */
-            --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            --glow: 0 0 15px rgba(0, 123, 255, 0.3);
+            --sb-slide-speed: 56s; /* Kecepatan animasi slider */
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            background: var(--primary-bg);
-            color: #333333; /* Teks hitam seperti Falcom */
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            overflow-x: hidden;
+            background-color: #f9fafb; /* Softer background for elegance */
         }
 
-        .header-bg, .content-bg {
-            background: var(--gradient-bg);
-            background-size: cover;
-            position: relative;
-            overflow: hidden;
-            padding: 4rem 2rem;
-        }
-
-        .header-bg::before, .content-bg::before {
+        /* Subtle geometric background pattern */
+        body::before {
             content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(45deg, #f3f4f6 25%, transparent 25%, transparent 75%, #f3f4f6 75%), 
+                             linear-gradient(45deg, #f3f4f6 25%, transparent 25%, transparent 75%, #f3f4f6 75%);
+            background-size: 16px 16px;
+            background-position: 0 0, 8px 8px;
+            opacity: 0.05;
+            z-index: -1;
+        }
+
+        /* Gradient overlays for the image strip */
+        .sb-image-strip-wrap::before,
+        .sb-image-strip-wrap::after {
+            content: "";
+            position: absolute;
+            height: 100%;
+            width: 16.666667%;
+            top: 0;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .sb-image-strip-wrap::before {
+            left: 0;
+            background: linear-gradient(to right, #ffffff, transparent);
+        }
+
+        .sb-image-strip-wrap::after {
+            right: 0;
+            background: linear-gradient(to left, #ffffff, transparent);
+        }
+
+        .sb-image-strip {
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .sb-image-strip-track {
+            display: flex;
+            align-items: center;
+            width: max-content;
+            animation: slide-left var(--sb-slide-speed) linear infinite;
+        }
+
+        .sb-image-strip-content {
+            display: flex;
+            justify-content: space-around;
+            min-width: 100%;
+        }
+
+        /* Keyframe animation for the image strip */
+        @keyframes slide-left {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 12px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #6b7280;
+            border-radius: 12px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4b5563;
+        }
+
+        /* Smooth modal animations */
+        .modal-enter-active {
+            transition: all 0.4s ease-out;
+        }
+        .modal-leave-active {
+            transition: all 0.3s ease-in;
+        }
+        .modal-enter-from,
+        .modal-leave-to {
+            transform: translateY(20px);
+            opacity: 0;
+        }
+
+        /* Spinner CSS */
+        .loader {
+            border: 4px solid #e5e7eb;
+            border-top: 4px solid #1e3a8a;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Square image frame */
+        .square-image {
+            position: relative;
+            width: 100%;
+            padding-top: 100%;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .square-image img {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at 20% 20%, rgba(0, 123, 255, 0.05) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 80%, rgba(0, 234, 255, 0.05) 0%, transparent 50%);
-            opacity: 0.2;
-            transition: opacity 0.8s ease;
-        }
-
-        .header-bg:hover::before, .content-bg:hover::before {
-            opacity: 0.4;
-        }
-
-        header h1 {
-            font-size: 3rem;
-            font-weight: 700;
-            color: #000000;
-            text-align: center;
-            transition: transform 0.6s ease, opacity 0.6s ease;
-        }
-
-        header h1:hover {
-            transform: scale(1.03);
-            opacity: 0.95;
-        }
-
-        header p {
-            color: #666666;
-            font-size: 1.2rem;
-            font-weight: 400;
-            max-width: 48rem;
-            margin: 1rem auto;
-            text-align: center;
-            transition: opacity 0.6s ease;
-        }
-
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            padding: 4rem 2rem;
-            position: relative;
-        }
-
-        .product-card {
-            background: #ffffff;
-            border-radius: 0.5rem;
-            overflow: hidden;
-            box-shadow: var(--card-shadow);
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 20px rgba(0, 123, 255, 0.2);
-        }
-
-        .product-card img {
-            width: 100%;
-            height: 250px;
             object-fit: cover;
         }
 
-        .product-card h3 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: #000000;
-            margin: 1rem;
-            transition: color 0.4s ease;
-        }
-
-        .product-card:hover h3 {
-            color: var(--accent-color);
-        }
-
-        .product-card p {
-            font-size: 0.9rem;
-            color: #666666;
-            margin: 0 1rem 1rem;
-        }
-
-        #productModal {
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(5px);
-            position: fixed;
-            inset: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
-            z-index: 1000;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.5s ease;
-        }
-
-        #productModal.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        #modalContent {
-            background: #ffffff;
-            border-radius: 0.5rem;
-            padding: 2rem;
-            max-width: 90%;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-            box-shadow: var(--card-shadow);
-            transition: transform 0.5s ease;
-            transform: scale(0.95);
-        }
-
-        #productModal.active #modalContent {
-            transform: scale(1);
-        }
-
-        #modalContent h2 {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #000000;
-            margin-bottom: 1rem;
-        }
-
-        #modalContent .main-image {
-            width: 300px;
-            height: 300px;
-            object-fit: cover;
-            border-radius: 0.25rem;
-            margin-bottom: 1rem;
-            transition: transform 0.5s ease;
-        }
-
-        #modalContent .main-image:hover {
+        /* Thumbnail hover effect */
+        .thumbnail:hover {
             transform: scale(1.05);
-        }
-
-        #modalContent .thumbnails {
-            display: flex;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-        }
-
-        #modalContent .thumbnails img {
-            width: 60px;
-            height: 60px;
-            object-fit: cover;
-            border-radius: 0.25rem;
-            cursor: pointer;
-            transition: opacity 0.4s ease;
-        }
-
-        #modalContent .thumbnails img:hover {
-            opacity: 0.8;
-        }
-
-        #modalContent .description {
-            color: #666666;
-            font-size: 1rem;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-
-        .action-button {
-            background: var(--accent-color);
-            color: #ffffff;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.25rem;
-            font-weight: 500;
-            transition: background 0.4s ease, transform 0.4s ease;
-        }
-
-        .action-button:hover {
-            background: #0056b3;
-            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
     </style>
 </head>
-<body>
-    <header class="header-bg">
+<body class="bg-gray-50 text-gray-900">
+
+    <header class="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-white to-gray-100 relative overflow-hidden shadow-sm">
         <div class="max-w-7xl mx-auto text-center">
-            <h1>Jelajahi Produk Kabel & Jaringan Falcom</h1>
-            <p>Temukan solusi konektivitas terbaik untuk kebutuhan Anda.</p>
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight tracking-tight">
+                Koleksi Produk Teknologi Jaringan Kami
+            </h1>
+            <p class="mt-6 text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
+                Solusi konektivitas canggih untuk masa depan, dari serat optik hingga infrastruktur LAN terdepan.
+            </p>
+
+            <div class="mt-20 relative">
+                <div class="sb-image-strip-wrap">
+                    <div class="sb-image-strip">
+                        <div class="sb-image-strip-track">
+                            <div class="sb-image-strip-content">
+                                <img alt="Brand Logo Link" src="data/logos/falcom-logo.png" class="h-14 mx-6 object-contain transition-all duration-300" onerror="this.onerror=null;this.src='https://via.placeholder.com/120x60/e5e7eb/ffffff?text=Link';">
+                                <img alt="Brand Logo Global" src="data/logos/global-logo.png" class="h-14 mx-6 object-contain transition-all duration-300" onerror="this.onerror=null;this.src='https://via.placeholder.com/120x60/e5e7eb/ffffff?text=Global';">
+                                <img alt="Brand Logo Falcom" src="data/logos/falcom-logo.png" class="h-14 mx-6 object-contain transition-all duration-300" onerror="this.onerror=null;this.src='https://via.placeholder.com/120x60/e5e7eb/ffffff?text=Falcom';">
+                                <img alt="Brand Logo Lainnya" src="data/logos/global-logo.png" class="h-14 mx-6 object-contain transition-all duration-300" onerror="this.onerror=null;this.src='https://via.placeholder.com/120x60/e5e7eb/ffffff?text=Brand+X';">
+                                <img alt="Brand Logo Network" src="data/logos/falcom-logo.png" class="h-14 mx-6 object-contain transition-all duration-300" onerror="this.onerror=null;this.src='https://via.placeholder.com/120x60/e5e7eb/ffffff?text=Network';">
+                            </div>
+                            <div class="sb-image-strip-content">
+                                <img alt="Brand Logo Link" src="data/logos/falcom-logo.png" class="h-14 mx-6 object-contain transition-all duration-300" onerror="this.onerror=null;this.src='https://via.placeholder.com/120x60/e5e7eb/ffffff?text=Link';">
+                                <img alt="Brand Logo Global" src="data/logos/global-logo.png" class="h-14 mx-6 object-contain transition-all duration-300" onerror="this.onerror=null;this.src='https://via.placeholder.com/120x60/e5e7eb/ffffff?text=Global';">
+                                <img alt="Brand Logo Falcom" src="data/logos/falcom-logo.png" class="h-14 mx-6 object-contain transition-all duration-300" onerror="this.onerror=null;this.src='https://via.placeholder.com/120x60/e5e7eb/ffffff?text=Falcom';">
+                                <img alt="Brand Logo Lainnya" src="data/logos/global-logo.png" class="h-14 mx-6 object-contain transition-all duration-300" onerror="this.onerror=null;this.src='https://via.placeholder.com/120x60/e5e7eb/ffffff?text=Brand+X';">
+                                <img alt="Brand Logo Network" src="data/logos/falcom-logo.png" class="h-14 mx-6 object-contain transition-all duration-300" onerror="this.onerror=null;this.src='https://via.placeholder.com/120x60/e5e7eb/ffffff?text=Network';">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </header>
 
-    <section class="content-bg max-w-7xl mx-auto px-4">
-        <h2 class="text-3xl font-bold text-center my-8">Produk Unggulan</h2>
-        <div class="product-grid" id="productGrid">
-            <div class="product-card">
-                <img src="https://via.placeholder.com/250x250?text=Kabel+LAN+CAT+6" alt="Kabel LAN CAT 6">
-                <h3>KABEL LAN FTP CAT 6 OUTDOOR</h3>
-                <p>Kabel LAN dengan kecepatan hingga 10 Gbps hingga 50 meter.</p>
-            </div>
-            <div class="product-card">
-                <img src="https://via.placeholder.com/250x250?text=Serat+Optik" alt="Serat Optik">
-                <h3>KABEL SERAT OPTIK FALCOM</h3>
-                <p>Solusi optik berkualitas tinggi untuk jaringan cepat.</p>
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <h2 class="text-3xl sm:text-4xl font-semibold text-gray-900 mb-12 text-center">Produk Unggulan Kami</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="productGrid">
+            <div class="col-span-full flex flex-col justify-center items-center py-16">
+                <div class="loader"></div>
+                <p class="mt-4 text-gray-500 text-base">Memuat produk...</p>
             </div>
         </div>
     </section>
 
-    <div id="productModal">
-        <div id="modalContent">
-            <button class="absolute top-4 right-4 text-gray-600 hover:text-black text-2xl" onclick="closeModal()">×</button>
-            <button class="absolute top-4 left-4 text-gray-600 hover:text-black text-lg font-medium action-button" onclick="closeModal()">Back</button>
-            <h2 id="modalTitle"></h2>
-            <img id="mainImage" src="" alt="Product Image" class="main-image">
-            <div class="thumbnails" id="thumbnails"></div>
-            <div class="description" id="modalDescription"></div>
-            <div class="flex gap-4 justify-center mt-6">
-                <a id="whatsappLink" href="#" target="_blank" class="action-button">Kirim WhatsApp</a>
-                <a id="locationLink" href="#" target="_blank" class="action-button">Lihat Lokasi</a>
+    <div class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center p-4 z-[1000] hidden" id="productModal">
+        <div class="bg-white rounded-2xl shadow-2xl p-6 sm:p-8 max-w-3xl w-full relative transform transition-all duration-400 ease-out opacity-0 translate-y-20 overflow-y-auto max-h-[90vh] border border-gray-100" id="modalContent">
+            <button class="absolute top-4 right-4 text-gray-400 hover:text-gray-800 text-3xl font-light leading-none transition-colors" onclick="closeModal()">×</button>
+            <h2 class="text-2xl sm:text-3xl font-semibold text-gray-900 mb-4" id="modalTitle"></h2>
+            
+            <div class="mb-6">
+                <div class="square-image">
+                    <img id="currentMainModalImage" src="" alt="Main Product Image" 
+                         class="transition-opacity duration-300" 
+                         onerror="this.onerror=null;this.src='https://via.placeholder.com/600x600?text=No+Main+Image';">
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-5 sm:grid-cols-6 md:grid-cols-8 gap-2 mb-6" id="modalThumbnails"></div>
+            
+            <div class="prose max-w-none text-gray-700 text-base leading-relaxed mb-6" id="modalDescription"></div>
+            
+            <div id="brochureLinkContainer" class="mb-6 flex justify-center"></div>
+            
+            <div class="mb-8 border-t pt-6 border-gray-200">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4">Informasi Kontak</h3>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a id="whatsappLink" href="#" target="_blank" class="inline-flex items-center justify-center px-6 py-2.5 bg-green-600 text-white text-sm font-medium rounded-full shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-all duration-200 transform hover:scale-105 w-full sm:w-auto">
+                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12.04 2C6.58 2 2.14 6.22 2.11 11.33c-.04 1.83.48 3.58 1.48 5.09L2 22l5.31-1.38c1.47.8 3.16 1.22 4.9.96 5.56 0 10.09-4.22 10.12-9.33.02-2.73-1.07-5.26-2.92-7.16C17.3 3.06 14.73 2 12.04 2zm5.73 14.78c-.28.16-.67.25-1.09.25-.42 0-.8-.09-1.09-.25-.28-.16-.54-.45-.76-.8-.22-.35-.37-.77-.45-1.23-.09-.45-.16-.9-.07-1.35.09-.45.3-.85.57-1.16.27-.3.59-.44.92-.44.33 0 .61.12.87.37.26.25.46.59.63.99.17.4.28.84.32 1.28.04.44-.01.8-.18 1.15-.17.35-.45.64-.81.85z"/>
+                        </svg>
+                        Kirim WhatsApp
+                    </a>
+                    <a id="locationLink" href="#" target="_blank" class="inline-flex items-center justify-center px-6 py-2.5 bg-blue-600 text-white text-sm font-medium rounded-full shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 transform hover:scale-105 w-full sm:w-auto">
+                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                        </svg>
+                        Lihat Lokasi di Google Maps
+                    </a>
+                </div>
+            </div>
+            
+            <div class="text-3xl font-bold text-blue-900 text-center mb-6" id="modalPrice"></div>
+            
+            <div class="flex justify-center">
+                <button onclick="closeModal()" class="inline-flex items-center justify-center px-6 py-2.5 bg-gray-200 text-gray-800 text-sm font-medium rounded-full shadow-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 transition-all duration-200 transform hover:scale-105">
+                    Kembali
+                </button>
             </div>
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
     <script>
         const productModal = document.getElementById('productModal');
         const modalContent = document.getElementById('modalContent');
-        const modalTitle = document.getElementById('modalTitle');
-        const mainImage = document.getElementById('mainImage');
-        const thumbnails = document.getElementById('thumbnails');
-        const modalDescription = document.getElementById('modalDescription');
-        const whatsappLink = document.getElementById('whatsappLink');
-        const locationLink = document.getElementById('locationLink');
+        const productGrid = document.getElementById('productGrid');
+        const brochureLinkContainer = document.getElementById('brochureLinkContainer');
 
-        document.querySelectorAll('.product-card').forEach(card => {
-            card.addEventListener('click', () => {
-                const title = card.querySelector('h3').textContent;
-                const description = title.includes('CAT 6')
-                    ? 'Kabel LAN CAT-6 merupakan jenis kabel twisted pair untuk jaringan ethernet, mendukung kecepatan hingga 10 Gbps hingga 50 meter dengan isolasi anti-crosstalk.'
-                    : 'Kabel serat optik berkualitas tinggi untuk konektivitas jaringan cepat dan stabil.';
-                const image = card.querySelector('img').src;
+        // URL placeholder default
+        const DEFAULT_IMAGE_PLACEHOLDER = 'https://via.placeholder.com/600x600?text=No+Image';
+        const THUMBNAIL_PLACEHOLDER = 'https://via.placeholder.com/80x80?text=Thumb';
 
-                modalTitle.textContent = title;
-                mainImage.src = image;
-                modalDescription.textContent = description;
-                thumbnails.innerHTML = ''; // Kosongkan thumbnail jika tidak ada detail gambar tambahan
-                whatsappLink.href = `https://wa.me/62895331244803?text=${encodeURIComponent(`Halo, saya tertarik dengan ${title}.`)}`;
-                locationLink.href = `https://www.google.com/maps/search/?api=1&query=Tuminting,%20Manado,%20Sulawesi%20Utara`;
+        let allProducts = [];
 
-                productModal.classList.add('active');
-            });
-        });
+        async function loadProducts() {
+            try {
+                const response = await fetch('data/products.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                allProducts = await response.json();
+
+                productGrid.innerHTML = '';
+
+                if (allProducts.length === 0) {
+                    productGrid.innerHTML = '<p class="col-span-full text-center text-gray-500 py-10">Tidak ada produk yang ditemukan.</p>';
+                    return;
+                }
+
+                allProducts.forEach(product => {
+                    const productCard = document.createElement('div');
+                    productCard.classList.add(
+                        'bg-white', 'rounded-xl', 'shadow-md', 'hover:shadow-xl',
+                        'transition-all', 'duration-300', 'overflow-hidden', 'group',
+                        'cursor-pointer', 'flex', 'flex-col', 'transform', 'hover:-translate-y-1',
+                        'border', 'border-gray-100', 'hover:border-blue-200'
+                    );
+                    productCard.onclick = () => showDetails(product);
+
+                    productCard.innerHTML = `
+                        <div class="square-image">
+                            <img src="${product.productFolderPath}${product.mainImage}" alt="${product.name}" 
+                                 class="transition-transform duration-300 group-hover:scale-105"
+                                 onerror="this.onerror=null;this.src='${DEFAULT_IMAGE_PLACEHOLDER.replace('600x600', '300x300')}';">
+                        </div>
+                        <div class="p-5 flex flex-col flex-grow">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-2 leading-tight line-clamp-2">${product.name}</h3>
+                            <p class="text-gray-600 text-sm mb-4 line-clamp-3 flex-grow">${product.shortDescription}</p>
+                            <div class="mt-auto text-xl font-bold text-blue-900">${product.price}</div>
+                        </div>
+                    `;
+                    productGrid.appendChild(productCard);
+                });
+
+            } catch (error) {
+                console.error('Error loading products:', error);
+                productGrid.innerHTML = `
+                    <div class="col-span-full text-center py-10">
+                        <p class="text-red-500 text-base mb-2">Gagal memuat produk. Silakan coba lagi nanti.</p>
+                        <p class="text-gray-500 text-sm">Pastikan Anda menjalankan file ini melalui server lokal (misalnya, Python http.server atau VS Code Live Server) untuk menghindari masalah CORS.</p>
+                    </div>
+                `;
+            }
+        }
+
+        async function checkImageExists(url) {
+            try {
+                const response = await fetch(url, { method: 'HEAD' });
+                return response.ok;
+            } catch (error) {
+                return false;
+            }
+        }
+
+        async function showDetails(product) {
+            document.getElementById('modalTitle').textContent = product.name;
+            const currentMainModalImage = document.getElementById('currentMainModalImage');
+            const modalThumbnails = document.getElementById('modalThumbnails');
+            modalThumbnails.innerHTML = '';
+
+            const setMainImageAndHighlightThumbnail = (imgPath, thumbnailElement) => {
+                currentMainModalImage.src = imgPath;
+                Array.from(modalThumbnails.children).forEach(child => {
+                    child.classList.remove('border-blue-500', 'opacity-100');
+                    child.classList.add('border-transparent', 'opacity-75');
+                });
+                if (thumbnailElement) {
+                    thumbnailElement.classList.remove('border-transparent', 'opacity-75');
+                    thumbnailElement.classList.add('border-blue-500', 'opacity-100');
+                }
+            };
+
+            let allImages = [];
+            const mainImagePath = `${product.productFolderPath}${product.mainImage}`;
+            if (await checkImageExists(mainImagePath)) {
+                allImages.push(product.mainImage);
+            }
+
+            if (product.detailImages && Array.isArray(product.detailImages)) {
+                for (const imgName of product.detailImages) {
+                    const detailImagePath = `${product.productFolderPath}${imgName}`;
+                    if (await checkImageExists(detailImagePath)) {
+                        allImages.push(imgName);
+                    }
+                }
+            }
+
+            if (allImages.length === 0) {
+                currentMainModalImage.src = DEFAULT_IMAGE_PLACEHOLDER;
+            } else {
+                const thumbnailElements = [];
+                for (const imgName of allImages) {
+                    const imgPath = `${product.productFolderPath}${imgName}`;
+                    const thumb = document.createElement('img');
+                    thumb.src = imgPath;
+                    thumb.alt = `${product.name} Thumbnail`;
+                    thumb.classList.add(
+                        'w-full', 'h-16', 'object-cover', 'rounded-md', 'shadow-sm',
+                        'cursor-pointer', 'opacity-75', 'hover:opacity-100', 'transition-all', 'duration-200',
+                        'border-2', 'border-transparent', 'thumbnail'
+                    );
+                    thumb.onclick = () => setMainImageAndHighlightThumbnail(imgPath, thumb);
+                    thumb.onerror = function() { this.onerror=null; this.src=THUMBNAIL_PLACEHOLDER; };
+                    modalThumbnails.appendChild(thumb);
+                    thumbnailElements.push(thumb);
+                }
+                setMainImageAndHighlightThumbnail(`${product.productFolderPath}${allImages[0]}`, thumbnailElements[0]);
+            }
+
+            document.getElementById('modalPrice').textContent = product.price;
+
+            brochureLinkContainer.innerHTML = '';
+            if (product.brochurePdf) {
+                const brochurePdfPath = product.brochurePdf;
+                if (await checkImageExists(brochurePdfPath)) {
+                    const brochureLink = document.createElement('a');
+                    brochureLink.href = brochurePdfPath;
+                    brochureLink.target = '_blank';
+                    brochureLink.download = `${product.name.replace(/[^a-zA-Z0-9\s]/g, '').trim().replace(/\s+/g, '_')}_Brosur.pdf`;
+                    brochureLink.classList.add(
+                        'inline-flex', 'items-center', 'px-6', 'py-2.5', 'bg-blue-600', 'text-white',
+                        'text-sm', 'font-medium', 'rounded-full', 'shadow-md', 'hover:bg-blue-700',
+                        'focus:outline-none', 'focus:ring-2', 'focus:ring-blue-500',
+                        'focus:ring-offset-2', 'transition-all', 'duration-200', 'transform', 'hover:scale-105'
+                    );
+                    brochureLink.innerHTML = `
+                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v3.586L7.707 9.293a1 1000-1.414 1.414l3 3a1 10001.414 0l3-3a1 000-1.414-1.414L11 10.586V7z" clip-rule="evenodd"></path>
+                        </svg>
+                        Unduh Brosur Produk
+                    `;
+                    brochureLinkContainer.appendChild(brochureLink);
+                } else {
+                    brochureLinkContainer.innerHTML = '<p class="text-gray-500 text-sm text-center">Brosur tidak tersedia untuk produk ini.</p>';
+                }
+            } else {
+                brochureLinkContainer.innerHTML = '<p class="text-gray-500 text-sm text-center">Brosur tidak tersedia untuk produk ini.</p>';
+            }
+
+            try {
+                const descriptionResponse = await fetch(`${product.productFolderPath}description.md`);
+                if (!descriptionResponse.ok) {
+                    console.warn(`Description.md not found for ${product.id}. Status: ${descriptionResponse.status}`);
+                    document.getElementById('modalDescription').innerHTML = '<p class="text-gray-500 italic">Deskripsi lengkap tidak tersedia.</p>';
+                } else {
+                    const markdownText = await descriptionResponse.text();
+                    document.getElementById('modalDescription').innerHTML = marked.parse(markdownText);
+                }
+            } catch (error) {
+                console.error('Error fetching or parsing description:', error);
+                document.getElementById('modalDescription').innerHTML = '<p class="text-red-500">Gagal memuat deskripsi produk.</p>';
+            }
+
+            const whatsappLink = document.getElementById('whatsappLink');
+            const locationLink = document.getElementById('locationLink');
+            const phoneNumber = '62895331244803';
+            const productName = product.name;
+            const locationAddress = 'Tuminting, Manado, Sulawesi Utara';
+            const whatsappMessage = encodeURIComponent(`Halo, saya tertarik dengan produk ${productName}. Saya ingin bertanya lebih lanjut. Lokasi saya di ${locationAddress}.`);
+            whatsappLink.href = `https://wa.me/${phoneNumber}?text=${whatsappMessage}`;
+            const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(locationAddress)}`;
+            locationLink.href = mapsUrl;
+
+            productModal.classList.remove('hidden');
+            productModal.classList.add('flex');
+            setTimeout(() => {
+                modalContent.classList.remove('opacity-0', 'translate-y-20');
+                modalContent.classList.add('opacity-100', 'translate-y-0');
+            }, 50);
+        }
 
         function closeModal() {
-            productModal.classList.remove('active');
+            modalContent.classList.remove('opacity-100', 'translate-y-0');
+            modalContent.classList.add('opacity-0', 'translate-y-20');
+            setTimeout(() => {
+                productModal.classList.add('hidden');
+                productModal.classList.remove('flex');
+            }, 300);
         }
+
+        productModal.addEventListener('click', function(event) {
+            if (event.target === productModal) {
+                closeModal();
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', loadProducts);
     </script>
 </body>
 </html>
