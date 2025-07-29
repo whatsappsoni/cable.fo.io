@@ -3,346 +3,193 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Katalog Produk Teknologi Canggih</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Katalog Produk Kabel & Jaringan</title>
     <script src="https://cdn.tailwindcss.com"></script>
-
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <style>
-        /* Variabel CSS untuk konsistensi */
         :root {
-            --sb-slide-speed: 50s;
-            --primary-color: #0f172a; /* Latar belakang sangat gelap */
-            --secondary-color: #1e293b; /* Kartu/modal background, sedikit lebih terang dari primary */
-            --accent-color: #38bdf8; /* Biru cerah (sky-500) */
-            --header-bg-start: #1a202c; /* Hampir hitam, untuk gradien header */
-            --header-bg-end: #1e3a8a; /* Biru gelap, untuk gradien header */
-            --text-light: #e2e8f0; /* Teks terang utama */
-            --text-dark: #94a3b8; /* Teks deskripsi/sekunder */
-            --border-color: #334155; /* Slate-700 untuk subtle borders */
-            --card-shadow-start: rgba(0, 0, 0, 0.4);
-            --card-shadow-end: rgba(0, 0, 0, 0.6);
+            --primary-bg: #0f172a;
+            --accent-color: #00eaff;
+            --secondary-accent: #00ff7f;
+            --gradient-bg: linear-gradient(135deg, #0f172a 0%, #1e3a8a 70%, #4b5bd7 100%);
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --glow: 0 0 20px rgba(0, 234, 255, 0.6);
         }
 
-        /* Base styles */
         body {
-            font-family: 'Poppins', sans-serif;
-            background: var(--primary-color);
-            color: var(--text-light);
+            font-family: 'Inter', sans-serif;
+            background: var(--primary-bg);
+            color: #e2e8f0;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             overflow-x: hidden;
         }
 
-        /* Header Enhancements */
-        header {
-            background: linear-gradient(135deg, var(--header-bg-start), var(--header-bg-end));
-            padding: 7rem 1rem;
+        .header-bg, .content-bg {
+            background: var(--gradient-bg);
+            background-size: cover;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
         }
 
-        header h1 {
-            font-size: 5rem;
-            font-weight: 900;
-            color: #ffffff;
-            text-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
-            letter-spacing: -0.05em;
-            line-height: 1;
-        }
-
-        header p {
-            color: var(--text-dark);
-            font-size: 1.6rem;
-            font-weight: 300;
-            max-width: 55rem;
-            margin-top: 2rem;
-            line-height: 1.6;
-        }
-
-        /* Particles.js Container */
-        #particles-js {
+        .header-bg::before, .content-bg::before {
+            content: '';
             position: absolute;
-            width: 100%;
-            height: 100%;
             top: 0;
             left: 0;
-            z-index: 0; /* Di belakang konten header */
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 20%, rgba(0, 234, 255, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(0, 255, 127, 0.1) 0%, transparent 50%);
+            opacity: 0.2;
+            transition: opacity 0.8s ease;
         }
 
-        /* Ensures header content is above particles */
-        .header-content {
+        .header-bg:hover::before, .content-bg:hover::before {
+            opacity: 0.4;
+        }
+
+        header {
+            padding: 6rem 2rem;
             position: relative;
             z-index: 1;
         }
 
-        /* Logo Strip Animation */
-        .sb-image-strip-wrap {
-            position: relative;
-            overflow: hidden;
-            white-space: nowrap;
-            height: 100px; /* Adjust as needed */
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: #ffffff;
+            text-shadow: var(--glow);
+            letter-spacing: -0.02em;
+            transition: transform 0.6s ease, opacity 0.6s ease;
+        }
+
+        header h1:hover {
+            transform: scale(1.03);
+            opacity: 0.95;
+        }
+
+        header p {
+            color: #a0aec0;
+            font-size: 1.25rem;
+            font-weight: 400;
+            max-width: 48rem;
+            margin-top: 1rem;
+            transition: opacity 0.6s ease;
+        }
+
+        .logo-strip {
             margin-top: 3rem;
+            overflow: hidden;
+            position: relative;
         }
 
-        .sb-image-strip-content {
-            display: inline-block;
-            animation: slideLeft var(--sb-slide-speed) linear infinite;
+        .logo-strip-inner {
+            display: flex;
+            animation: slide-left 40s linear infinite;
         }
 
-        .sb-image-strip-content img {
-            height: 80px; /* Adjust as needed */
-            margin: 0 30px;
-            vertical-align: middle;
-            filter: brightness(0.8) grayscale(0.7);
-            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), filter 0.4s ease;
+        .logo-strip-inner img {
+            height: 16px;
+            margin: 0 1.5rem;
+            filter: brightness(1.5);
+            transition: transform 0.4s ease, filter 0.4s ease;
         }
 
-        .sb-image-strip-content img:hover {
-            transform: scale(1.15);
-            filter: brightness(1.2) grayscale(0) drop-shadow(0 0 25px var(--accent-color));
+        .logo-strip-inner img:hover {
+            transform: scale(1.2);
+            filter: brightness(2) drop-shadow(var(--glow));
         }
 
-        .sb-image-strip-wrap::before,
-        .sb-image-strip-wrap::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            width: 200px; /* Width of the fade effect */
-            height: 100%;
-            z-index: 2; /* Ensures it's above the images */
-            pointer-events: none; /* Allows clicks to pass through */
-        }
-
-        .sb-image-strip-wrap::before {
-            left: 0;
-            background: linear-gradient(to right, var(--header-bg-start), transparent);
-        }
-
-        .sb-image-strip-wrap::after {
-            right: 0;
-            background: linear-gradient(to left, var(--header-bg-end), transparent);
-        }
-
-        @keyframes slideLeft {
+        @keyframes slide-left {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
         }
 
-        /* Product Card Enhancements */
-        .product-card {
-            background: var(--secondary-color);
-            border-radius: 1.5rem;
-            box-shadow: 0 5px 20px var(--card-shadow-start);
-            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
-            border: 1px solid var(--border-color);
-            overflow: hidden;
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1a202c;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--secondary-accent);
+            border-radius: 4px;
+            transition: background 0.3s ease;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00cc66;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 4rem 2rem;
             position: relative;
-            cursor: pointer; /* Menambahkan indikator klik */
-            opacity: 0; /* Untuk Intersection Observer */
-            transform: translateY(50px); /* Untuk Intersection Observer */
         }
 
-        .product-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at center, rgba(56, 189, 248, 0.1) 0%, transparent 70%);
+        .product-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 1rem;
+            overflow: hidden;
+            transition: transform 0.6s ease, box-shadow 0.6s ease;
             opacity: 0;
-            transition: opacity 0.5s ease;
-            z-index: 1;
+            transform: translateY(20px);
         }
 
-        .product-card:hover::before {
+        .product-card.visible {
             opacity: 1;
+            transform: translateY(0);
         }
 
         .product-card:hover {
-            box-shadow: 0 20px 60px var(--card-shadow-end);
-            transform: translateY(-12px) scale(1.03);
-            border-color: var(--accent-color);
+            transform: translateY(-5px);
+            box-shadow: var(--card-shadow);
         }
 
         .product-card img {
-            border-top-left-radius: 1.5rem;
-            border-top-right-radius: 1.5rem;
+            width: 100%;
+            height: 250px; /* Persegi 1:1 */
             object-fit: cover;
-            filter: brightness(0.7);
-            transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), filter 0.5s ease;
-            transform: scale(1.0);
-            z-index: 0;
-            position: relative;
+            transition: transform 0.6s ease;
         }
 
         .product-card:hover img {
             transform: scale(1.1);
-            filter: brightness(1);
         }
 
         .product-card h3 {
-            font-size: 1.8rem;
-            font-weight: 700;
+            font-size: 1.25rem;
+            font-weight: 600;
             color: #ffffff;
-            margin-bottom: 0.5rem;
+            margin: 1rem;
+            transition: color 0.4s ease;
+        }
+
+        .product-card:hover h3 {
+            color: var(--accent-color);
         }
 
         .product-card p {
-            color: var(--text-dark);
-            font-size: 1rem;
-            line-height: 1.5;
+            font-size: 0.9rem;
+            color: #a0aec0;
+            margin: 0 1rem 1rem;
         }
 
-        .product-card .text-emerald-500 {
-            font-size: 2.8rem;
-            color: var(--accent-color);
-            text-shadow: 0 0 15px rgba(56, 189, 248, 0.6);
-            font-weight: 800;
-        }
-
-        /* Intersection Observer Fade-in */
-        .product-card.visible {
-            opacity: 1;
-            transform: translateY(0);
-            transition: opacity 1s ease-out, transform 1s ease-out;
-        }
-
-        /* Modal Enhancements */
-        #productModal {
-            background: rgba(0, 0, 0, 0.95);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            transition: opacity 0.3s ease-in-out; /* Transisi untuk modal overlay */
-        }
-
-        #modalContent {
-            background: linear-gradient(145deg, #151a24, #212936);
-            border: 2px solid var(--accent-color);
-            border-radius: 2.5rem;
-            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.8);
-            max-height: 95vh;
-            padding: 3rem;
-            transform: scale(0.95); /* Awalnya sedikit lebih kecil */
-            opacity: 0; /* Awalnya tidak terlihat */
-            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Transisi untuk konten modal */
-        }
-
-        /* Kelas untuk animasi masuk */
-        #modalContent.opacity-100 {
-            opacity: 1;
-            transform: scale(1);
-        }
-        #modalContent.scale-100 {
-            transform: scale(1);
-        }
-
-        /* Kelas untuk animasi keluar (akan ditambahkan via JS sebelum modal di-hidden) */
-        #modalContent.opacity-0 {
-            opacity: 0;
-        }
-        #modalContent.scale-95 {
-            transform: scale(0.95);
-        }
-
-
-        #modalContent h2 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            text-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
-            margin-bottom: 1.5rem;
-        }
-
-        #modalContent .prose {
-            color: var(--text-dark);
-            font-size: 1.1rem;
-            line-height: 1.8;
-        }
-
-        #modalContent .text-emerald-500 {
-            font-size: 4.5rem;
-            font-weight: 900;
-            text-shadow: 0 0 20px rgba(56, 189, 248, 0.8);
-        }
-
-        /* Modal Buttons */
-        #whatsappLink, #locationLink, #brochureLinkContainer a {
-            padding: 1.2rem 2.5rem;
-            font-size: 1.1rem;
-            border-radius: 9999px;
-            font-weight: 700;
-            box-shadow: 0 5px 20px rgba(56, 189, 248, 0.4);
-            transition: all 0.3s ease;
-        }
-
-        #whatsappLink:hover, #locationLink:hover, #brochureLinkContainer a:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 10px 30px rgba(56, 189, 248, 0.6);
-        }
-
-        #whatsappLink { background-color: #25d366; box-shadow: 0 0 20px rgba(37, 211, 102, 0.5); }
-        #whatsappLink:hover { background-color: #1DA851; box-shadow: 0 0 30px rgba(37, 211, 102, 0.8); }
-
-        #locationLink { background-color: #4285F4; box-shadow: 0 0 20px rgba(66, 133, 244, 0.5); }
-        #locationLink:hover { background-color: #3367D6; box-shadow: 0 0 30px rgba(66, 133, 244, 0.8); }
-
-        /* Modal Thumbnails */
-        #modalThumbnails img {
-            border-radius: 0.75rem;
-            height: 6rem;
-            border: 3px solid transparent;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-            transition: all 0.3s ease;
-            cursor: pointer;
-            opacity: 0.8;
-        }
-
-        #modalThumbnails img.border-indigo-500 {
-            border-color: var(--accent-color) !important;
-            box-shadow: 0 0 20px rgba(56, 189, 248, 0.8);
-            opacity: 1;
-        }
-
-        #modalThumbnails img:hover {
-            border-color: var(--accent-color);
-            box-shadow: 0 0 18px rgba(56, 189, 248, 0.6);
-            opacity: 1;
-        }
-
-        /* Main Image Display in Modal */
-        .main-image-display {
-            width: 100%;
-            padding-top: 56.25%; /* 16:9 Aspect Ratio */
-            position: relative;
-            background-color: #000;
-            border-radius: 1rem;
-            overflow: hidden;
-            margin-bottom: 2rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        }
-
-        .main-image-display img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: contain; /* Menggunakan contain agar gambar tidak terpotong */
-            border-radius: 1rem;
-        }
-
-        /* Loader */
         .loader {
-            width: 70px;
-            height: 70px;
-            border: 7px solid transparent;
-            border-top: 7px solid var(--accent-color);
-            border-right: 7px solid var(--accent-color);
-            border-bottom: 7px solid var(--accent-color);
+            width: 50px;
+            height: 50px;
+            border: 4px solid transparent;
+            border-top: 4px solid var(--accent-color);
             border-radius: 50%;
-            animation: spin 1s linear infinite;
+            animation: spin 1s ease infinite;
+            margin: 2rem auto;
         }
 
         @keyframes spin {
@@ -350,455 +197,233 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* Responsiveness */
-        @media (max-width: 1024px) {
-            header h1 {
-                font-size: 4rem;
-            }
-            header p {
-                font-size: 1.4rem;
-            }
-            #modalContent h2 {
-                font-size: 3rem;
-            }
-            #modalContent .text-emerald-500 {
-                font-size: 4rem;
-            }
-            .product-card h3 {
-                font-size: 1.6rem;
-            }
+        #productModal {
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
         }
 
-        @media (max-width: 768px) {
-            header {
-                padding: 5rem 1rem;
-            }
-            header h1 {
-                font-size: 3.5rem;
-            }
-            header p {
-                font-size: 1.2rem;
-            }
-            #modalContent {
-                padding: 2rem;
-            }
-            #modalContent h2 {
-                font-size: 2.5rem;
-            }
-            #modalContent .text-emerald-500 {
-                font-size: 3.5rem;
-            }
-            #whatsappLink, #locationLink, #brochureLinkContainer a {
-                padding: 1rem 2rem;
-                font-size: 1rem;
-            }
-            .main-image-display {
-                padding-top: 66.66%; /* 3:2 Aspect Ratio */
-            }
+        #productModal.active {
+            opacity: 1;
+            pointer-events: auto;
         }
 
-        @media (max-width: 480px) {
-            header {
-                padding: 4rem 0.5rem;
-            }
-            header h1 {
-                font-size: 2.8rem;
-            }
-            header p {
-                font-size: 1rem;
-            }
-            #modalContent {
-                padding: 1.5rem;
-                width: 95%; /* Lebih lebar di layar kecil */
-                max-width: none;
-            }
-            #modalContent h2 {
-                font-size: 2rem;
-            }
-            #modalContent .text-emerald-500 {
-                font-size: 2.8rem;
-            }
-            .product-card h3 {
-                font-size: 1.5rem;
-            }
-            .product-card .text-emerald-500 {
-                font-size: 2rem;
-            }
-            .main-image-display {
-                padding-top: 75%; /* Ratio 4:3 untuk gambar utama di mobile */
-            }
-            #modalThumbnails {
-                grid-template-columns: repeat(3, minmax(0, 1fr)); /* 3 kolom di mobile */
-            }
-            #modalThumbnails img {
-                height: 4rem;
-            }
+        #modalContent {
+            background: rgba(26, 32, 44, 0.9);
+            border-radius: 1rem;
+            padding: 2rem;
+            max-width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            transition: transform 0.5s ease;
+            transform: scale(0.95);
+        }
+
+        #productModal.active #modalContent {
+            transform: scale(1);
+        }
+
+        #modalContent h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 1rem;
+        }
+
+        #modalContent .main-image {
+            width: 300px; /* Persegi 1:1 */
+            height: 300px;
+            object-fit: cover;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            transition: transform 0.5s ease;
+        }
+
+        #modalContent .main-image:hover {
+            transform: scale(1.05);
+        }
+
+        #modalContent .thumbnails {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        #modalContent .thumbnails img {
+            width: 60px;
+            height: 60px; /* Persegi 1:1 */
+            object-fit: cover;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            transition: opacity 0.4s ease;
+        }
+
+        #modalContent .thumbnails img:hover {
+            opacity: 0.8;
+        }
+
+        #modalContent .description {
+            color: #a0aec0;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .action-button {
+            background: var(--accent-color);
+            color: #ffffff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            transition: background 0.4s ease, transform 0.4s ease;
+        }
+
+        .action-button:hover {
+            background: #00ccff;
+            transform: translateY(-2px);
         }
     </style>
 </head>
-<body class="bg-gray-900 text-white min-h-screen flex flex-col">
-
-    <header class="relative text-center">
-        <div id="particles-js" class="absolute inset-0"></div>
-        <div class="header-content relative z-10 max-w-4xl mx-auto px-4">
-            <h1 class="text-6xl font-extrabold mb-4 drop-shadow-lg">
-                Temukan Masa Depan Teknologi
+<body>
+    <header class="header-bg">
+        <div class="max-w-7xl mx-auto text-center px-4">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+                Jelajahi Rangkaian Produk Premium Kami
             </h1>
-            <p class="text-xl text-gray-300 mb-8">
-                Jelajahi inovasi terbaru yang mendorong batas-batas kemungkinan. Dari perangkat cerdas hingga solusi AI revolusioner, kami menghadirkan masa depan ke tangan Anda.
+            <p class="text-lg md:text-xl mt-4 max-w-2xl mx-auto">
+                Temukan solusi berkualitas tinggi untuk konektivitas jaringan, dari kabel serat optik hingga solusi LAN inovatif.
             </p>
-            <button class="bg-accent-color text-white px-8 py-4 rounded-full text-lg font-bold shadow-lg hover:shadow-xl hover:scale-105 transform transition-all duration-300 ease-in-out">
-                Lihat Semua Produk
-            </button>
         </div>
-
-        <div class="sb-image-strip-wrap mt-12 mb-8">
-            <div class="sb-image-strip-content">
-                <img src="./data/logos/apple.png" alt="Apple">
-                <img src="./data/logos/samsung.png" alt="Samsung">
-                <img src="./data/logos/xiaomi.png" alt="Xiaomi">
-                <img src="./data/logos/huawei.png" alt="Huawei">
-                <img src="./data/logos/google.png" alt="Google">
-                <img src="./data/logos/sony.png" alt="Sony">
-                <img src="./data/logos/lg.png" alt="LG">
-                <img src="./data/logos/microsoft.png" alt="Microsoft">
-                <img src="./data/logos/tesla.png" alt="Tesla">
-                <img src="./data/logos/intel.png" alt="Intel">
-
-                <img src="./data/logos/apple.png" alt="Apple">
-                <img src="./data/logos/samsung.png" alt="Samsung">
-                <img src="./data/logos/xiaomi.png" alt="Xiaomi">
-                <img src="./data/logos/huawei.png" alt="Huawei">
-                <img src="./data/logos/google.png" alt="Google">
-                <img src="./data/logos/sony.png" alt="Sony">
-                <img src="./data/logos/lg.png" alt="LG">
-                <img src="./data/logos/microsoft.png" alt="Microsoft">
-                <img src="./data/logos/tesla.png" alt="Tesla">
-                <img src="./data/logos/intel.png" alt="Intel">
+        <div class="logo-strip">
+            <div class="logo-strip-inner">
+                <img src="https://via.placeholder.com/120x60/d1d5db/ffffff?text=Link" alt="Brand Logo Link">
+                <img src="https://via.placeholder.com/120x60/d1d5db/ffffff?text=Global" alt="Brand Logo Global">
+                <img src="https://via.placeholder.com/120x60/d1d5db/ffffff?text=Falcom" alt="Brand Logo Falcom">
+                <img src="https://via.placeholder.com/120x60/d1d5db/ffffff?text=Network" alt="Brand Logo Network">
+                <img src="https://via.placeholder.com/120x60/d1d5db/ffffff?text=Link" alt="Brand Logo Link">
+                <img src="https://via.placeholder.com/120x60/d1d5db/ffffff?text=Global" alt="Brand Logo Global">
+                <img src="https://via.placeholder.com/120x60/d1d5db/ffffff?text=Falcom" alt="Brand Logo Falcom">
+                <img src="https://via.placeholder.com/120x60/d1d5db/ffffff?text=Network" alt="Brand Logo Network">
             </div>
         </div>
     </header>
 
-    <main class="container mx-auto px-4 py-16 flex-grow">
-        <section id="products" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            </section>
-
-        <div id="loader" class="flex justify-center items-center py-8">
-            <div class="loader"></div>
+    <section class="content-bg max-w-7xl mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-bold text-center my-12">Produk Unggulan Kami</h2>
+        <div class="product-grid" id="productGrid">
+            <div class="col-span-full flex flex-col items-center">
+                <div class="loader"></div>
+                <p class="text-gray-400 mt-4">Memuat produk...</p>
+            </div>
         </div>
-    </main>
+    </section>
 
-    <div id="productModal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50 hidden opacity-0 transition-opacity duration-300">
-        <div id="modalContent" class="relative bg-gray-800 rounded-lg p-8 max-w-4xl w-full mx-auto overflow-y-auto transform scale-95 opacity-0 transition-all duration-400 ease-in-out">
-            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-3xl transition-colors duration-200">
-                <i class="fas fa-times"></i>
-            </button>
-
-            <div class="flex flex-col md:flex-row gap-8">
-                <div class="md:w-1/2">
-                    <div class="main-image-display">
-                        <img id="modalMainImage" src="" alt="Product Main Image" class="w-full h-full object-contain rounded-lg">
-                    </div>
-                    <div id="modalThumbnails" class="grid grid-cols-4 gap-2 mt-4">
-                        </div>
-                </div>
-
-                <div class="md:w-1/2">
-                    <h2 id="modalTitle" class="text-4xl font-bold mb-4 text-white"></h2>
-                    <p id="modalDescription" class="text-gray-300 mb-6 text-lg leading-relaxed prose max-w-none"></p>
-                    <div class="flex items-baseline mb-6">
-                        <span id="modalPrice" class="text-emerald-500 font-extrabold text-5xl mr-2"></span>
-                        <span class="text-gray-400 text-xl">/unit</span>
-                    </div>
-
-                    <div class="flex flex-col sm:flex-row gap-4 mb-8">
-                        <a id="whatsappLink" href="#" target="_blank" class="flex-1 bg-green-500 text-white text-center py-3 px-6 rounded-full font-semibold hover:bg-green-600 transition-all duration-300">
-                            <i class="fab fa-whatsapp mr-2"></i> Pesan via WhatsApp
-                        </a>
-                        <a id="locationLink" href="#" target="_blank" class="flex-1 bg-blue-600 text-white text-center py-3 px-6 rounded-full font-semibold hover:bg-blue-700 transition-all duration-300">
-                            <i class="fas fa-map-marker-alt mr-2"></i> Lihat Lokasi
-                        </a>
-                    </div>
-
-                    <div id="brochureLinkContainer" class="mt-4 hidden">
-                        <a id="brochureLink" href="#" target="_blank" class="block bg-purple-600 text-white text-center py-3 px-6 rounded-full font-semibold hover:bg-purple-700 transition-all duration-300">
-                            <i class="fas fa-file-pdf mr-2"></i> Unduh Brosur
-                        </a>
-                    </div>
-
-                    <div class="mt-8 text-gray-400 text-sm">
-                        <p><strong class="text-white">Kategori:</strong> <span id="modalCategory"></span></p>
-                        <p><strong class="text-white">Stok:</strong> <span id="modalStock"></span> unit</p>
-                    </div>
-                </div>
+    <div id="productModal">
+        <div id="modalContent">
+            <button class="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl" onclick="closeModal()">×</button>
+            <button class="absolute top-4 left-4 text-gray-400 hover:text-white text-lg font-medium action-button" onclick="closeModal()">Back</button>
+            <h2 id="modalTitle"></h2>
+            <img id="mainImage" src="" alt="Product Image" class="main-image">
+            <div class="thumbnails" id="thumbnails"></div>
+            <div class="description" id="modalDescription"></div>
+            <div class="flex gap-4 justify-center mt-6">
+                <a id="whatsappLink" href="#" target="_blank" class="action-button">Kirim WhatsApp</a>
+                <a id="locationLink" href="#" target="_blank" class="action-button">Lihat Lokasi</a>
             </div>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script>
-        // Data Produk
-        const products = [
-            {
-                id: 'pro-max-gen-1',
-                name: 'Pro Max Gen 1',
-                price: 15000000,
-                description: 'Perangkat all-in-one revolusioner yang mendefinisikan ulang batas-batas komputasi pribadi. Dilengkapi dengan chip neural terbaru, Pro Max Gen 1 mampu melakukan pemrosesan data kompleks dengan kecepatan yang tak tertandingi. Desain minimalisnya menyembunyikan kekuatan komputasi masif yang siap mendukung kreativitas dan produktivitas Anda. Ideal untuk para profesional kreatif, ilmuwan data, dan penggemar teknologi yang menuntut performa puncak.',
-                images: [
-                    './data/image_0de4a4.png',
-                    './data/pro-max-gen-1/img1.jpg',
-                    './data/pro-max-gen-1/img2.jpg',
-                    './data/pro-max-gen-1/img3.jpg'
-                ],
-                category: 'Komputer & Laptop',
-                stock: 15,
-                brochure: './data/pro-max-gen-1/brochure.pdf' // Contoh brosur
-            },
-            {
-                id: 'quantum-drive-ssd',
-                name: 'Quantum Drive SSD 2TB',
-                price: 5500000,
-                description: 'Penyimpanan solid-state terdepan dengan kecepatan transfer data ekstrem. Quantum Drive SSD 2TB dirancang untuk para gamer, editor video, dan siapa saja yang membutuhkan akses data instan. Teknologi Quantum-nya mengurangi latensi hingga nyaris nol, memastikan waktu booting yang sangat cepat dan kinerja aplikasi yang mulus. Daya tahan superior dan efisiensi energi menjadikannya pilihan sempurna untuk upgrade sistem atau pembangunan PC baru yang berkinerja tinggi.',
-                images: [
-                    './data/image_0e5529.png',
-                    './data/quantum-drive-ssd/img1.jpg',
-                    './data/quantum-drive-ssd/img2.jpg'
-                ],
-                category: 'Penyimpanan',
-                stock: 50,
-                brochure: null // Tidak ada brosur untuk produk ini
-            },
-            {
-                id: 'neuro-interface-v2',
-                name: 'Neuro Interface V2',
-                price: 25000000,
-                description: 'Antarmuka otak-komputer generasi kedua yang inovatif. Neuro Interface V2 memungkinkan interaksi yang intuitif dengan perangkat digital, membuka dimensi baru dalam kontrol dan kreativitas. Dengan sensor bio-optik canggih, ia membaca sinyal saraf dengan presisi tinggi, memungkinkan pengguna mengoperasikan perangkat hanya dengan pikiran. Aplikasi potensial meliputi game yang imersif, kontrol robotik, dan alat bantu bagi individu dengan mobilitas terbatas.',
-                images: [
-                    './data/image_0ecd44.png',
-                    './data/neuro-interface-v2/img1.jpg',
-                    './data/neuro-interface-v2/img2.jpg',
-                    './data/neuro-interface-v2/img3.jpg',
-                    './data/neuro-interface-v2/img4.jpg'
-                ],
-                category: 'Wearable Tech',
-                stock: 8,
-                brochure: './data/neuro-interface-v2/brochure.pdf'
-            },
-            {
-                id: 'holo-projector-ultra',
-                name: 'Holo Projector Ultra',
-                price: 18000000,
-                description: 'Proyektor holografik portabel yang menciptakan citra 3D interaktif di udara. Holo Projector Ultra membawa presentasi, hiburan, dan kolaborasi ke tingkat selanjutnya. Teknologi laser koherennya menghasilkan hologram definisi tinggi yang dapat dilihat dari berbagai sudut tanpa memerlukan kacamata khusus. Cocok untuk pameran, konferensi, atau pengalaman hiburan di rumah yang tak terlupakan. Desain ringkasnya memudahkan untuk dibawa dan diatur di mana saja.',
-                images: [
-                    './data/image_0f2f41.jpg',
-                    './data/holo-projector-ultra/img1.jpg',
-                    './data/holo-projector-ultra/img2.jpg'
-                ],
-                category: 'Display & Proyektor',
-                stock: 12,
-                brochure: null
-            }
-            // Tambahkan lebih banyak produk di sini
-        ];
-
-        // Elemen DOM
-        const productsContainer = document.getElementById('products');
-        const loader = document.getElementById('loader');
         const productModal = document.getElementById('productModal');
         const modalContent = document.getElementById('modalContent');
-        const modalTitle = document.getElementById('modalTitle');
-        const modalMainImage = document.getElementById('modalMainImage');
-        const modalDescription = document.getElementById('modalDescription');
-        const modalPrice = document.getElementById('modalPrice');
-        const modalCategory = document.getElementById('modalCategory');
-        const modalStock = document.getElementById('modalStock');
-        const modalThumbnails = document.getElementById('modalThumbnails');
-        const whatsappLink = document.getElementById('whatsappLink');
-        const locationLink = document.getElementById('locationLink');
-        const brochureLinkContainer = document.getElementById('brochureLinkContainer');
-        const brochureLink = document.getElementById('brochureLink');
+        const productGrid = document.getElementById('productGrid');
+        let allProducts = [];
 
-        // Observer untuk animasi fade-in kartu produk
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target); // Berhenti mengamati setelah terlihat
+        async function loadProducts() {
+            try {
+                const response = await fetch('data/products.json');
+                if (!response.ok) throw new Error('Failed to fetch products');
+                allProducts = await response.json();
+                productGrid.innerHTML = '';
+
+                if (allProducts.length === 0) {
+                    productGrid.innerHTML = '<p class="text-center text-gray-400 py-8">Tidak ada produk yang ditemukan.</p>';
+                    return;
                 }
-            });
-        }, { threshold: 0.2 }); // Akan memicu saat 20% elemen terlihat
 
-        // Fungsi untuk memformat harga ke Rupiah
-        function formatRupiah(number) {
-            return new Intl.NumberFormat('id-ID', {
-                style: 'currency',
-                currency: 'IDR',
-                minimumFractionDigits: 0
-            }).format(number);
-        }
-
-        // Fungsi untuk menampilkan kartu produk
-        function displayProducts() {
-            productsContainer.innerHTML = ''; // Bersihkan kontainer
-            products.forEach(product => {
-                const productCard = document.createElement('div');
-                productCard.className = 'product-card p-4 rounded-lg shadow-lg flex flex-col'; // Tambahkan kelas untuk IO
-                productCard.dataset.productId = product.id; // Simpan ID produk
-                productCard.innerHTML = `
-                    <img src="${product.images[0]}" alt="${product.name}" class="w-full h-48 object-cover rounded-t-lg mb-4">
-                    <div class="flex-grow">
-                        <h3 class="text-xl font-semibold mb-2 text-white">${product.name}</h3>
-                        <p class="text-gray-400 text-sm mb-4 line-clamp-3">${product.description}</p>
-                    </div>
-                    <div class="mt-auto flex justify-between items-center pt-4 border-t border-gray-700">
-                        <span class="text-emerald-500 font-bold text-2xl">${formatRupiah(product.price)}</span>
-                        <button class="bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-blue-700 transition-colors duration-200">
-                            Lihat Detail
-                        </button>
-                    </div>
-                `;
-                productsContainer.appendChild(productCard);
-
-                // Tambahkan observer ke setiap kartu
-                observer.observe(productCard);
-
-                // Event listener untuk setiap kartu
-                productCard.addEventListener('click', () => showDetails(product));
-            });
-        }
-
-        // Fungsi untuk menampilkan detail produk di modal
-        async function showDetails(product) {
-            modalTitle.textContent = product.name;
-            modalDescription.innerHTML = product.description.replace(/\n/g, '<br>'); // Mengganti newline dengan <br>
-            modalPrice.textContent = formatRupiah(product.price);
-            modalCategory.textContent = product.category;
-            modalStock.textContent = product.stock;
-
-            // Tampilkan gambar utama
-            modalMainImage.src = product.images[0];
-            modalMainImage.alt = product.name;
-
-            // Tampilkan thumbnails
-            modalThumbnails.innerHTML = '';
-            product.images.forEach((imageSrc, index) => {
-                const img = document.createElement('img');
-                img.src = imageSrc;
-                img.alt = `${product.name} - Gambar ${index + 1}`;
-                img.className = `w-full h-24 object-cover rounded-lg cursor-pointer ${index === 0 ? 'border-indigo-500' : ''}`;
-                img.addEventListener('click', () => {
-                    modalMainImage.src = imageSrc;
-                    // Hapus border dari semua thumbnail
-                    document.querySelectorAll('#modalThumbnails img').forEach(thumb => {
-                        thumb.classList.remove('border-indigo-500');
-                    });
-                    // Tambahkan border ke thumbnail yang diklik
-                    img.classList.add('border-indigo-500');
+                allProducts.forEach((product, index) => {
+                    const productCard = document.createElement('div');
+                    productCard.className = 'product-card';
+                    productCard.innerHTML = `
+                        <img src="${product.productFolderPath}${product.mainImage}" alt="${product.name}" onerror="this.onerror=null;this.src='https://via.placeholder.com/250x250?text=No+Image';">
+                        <h3>${product.name}</h3>
+                        <p>${product.shortDescription}</p>
+                    `;
+                    productCard.addEventListener('click', () => showDetails(product, index));
+                    productGrid.appendChild(productCard);
                 });
-                modalThumbnails.appendChild(img);
-            });
 
-            // Tampilkan/sembunyikan tombol brosur
-            if (product.brochure) {
-                brochureLink.href = product.brochure;
-                brochureLinkContainer.classList.remove('hidden');
-            } else {
-                brochureLinkContainer.classList.add('hidden');
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) entry.target.classList.add('visible');
+                    });
+                }, { threshold: 0.1 });
+                document.querySelectorAll('.product-card').forEach(card => observer.observe(card));
+            } catch (error) {
+                productGrid.innerHTML = '<p class="text-center text-red-500 py-8">Gagal memuat produk. Coba lagi nanti.</p>';
             }
-
-            // Atur link WhatsApp
-            const whatsappMessage = encodeURIComponent(`Halo, saya tertarik dengan produk ${product.name} (ID: ${product.id}) yang terdaftar di katalog Anda. Bisakah saya mendapatkan informasi lebih lanjut?`);
-            // Ganti '6281234567890' dengan nomor WhatsApp Anda yang sebenarnya
-            whatsappLink.href = `https://wa.me/6281234567890?text=${whatsappMessage}`;
-
-            // URL Google Maps untuk lokasi spesifik (Manado)
-            // Menggunakan koordinat untuk akurasi yang lebih baik jika alamat tidak ditemukan dengan mudah
-            // Contoh koordinat Manado: -1.474838, 124.842079
-            const locationAddress = 'Jalan Sam Ratulangi No. 123, Wenang, Manado, Sulawesi Utara'; // Ganti dengan alamat yang tepat jika ada
-            const encodedLocationAddress = encodeURIComponent(locationAddress);
-            locationLink.href = `https://www.google.com/maps/search/?api=1&query=${encodedLocationAddress}`;
-
-
-            productModal.classList.remove('hidden', 'opacity-0');
-            productModal.classList.add('flex', 'opacity-100');
-            
-            // Berikan jeda kecil untuk browser me-render perubahan `hidden` ke `flex`,
-            // lalu terapkan kelas transisi untuk `modalContent`.
-            setTimeout(() => {
-                modalContent.classList.remove('opacity-0', 'scale-95');
-                modalContent.classList.add('opacity-100', 'scale-100');
-            }, 50); // Jeda kecil 50ms
         }
 
-        // Fungsi untuk menutup modal
+        async function showDetails(product, index) {
+            document.getElementById('modalTitle').textContent = product.name;
+            const mainImage = document.getElementById('mainImage');
+            const thumbnails = document.getElementById('thumbnails');
+            thumbnails.innerHTML = '';
+
+            mainImage.src = `${product.productFolderPath}${product.mainImage}` || 'https://via.placeholder.com/300x300?text=No+Image';
+            mainImage.onerror = () => mainImage.src = 'https://via.placeholder.com/300x300?text=No+Image';
+
+            if (product.detailImages) {
+                product.detailImages.forEach(img => {
+                    const thumb = document.createElement('img');
+                    thumb.src = `${product.productFolderPath}${img}` || 'https://via.placeholder.com/60x60?text=Thumb';
+                    thumb.onclick = () => mainImage.src = thumb.src;
+                    thumb.onerror = () => thumb.src = 'https://via.placeholder.com/60x60?text=Thumb';
+                    thumbnails.appendChild(thumb);
+                });
+            }
+
+            try {
+                const response = await fetch(`${product.productFolderPath}description.md`);
+                document.getElementById('modalDescription').innerHTML = response.ok ? marked.parse(await response.text()) : '<p>Deskripsi tidak tersedia.</p>';
+            } catch {
+                document.getElementById('modalDescription').innerHTML = '<p>Deskripsi tidak tersedia.</p>';
+            }
+
+            const whatsappLink = document.getElementById('whatsappLink');
+            const locationLink = document.getElementById('locationLink');
+            whatsappLink.href = `https://wa.me/62895331244803?text=${encodeURIComponent(`Halo, saya tertarik dengan ${product.name}.`)}`;
+            locationLink.href = `https://www.google.com/maps/search/?api=1&query=Tuminting,%20Manado,%20Sulawesi%20Utara`;
+
+            productModal.classList.add('active');
+        }
+
         function closeModal() {
-            modalContent.classList.remove('opacity-100', 'scale-100');
-            modalContent.classList.add('opacity-0', 'scale-95'); 
-
-            modalContent.addEventListener('transitionend', function handler() {
-                if (modalContent.classList.contains('opacity-0')) {
-                    productModal.classList.add('hidden');
-                    productModal.classList.remove('flex');
-                    modalContent.removeEventListener('transitionend', handler);
-                }
-            });
+            productModal.classList.remove('active');
         }
 
-        // Handle klik di luar modal untuk menutupnya
-        productModal.addEventListener('click', (event) => {
-            if (event.target === productModal) {
-                closeModal();
-            }
-        });
-
-        // Handle Escape key untuk menutup modal
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'Escape' && !productModal.classList.contains('hidden')) {
-                closeModal();
-            }
-        });
-
-        // Inisialisasi Particles.js
-        document.addEventListener('DOMContentLoaded', () => {
-            displayProducts(); // Tampilkan produk saat DOM siap
-
-            // Sembunyikan loader setelah produk dimuat (asumsi produk dimuat dengan cepat)
-            loader.classList.add('hidden');
-
-            particlesJS('particles-js', {
-                particles: {
-                    number: { value: 80, density: { enable: true, value_area: 1200 } },
-                    color: { value: '#e0e0e0' },
-                    shape: { type: 'circle' },
-                    opacity: { value: 0.7, random: true, anim: { enable: true, speed: 0.8, opacity_min: 0.1, sync: false } },
-                    size: { value: 2.5, random: true, anim: { enable: true, speed: 1.5, size_min: 0.1, sync: false } },
-                    line_linked: { 
-                        enable: true, 
-                        distance: 200,
-                        color: '#bbbbbb',
-                        opacity: 0.25,
-                        width: 1
-                    }, 
-                    move: { enable: true, speed: 1.2, direction: 'none', random: true, straight: false, out_mode: 'out', bounce: false, attract: { enable: false, rotateX: 600, rotateY: 1200 } }
-                },
-                interactivity: {
-                    detect_on: 'canvas',
-                    events: {
-                        onhover: { enable: true, mode: 'repulse' },
-                        onclick: { enable: true, mode: 'push' },
-                        resize: true
-                    },
-                    modes: {
-                        grab: { distance: 200, line_linked: { opacity: 0.8 } },
-                        repulse: { distance: 120, duration: 0.4 },
-                        push: { particles_nb: 4 }
-                    }
-                },
-                retina_detect: true
-            });
-        });
+        document.addEventListener('DOMContentLoaded', loadProducts);
     </script>
-
 </body>
 </html>
