@@ -6,21 +6,20 @@
     <title>Katalog Produk Kabel & Jaringan</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <style>
         :root {
-            --primary-bg: #0f172a;
-            --accent-color: #00eaff;
-            --secondary-accent: #00ff7f;
-            --gradient-bg: linear-gradient(135deg, #0f172a 0%, #1e3a8a 70%, #4b5bd7 100%);
-            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            --glow: 0 0 20px rgba(0, 234, 255, 0.6);
+            --primary-bg: #ffffff; /* Latar belakang putih seperti Falcom */
+            --accent-color: #007bff; /* Biru dari tombol Falcom */
+            --secondary-accent: #00eaff; /* Neon biru untuk sentuhan futuristik */
+            --gradient-bg: linear-gradient(135deg, #f0f4f8 0%, #e0e7ff 70%, #d1e4ff 100%); /* Gradient lembut biru muda */
+            --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            --glow: 0 0 15px rgba(0, 123, 255, 0.3);
         }
 
         body {
             font-family: 'Inter', sans-serif;
             background: var(--primary-bg);
-            color: #e2e8f0;
+            color: #333333; /* Teks hitam seperti Falcom */
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             overflow-x: hidden;
@@ -31,6 +30,7 @@
             background-size: cover;
             position: relative;
             overflow: hidden;
+            padding: 4rem 2rem;
         }
 
         .header-bg::before, .content-bg::before {
@@ -40,8 +40,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at 20% 20%, rgba(0, 234, 255, 0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 80%, rgba(0, 255, 127, 0.1) 0%, transparent 50%);
+            background: radial-gradient(circle at 20% 20%, rgba(0, 123, 255, 0.05) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(0, 234, 255, 0.05) 0%, transparent 50%);
             opacity: 0.2;
             transition: opacity 0.8s ease;
         }
@@ -50,18 +50,11 @@
             opacity: 0.4;
         }
 
-        header {
-            padding: 6rem 2rem;
-            position: relative;
-            z-index: 1;
-        }
-
         header h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            color: #ffffff;
-            text-shadow: var(--glow);
-            letter-spacing: -0.02em;
+            font-size: 3rem;
+            font-weight: 700;
+            color: #000000;
+            text-align: center;
             transition: transform 0.6s ease, opacity 0.6s ease;
         }
 
@@ -71,59 +64,13 @@
         }
 
         header p {
-            color: #a0aec0;
-            font-size: 1.25rem;
+            color: #666666;
+            font-size: 1.2rem;
             font-weight: 400;
             max-width: 48rem;
-            margin-top: 1rem;
+            margin: 1rem auto;
+            text-align: center;
             transition: opacity 0.6s ease;
-        }
-
-        .logo-strip {
-            margin-top: 3rem;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .logo-strip-inner {
-            display: flex;
-            animation: slide-left 40s linear infinite;
-        }
-
-        .logo-strip-inner img {
-            height: 16px;
-            margin: 0 1.5rem;
-            filter: brightness(1.5);
-            transition: transform 0.4s ease, filter 0.4s ease;
-        }
-
-        .logo-strip-inner img:hover {
-            transform: scale(1.2);
-            filter: brightness(2) drop-shadow(var(--glow));
-        }
-
-        @keyframes slide-left {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #1a202c;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--secondary-accent);
-            border-radius: 4px;
-            transition: background 0.3s ease;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #00cc66;
         }
 
         .product-grid {
@@ -135,39 +82,28 @@
         }
 
         .product-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 1rem;
+            background: #ffffff;
+            border-radius: 0.5rem;
             overflow: hidden;
-            transition: transform 0.6s ease, box-shadow 0.6s ease;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-
-        .product-card.visible {
-            opacity: 1;
-            transform: translateY(0);
+            box-shadow: var(--card-shadow);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
         }
 
         .product-card:hover {
             transform: translateY(-5px);
-            box-shadow: var(--card-shadow);
+            box-shadow: 0 6px 20px rgba(0, 123, 255, 0.2);
         }
 
         .product-card img {
             width: 100%;
-            height: 250px; /* Persegi 1:1 */
+            height: 250px;
             object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-
-        .product-card:hover img {
-            transform: scale(1.1);
         }
 
         .product-card h3 {
             font-size: 1.25rem;
             font-weight: 600;
-            color: #ffffff;
+            color: #000000;
             margin: 1rem;
             transition: color 0.4s ease;
         }
@@ -178,28 +114,13 @@
 
         .product-card p {
             font-size: 0.9rem;
-            color: #a0aec0;
+            color: #666666;
             margin: 0 1rem 1rem;
         }
 
-        .loader {
-            width: 50px;
-            height: 50px;
-            border: 4px solid transparent;
-            border-top: 4px solid var(--accent-color);
-            border-radius: 50%;
-            animation: spin 1s ease infinite;
-            margin: 2rem auto;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
         #productModal {
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(10px);
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
             position: fixed;
             inset: 0;
             display: flex;
@@ -218,13 +139,14 @@
         }
 
         #modalContent {
-            background: rgba(26, 32, 44, 0.9);
-            border-radius: 1rem;
+            background: #ffffff;
+            border-radius: 0.5rem;
             padding: 2rem;
             max-width: 90%;
             max-height: 90vh;
             overflow-y: auto;
             position: relative;
+            box-shadow: var(--card-shadow);
             transition: transform 0.5s ease;
             transform: scale(0.95);
         }
@@ -236,15 +158,15 @@
         #modalContent h2 {
             font-size: 2rem;
             font-weight: 700;
-            color: #ffffff;
+            color: #000000;
             margin-bottom: 1rem;
         }
 
         #modalContent .main-image {
-            width: 300px; /* Persegi 1:1 */
+            width: 300px;
             height: 300px;
             object-fit: cover;
-            border-radius: 0.5rem;
+            border-radius: 0.25rem;
             margin-bottom: 1rem;
             transition: transform 0.5s ease;
         }
@@ -261,7 +183,7 @@
 
         #modalContent .thumbnails img {
             width: 60px;
-            height: 60px; /* Persegi 1:1 */
+            height: 60px;
             object-fit: cover;
             border-radius: 0.25rem;
             cursor: pointer;
@@ -273,7 +195,7 @@
         }
 
         #modalContent .description {
-            color: #a0aec0;
+            color: #666666;
             font-size: 1rem;
             line-height: 1.6;
             margin-bottom: 1.5rem;
@@ -283,55 +205,45 @@
             background: var(--accent-color);
             color: #ffffff;
             padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
+            border-radius: 0.25rem;
             font-weight: 500;
             transition: background 0.4s ease, transform 0.4s ease;
         }
 
         .action-button:hover {
-            background: #00ccff;
+            background: #0056b3;
             transform: translateY(-2px);
         }
     </style>
 </head>
 <body>
     <header class="header-bg">
-        <div class="max-w-7xl mx-auto text-center px-4">
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-                Jelajahi Rangkaian Produk Premium Kami
-            </h1>
-            <p class="text-lg md:text-xl mt-4 max-w-2xl mx-auto">
-                Temukan solusi berkualitas tinggi untuk konektivitas jaringan, dari kabel serat optik hingga solusi LAN inovatif.
-            </p>
-        </div>
-        <div class="logo-strip">
-            <div class="logo-strip-inner">
-                <img src="https://via.placeholder.com/120x60/d1d5db/ffffff?text=Link" alt="Brand Logo Link">
-                <img src="https://via.placeholder.com/120x60/d1d5db/ffffff?text=Global" alt="Brand Logo Global">
-                <img src="https://via.placeholder.com/120x60/d1d5db/ffffff?text=Falcom" alt="Brand Logo Falcom">
-                <img src="https://via.placeholder.com/120x60/d1d5db/ffffff?text=Network" alt="Brand Logo Network">
-                <img src="https://via.placeholder.com/120x60/d1d5db/ffffff?text=Link" alt="Brand Logo Link">
-                <img src="https://via.placeholder.com/120x60/d1d5db/ffffff?text=Global" alt="Brand Logo Global">
-                <img src="https://via.placeholder.com/120x60/d1d5db/ffffff?text=Falcom" alt="Brand Logo Falcom">
-                <img src="https://via.placeholder.com/120x60/d1d5db/ffffff?text=Network" alt="Brand Logo Network">
-            </div>
+        <div class="max-w-7xl mx-auto text-center">
+            <h1>Jelajahi Produk Kabel & Jaringan Falcom</h1>
+            <p>Temukan solusi konektivitas terbaik untuk kebutuhan Anda.</p>
         </div>
     </header>
 
     <section class="content-bg max-w-7xl mx-auto px-4">
-        <h2 class="text-3xl md:text-4xl font-bold text-center my-12">Produk Unggulan Kami</h2>
+        <h2 class="text-3xl font-bold text-center my-8">Produk Unggulan</h2>
         <div class="product-grid" id="productGrid">
-            <div class="col-span-full flex flex-col items-center">
-                <div class="loader"></div>
-                <p class="text-gray-400 mt-4">Memuat produk...</p>
+            <div class="product-card">
+                <img src="https://via.placeholder.com/250x250?text=Kabel+LAN+CAT+6" alt="Kabel LAN CAT 6">
+                <h3>KABEL LAN FTP CAT 6 OUTDOOR</h3>
+                <p>Kabel LAN dengan kecepatan hingga 10 Gbps hingga 50 meter.</p>
+            </div>
+            <div class="product-card">
+                <img src="https://via.placeholder.com/250x250?text=Serat+Optik" alt="Serat Optik">
+                <h3>KABEL SERAT OPTIK FALCOM</h3>
+                <p>Solusi optik berkualitas tinggi untuk jaringan cepat.</p>
             </div>
         </div>
     </section>
 
     <div id="productModal">
         <div id="modalContent">
-            <button class="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl" onclick="closeModal()">×</button>
-            <button class="absolute top-4 left-4 text-gray-400 hover:text-white text-lg font-medium action-button" onclick="closeModal()">Back</button>
+            <button class="absolute top-4 right-4 text-gray-600 hover:text-black text-2xl" onclick="closeModal()">×</button>
+            <button class="absolute top-4 left-4 text-gray-600 hover:text-black text-lg font-medium action-button" onclick="closeModal()">Back</button>
             <h2 id="modalTitle"></h2>
             <img id="mainImage" src="" alt="Product Image" class="main-image">
             <div class="thumbnails" id="thumbnails"></div>
@@ -343,87 +255,38 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script>
         const productModal = document.getElementById('productModal');
         const modalContent = document.getElementById('modalContent');
-        const productGrid = document.getElementById('productGrid');
-        let allProducts = [];
+        const modalTitle = document.getElementById('modalTitle');
+        const mainImage = document.getElementById('mainImage');
+        const thumbnails = document.getElementById('thumbnails');
+        const modalDescription = document.getElementById('modalDescription');
+        const whatsappLink = document.getElementById('whatsappLink');
+        const locationLink = document.getElementById('locationLink');
 
-        async function loadProducts() {
-            try {
-                const response = await fetch('data/products.json');
-                if (!response.ok) throw new Error('Failed to fetch products');
-                allProducts = await response.json();
-                productGrid.innerHTML = '';
+        document.querySelectorAll('.product-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const title = card.querySelector('h3').textContent;
+                const description = title.includes('CAT 6')
+                    ? 'Kabel LAN CAT-6 merupakan jenis kabel twisted pair untuk jaringan ethernet, mendukung kecepatan hingga 10 Gbps hingga 50 meter dengan isolasi anti-crosstalk.'
+                    : 'Kabel serat optik berkualitas tinggi untuk konektivitas jaringan cepat dan stabil.';
+                const image = card.querySelector('img').src;
 
-                if (allProducts.length === 0) {
-                    productGrid.innerHTML = '<p class="text-center text-gray-400 py-8">Tidak ada produk yang ditemukan.</p>';
-                    return;
-                }
+                modalTitle.textContent = title;
+                mainImage.src = image;
+                modalDescription.textContent = description;
+                thumbnails.innerHTML = ''; // Kosongkan thumbnail jika tidak ada detail gambar tambahan
+                whatsappLink.href = `https://wa.me/62895331244803?text=${encodeURIComponent(`Halo, saya tertarik dengan ${title}.`)}`;
+                locationLink.href = `https://www.google.com/maps/search/?api=1&query=Tuminting,%20Manado,%20Sulawesi%20Utara`;
 
-                allProducts.forEach((product, index) => {
-                    const productCard = document.createElement('div');
-                    productCard.className = 'product-card';
-                    productCard.innerHTML = `
-                        <img src="${product.productFolderPath}${product.mainImage}" alt="${product.name}" onerror="this.onerror=null;this.src='https://via.placeholder.com/250x250?text=No+Image';">
-                        <h3>${product.name}</h3>
-                        <p>${product.shortDescription}</p>
-                    `;
-                    productCard.addEventListener('click', () => showDetails(product, index));
-                    productGrid.appendChild(productCard);
-                });
-
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) entry.target.classList.add('visible');
-                    });
-                }, { threshold: 0.1 });
-                document.querySelectorAll('.product-card').forEach(card => observer.observe(card));
-            } catch (error) {
-                productGrid.innerHTML = '<p class="text-center text-red-500 py-8">Gagal memuat produk. Coba lagi nanti.</p>';
-            }
-        }
-
-        async function showDetails(product, index) {
-            document.getElementById('modalTitle').textContent = product.name;
-            const mainImage = document.getElementById('mainImage');
-            const thumbnails = document.getElementById('thumbnails');
-            thumbnails.innerHTML = '';
-
-            mainImage.src = `${product.productFolderPath}${product.mainImage}` || 'https://via.placeholder.com/300x300?text=No+Image';
-            mainImage.onerror = () => mainImage.src = 'https://via.placeholder.com/300x300?text=No+Image';
-
-            if (product.detailImages) {
-                product.detailImages.forEach(img => {
-                    const thumb = document.createElement('img');
-                    thumb.src = `${product.productFolderPath}${img}` || 'https://via.placeholder.com/60x60?text=Thumb';
-                    thumb.onclick = () => mainImage.src = thumb.src;
-                    thumb.onerror = () => thumb.src = 'https://via.placeholder.com/60x60?text=Thumb';
-                    thumbnails.appendChild(thumb);
-                });
-            }
-
-            try {
-                const response = await fetch(`${product.productFolderPath}description.md`);
-                document.getElementById('modalDescription').innerHTML = response.ok ? marked.parse(await response.text()) : '<p>Deskripsi tidak tersedia.</p>';
-            } catch {
-                document.getElementById('modalDescription').innerHTML = '<p>Deskripsi tidak tersedia.</p>';
-            }
-
-            const whatsappLink = document.getElementById('whatsappLink');
-            const locationLink = document.getElementById('locationLink');
-            whatsappLink.href = `https://wa.me/62895331244803?text=${encodeURIComponent(`Halo, saya tertarik dengan ${product.name}.`)}`;
-            locationLink.href = `https://www.google.com/maps/search/?api=1&query=Tuminting,%20Manado,%20Sulawesi%20Utara`;
-
-            productModal.classList.add('active');
-        }
+                productModal.classList.add('active');
+            });
+        });
 
         function closeModal() {
             productModal.classList.remove('active');
         }
-
-        document.addEventListener('DOMContentLoaded', loadProducts);
     </script>
 </body>
 </html>
