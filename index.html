@@ -1,599 +1,291 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Katalog Produk Kabel & Jaringan</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --sb-slide-speed: 56s;
-            --primary-color: #1e3a8a;
-            --accent-color: #10b981;
-            --gradient-bg: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
-            --card-hover-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: #0f172a;
-            color: #e2e8f0;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--gradient-bg);
-            opacity: 0.05;
-            z-index: -1;
-        }
-
-        header {
-            background: linear-gradient(135deg, #1e40af, #4f46e5);
-            padding: 5rem 1rem;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        header h1 {
-            font-size: 4.5rem;
-            font-weight: 900;
-            color: #ffffff;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-            letter-spacing: -0.025em;
-        }
-
-        header p {
-            color: #d1d5db;
-            font-size: 1.5rem;
-            font-weight: 300;
-            max-width: 48rem;
-        }
-
-        .sb-image-strip-wrap::before,
-        .sb-image-strip-wrap::after {
-            content: "";
-            position: absolute;
-            height: 100%;
-            width: 20%;
-            top: 0;
-            z-index: 10;
-            pointer-events: none;
-            background: linear-gradient(to right, rgba(30, 64, 175, 0.9), transparent);
-        }
-
-        .sb-image-strip-wrap::after {
-            right: 0;
-            background: linear-gradient(to left, rgba(30, 64, 175, 0.9), transparent);
-        }
-
-        .sb-image-strip {
-            overflow: hidden;
-            white-space: nowrap;
-        }
-
-        .sb-image-strip-track {
-            display: flex;
-            align-items: center;
-            width: max-content;
-            animation: slide-left var(--sb-slide-speed) linear infinite;
-        }
-
-        .sb-image-strip-content {
-            display: flex;
-            justify-content: space-around;
-            min-width: 100%;
-        }
-
-        .sb-image-strip-content img {
-            filter: brightness(1.1) drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
-            transition: transform 0.3s ease, filter 0.3s ease;
-        }
-
-        .sb-image-strip-content img:hover {
-            transform: scale(1.1);
-            filter: brightness(1.3) drop-shadow(0 0 15px rgba(16, 185, 129, 0.5));
-        }
-
-        @keyframes slide-left {
-            from { transform: translateX(0); }
-            to { transform: translateX(-50%); }
-        }
-
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #1e293b;
-            border-radius: 10px;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #4f46e5;
-            border-radius: 10px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #6366f1;
-        }
-
-        .modal-enter-active {
-            transition: all 0.3s ease-out;
-        }
-
-        .modal-leave-active {
-            transition: all 0.2s ease-in;
-        }
-
-        .modal-enter-from,
-        .modal-leave-to {
-            transform: scale(0.95);
-            opacity: 0;
-        }
-
-        .loader {
-            width: 50px;
-            height: 50px;
-            border: 4px solid transparent;
-            border-top: 4px solid var(--accent-color);
-            border-right: 4px solid var(--accent-color);
-            border-radius: 50%;
-            animation: spin 0.8s ease-in-out infinite, pulse 1.5s ease-in-out infinite;
-            box-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-        }
-
-        .main-image-display {
-            position: relative;
-            width: 100%;
-            padding-top: 100%;
-            overflow: hidden;
-        }
-
-        .main-image-display img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .bg-slate-900 {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .bg-slate-900::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at center, rgba(79, 70, 229, 0.3) 0%, transparent 70%);
-            opacity: 0;
-            transition: opacity 0.5s ease;
-            z-index: 0;
-        }
-
-        .bg-slate-900:hover::before {
-            opacity: 1;
-        }
-
-        .bg-slate-900 img {
-            transition: transform 0.5s ease, filter 0.5s ease;
-        }
-
-        .bg-slate-900:hover img {
-            transform: scale(1.15);
-            filter: brightness(1.2);
-        }
-
-        .bg-slate-900 h3 {
-            color: #ffffff;
-            font-weight: 700;
-        }
-
-        .bg-slate-900 p {
-            color: #94a3b8;
-        }
-
-        .bg-slate-900 .text-emerald-500 {
-            color: var(--accent-color);
-            text-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
-        }
-
-        #productModal {
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-        }
-
-        #modalContent {
-            background: linear-gradient(145deg, #1e293b 0%, #2d3748 100%);
-            border: 1px solid rgba(79, 70, 229, 0.3);
-            border-radius: 1.5rem;
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
-            color: #e2e8f0;
-        }
-
-        #modalContent h2 {
-            color: #ffffff;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-        }
-
-        #modalContent .prose {
-            color: #d1d5db;
-        }
-
-        #modalContent .text-emerald-500 {
-            color: var(--accent-color);
-            text-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
-        }
-
-        #whatsappLink, #locationLink, #brochureLinkContainer a {
-            background: var(--accent-color);
-            box-shadow: 0 0 15px rgba(16, 185, 129, 0.5);
-            transition: all 0.3s ease;
-        }
-
-        #whatsappLink:hover, #locationLink:hover, #brochureLinkContainer a:hover {
-            background: #059669;
-            box-shadow: 0 0 25px rgba(16, 185, 129, 0.7);
-            transform: scale(1.1);
-        }
-
-        #modalThumbnails img.border-indigo-500 {
-            border-color: var(--accent-color) !important;
-            box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
-        }
-
-        .product-card {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-
-        .product-card.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
-</head>
-<body class="text-slate-200">
-    <header class="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden shadow-sm">
-        <div id="particles-js" class="absolute inset-0 z-0"></div>
-        <div class="max-w-7xl mx-auto text-center relative z-10">
-            <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-white leading-tight tracking-tight drop-shadow-sm">
-                Jelajahi Rangkaian Produk Premium Kami
-            </h1>
-            <p class="mt-6 text-xl sm:text-2xl text-slate-300 max-w-3xl mx-auto opacity-90">
-                Temukan solusi berkualitas tinggi untuk konektivitas jaringan, dari kabel serat optik hingga solusi LAN yang inovatif.
-            </p>
-            <div class="mt-24 relative">
-                <div class="sb-image-strip-wrap">
-                    <div class="sb-image-strip">
-                        <div class="sb-image-strip-track">
-                            <div class="sb-image-strip-content">
-                                <img alt="Brand Logo Link" src="data/logos/falcom-logo.png" class="h-16 mx-8 object-contain transition-all duration-300" onerror="this.onerror=null;this.src='https://via.placeholder.com/120x60/d1d5db/ffffff?text=Link';">
-                                <img alt="Brand Logo Global" src="data/logos/global-logo.png" class="h-16 mx-8 object-contain transition-all duration-300" onerror="this.onerror=null;this.src='https://via.placeholder.com/120x60/d1d5db/ffffff?text=Global';">
-                                <img alt="Brand Logo Falcom" src="data/logos/falcom-logo.png" class="h-16 mx-8 object-contain transition-all duration-300" onerror="this.onerror=null;this.src='https://via.placeholder.com/120x60/d1d5db/ffffff?text=Falcom';">
-                                <img alt="Brand Logo Lainnya" src="data/logos/global-logo.png" class="h-16 mx-8 object-contain transition-all duration-300" onerror="this.onerror=null;this.src='https://via.placeholder.com/120x60/d1d5db/ffffff?text=Brand+X';">
-                                <img alt="Brand Logo Network" src="data/logos/falcom-logo.png" class="h-16 mx-8 object-contain transition-all duration-300" onerror="this.onerror=null;this.src='https://via.placeholder.com/120x60/d1d5db/ffffff?text=Network';">
-                            </div>
-                            <div class="sb-image-strip-content">
-                                <img alt="Brand Logo Link" src="data/logos/falcom-logo.png" class="h-16 mx-8 object-contain transition-all duration-300" onerror="this.onerror=null;this.src='https://via.placeholder.com/120x60/d1d5db/ffffff?text=Link';">
-                                <img alt="Brand Logo Global" src="data/logos/global-logo.png" class="h-16 mx-8 object-contain transition-all duration-300" onerror="this.onerror=null;this.src='https://via.placeholder.com/120x60/d1d5db/ffffff?text=Global';">
-                                <img alt="Brand Logo Falcom" src="data/logos/falcom-logo.png" class="h-16 mx-8 object-contain transition-all duration-300" onerror="this.onerror=null;this.src='https://via.placeholder.com/120x60/d1d5db/ffffff?text=Falcom';">
-                                <img alt="Brand Logo Lainnya" src="data/logos/global-logo.png" class="h-16 mx-8 object-contain transition-all duration-300" onerror="this.onerror=null;this.src='https://via.placeholder.com/120x60/d1d5db/ffffff?text=Brand+X';">
-                                <img alt="Brand Logo Network" src="data/logos/falcom-logo.png" class="h-16 mx-8 object-contain transition-all duration-300" onerror="this.onerror=null;this.src='https://via.placeholder.com/120x60/d1d5db/ffffff?text=Network';">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <h2 class="text-4xl sm:text-5xl font-bold text-white mb-12 text-center">Produk Unggulan Kami</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8" id="productGrid">
-            <div class="col-span-full flex flex-col justify-center items-center py-20">
-                <div class="loader"></div>
-                <p class="mt-4 text-slate-400 text-lg">Memuat produk...</p>
-            </div>
-        </div>
-    </section>
-
-    <div class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-[1000] hidden" id="productModal">
-        <div class="rounded-2xl shadow-2xl p-8 max-w-2xl w-full relative transform transition-all duration-300 ease-out opacity-0 scale-95 overflow-y-auto max-h-[90vh]" id="modalContent">
-            <button class="absolute top-4 right-4 text-slate-400 hover:text-white text-4xl font-light leading-none transition-colors" onclick="closeModal()">×</button>
-            <h2 class="text-3xl font-bold text-white mb-4" id="modalTitle"></h2>
-            <div class="mb-6">
-                <div class="relative w-full overflow-hidden rounded-lg shadow-md main-image-display">
-                    <img id="currentMainModalImage" src="" alt="Main Product Image" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-300" onerror="this.onerror=null;this.src='https://via.placeholder.com/600x600?text=No+Main+Image';">
-                </div>
-            </div>
-            <div class="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 gap-3 mb-6" id="modalThumbnails"></div>
-            <div class="prose max-w-none text-slate-300 text-base leading-relaxed mb-6" id="modalDescription"></div>
-            <div id="brochureLinkContainer" class="mb-6 flex justify-center"></div>
-            <div class="mb-8 border-t pt-6 border-slate-700">
-                <h3 class="text-xl font-semibold text-white mb-4">Informasi Kontak</h3>
-                <div class="flex flex-col sm:flex-row justify-center gap-4">
-                    <a id="whatsappLink" href="#" target="_blank" class="inline-flex items-center justify-center px-6 py-3 text-white text-base font-medium rounded-full shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2 transition-all duration-200 transform hover:scale-105 w-full sm:w-auto">
-                        <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12.04 2C6.58 2 2.14 6.22 2.11 11.33c-.04 1.83.48 3.58 1.48 5.09L2 22l5.31-1.38c1.47.8 3.16 1.22 4.9.96 5.56 0 10.09-4.22 10.12-9.33.02-2.73-1.07-5.26-2.92-7.16C17.3 3.06 14.73 2 12.04 2zm5.73 14.78c-.28.16-.67.25-1.09.25-.42 0-.8-.09-1.09-.25-.28-.16-.54-.45-.76-.8-.22-.35-.37-.77-.45-1.23-.09-.45-.16-.9-.07-1.35.09-.45.3-.85.57-1.16.27-.3.59-.44.92-.44.33 0 .61.12.87.37.26.25.46.59.63.99.17.4.28.84.32 1.28.04.44-.01.8-.18 1.15-.17.35-.45.64-.81.85z"/>
-                        </svg>
-                        Kirim WhatsApp
-                    </a>
-                    <a id="locationLink" href="#" target="_blank" class="inline-flex items-center justify-center px-6 py-3 text-white text-base font-medium rounded-full shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 transition-all duration-200 transform hover:scale-105 w-full sm:w-auto">
-                        <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-                        </svg>
-                        Lihat Lokasi di Google Maps
-                    </a>
-                </div>
-            </div>
-            <div class="text-4xl font-extrabold text-emerald-500 text-center" id="modalPrice"></div>
-        </div>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-    <script>
-        const productModal = document.getElementById('productModal');
-        const modalContent = document.getElementById('modalContent');
-        const productGrid = document.getElementById('productGrid');
-        const brochureLinkContainer = document.getElementById('brochureLinkContainer');
-
-        const DEFAULT_IMAGE_PLACEHOLDER = 'https://via.placeholder.com/600x600?text=No+Image';
-        const THUMBNAIL_PLACEHOLDER = 'https://via.placeholder.com/80x80?text=Thumb';
-
-        let allProducts = [];
-
-        async function checkImageExists(url) {
-            try {
-                const response = await fetch(url, { method: 'HEAD' });
-                return response.ok;
-            } catch (error) {
-                return false;
-            }
-        }
-
-        async function loadProducts() {
-            try {
-                const response = await fetch('data/products.json');
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                allProducts = await response.json();
-                productGrid.innerHTML = '';
-
-                if (allProducts.length === 0) {
-                    productGrid.innerHTML = '<p class="col-span-full text-center text-slate-400 py-10">Tidak ada produk yang ditemukan.</p>';
-                    return;
-                }
-
-                allProducts.forEach(product => {
-                    const productCard = document.createElement('div');
-                    productCard.classList.add(
-                        'bg-slate-900', 'rounded-2xl', 'shadow-xl', 'hover:shadow-2xl',
-                        'transition-all', 'duration-500', 'overflow-hidden', 'group',
-                        'cursor-pointer', 'flex', 'flex-col', 'transform', 'hover:-translate-y-3',
-                        'border', 'border-slate-700', 'hover:border-indigo-500', 'relative', 'product-card'
-                    );
-                    productCard.onclick = () => showDetails(product);
-
-                    productCard.innerHTML = `
-                        <div class="overflow-hidden">
-                            <img src="${product.productFolderPath}${product.mainImage}" alt="${product.name}" 
-                                 class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
-                                 onerror="this.onerror=null;this.src='${DEFAULT_IMAGE_PLACEHOLDER.replace('600x600', '300x192')}';">
-                        </div>
-                        <div class="p-6 flex flex-col flex-grow">
-                            <h3 class="text-xl font-semibold text-white mb-2 leading-tight line-clamp-2">${product.name}</h3>
-                            <p class="text-slate-400 text-sm mb-4 line-clamp-3 flex-grow">${product.shortDescription}</p>
-                            <div class="mt-auto text-2xl font-bold text-emerald-500">${product.price}</div>
-                        </div>
-                    `;
-                    productGrid.appendChild(productCard);
-                });
-
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add('visible');
-                            observer.unobserve(entry.target);
-                        }
-                    });
-                }, { threshold: 0.1 });
-
-                document.querySelectorAll('.product-card').forEach(card => {
-                    observer.observe(card);
-                });
-
-            } catch (error) {
-                console.error('Error loading products:', error);
-                productGrid.innerHTML = `
-                    <div class="col-span-full text-center py-10">
-                        <p class="text-red-500 text-lg mb-2">Gagal memuat produk. Silakan coba lagi nanti.</p>
-                        <p class="text-slate-400 text-sm">Pastikan Anda menjalankan file ini melalui server lokal (misalnya, Python http.server atau VS Code Live Server) untuk menghindari masalah CORS.</p>
-                    </div>
-                `;
-            }
-        }
-
-        async function showDetails(product) {
-            document.getElementById('modalTitle').textContent = product.name;
-            const currentMainModalImage = document.getElementById('currentMainModalImage');
-            const modalThumbnails = document.getElementById('modalThumbnails');
-            modalThumbnails.innerHTML = '';
-
-            const setMainImageAndHighlightThumbnail = (imgPath, thumbnailElement) => {
-                currentMainModalImage.src = imgPath;
-                Array.from(modalThumbnails.children).forEach(child => {
-                    child.classList.remove('border-indigo-500', 'opacity-100');
-                    child.classList.add('border-transparent', 'opacity-70');
-                });
-                if (thumbnailElement) {
-                    thumbnailElement.classList.remove('border-transparent', 'opacity-70');
-                    thumbnailElement.classList.add('border-indigo-500', 'opacity-100');
-                }
-            };
-
-            let allImages = [];
-            const mainImagePath = `${product.productFolderPath}${product.mainImage}`;
-            if (await checkImageExists(mainImagePath)) {
-                allImages.push(product.mainImage);
-            }
-
-            if (product.detailImages && Array.isArray(product.detailImages)) {
-                for (const imgName of product.detailImages) {
-                    const detailImagePath = `${product.productFolderPath}${imgName}`;
-                    if (await checkImageExists(detailImagePath)) {
-                        allImages.push(imgName);
-                    }
-                }
-            }
-
-            if (allImages.length === 0) {
-                currentMainModalImage.src = DEFAULT_IMAGE_PLACEHOLDER;
-            } else {
-                const thumbnailElements = [];
-                for (const imgName of allImages) {
-                    const imgPath = `${product.productFolderPath}${imgName}`;
-                    const thumb = document.createElement('img');
-                    thumb.src = imgPath;
-                    thumb.alt = `${product.name} Thumbnail`;
-                    thumb.classList.add(
-                        'w-full', 'h-20', 'object-cover', 'rounded-md', 'shadow-sm', 
-                        'cursor-pointer', 'opacity-70', 'hover:opacity-100', 'transition-opacity',
-                        'border-2', 'border-transparent', 'hover:border-indigo-500'
-                    );
-                    thumb.onclick = () => setMainImageAndHighlightThumbnail(imgPath, thumb);
-                    thumb.onerror = function() { this.onerror=null; this.src=THUMBNAIL_PLACEHOLDER; };
-                    modalThumbnails.appendChild(thumb);
-                    thumbnailElements.push(thumb);
-                }
-                setMainImageAndHighlightThumbnail(`${product.productFolderPath}${allImages[0]}`, thumbnailElements[0]);
-            }
-
-            document.getElementById('modalPrice').textContent = product.price;
-
-            brochureLinkContainer.innerHTML = '';
-            if (product.brochurePdf) {
-                const brochurePdfPath = product.brochurePdf;
-                if (await checkImageExists(brochurePdfPath)) {
-                    const brochureLink = document.createElement('a');
-                    brochureLink.href = brochurePdfPath;
-                    brochureLink.target = '_blank';
-                    brochureLink.download = `${product.name.replace(/[^a-zA-Z0-9\s]/g, '').trim().replace(/\s+/g, '_')}_Brosur.pdf`;
-                    brochureLink.classList.add(
-                        'inline-flex', 'items-center', 'px-6', 'py-3', 'text-white', 
-                        'text-base', 'font-medium', 'rounded-full', 'shadow-md', 'hover:bg-indigo-700', 
-                        'focus:outline-none', 'focus:ring-2', 'focus:ring-indigo-500', 
-                        'focus:ring-offset-2', 'transition-all', 'duration-200', 'transform', 'hover:scale-105'
-                    );
-                    brochureLink.innerHTML = `
-                        <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v3.586L7.707 9.293a1 1000-1.414 1.414l3 3a1 10001.414 0l3-3a1 000-1.414-1.414L11 10.586V7z" clip-rule="evenodd"></path>
-                        </svg> 
-                        Unduh Brosur Produk
-                    `;
-                    brochureLinkContainer.appendChild(brochureLink);
-                } else {
-                    brochureLinkContainer.innerHTML = '<p class="text-slate-400 text-sm text-center">Brosur tidak tersedia untuk produk ini.</p>';
-                }
-            } else {
-                brochureLinkContainer.innerHTML = '<p class="text-slate-400 text-sm text-center">Brosur tidak tersedia untuk produk ini.</p>';
-            }
-
-            try {
-                const descriptionResponse = await fetch(`${product.productFolderPath}description.md`);
-                if (!descriptionResponse.ok) {
-                    console.warn(`Description.md not found for ${product.id}. Status: ${descriptionResponse.status}`);
-                    document.getElementById('modalDescription').innerHTML = '<p class="text-slate-400 italic">Deskripsi lengkap tidak tersedia.</p>';
-                } else {
-                    const markdownText = await descriptionResponse.text();
-                    document.getElementById('modalDescription').innerHTML = marked.parse(markdownText);
-                }
-            } catch (error) {
-                console.error('Error fetching or parsing description:', error);
-                document.getElementById('modalDescription').innerHTML = '<p class="text-red-500">Gagal memuat deskripsi produk.</p>';
-            }
-
-            const whatsappLink = document.getElementById('whatsappLink');
-            const locationLink = document.getElementById('locationLink');
-            const phoneNumber = '62895331244803';
-            const productName = product.name;
-            const locationAddress = 'Tuminting, Manado, Sulawesi Utara';
-            const whatsappMessage = encodeURIComponent(`Halo, saya tertarik dengan produk ${productName}. Saya ingin bertanya lebih lanjut. Lokasi saya di ${locationAddress}.`);
-            whatsappLink.href = `https://wa.me/${phoneNumber}?text=${whatsappMessage}`;
-            const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(locationAddress)}`;
-            locationLink.href = mapsUrl;
-
-            productModal.classList.remove('hidden');
-            productModal.classList.add('flex');
-            setTimeout(() => {
-                modalContent.classList.remove('opacity-0', 'scale-95');
-                modalContent.classList.add('opacity-100', 'scale-100');
-            }, 50);
-        }
-
-        function closeModal() {
-            modalContent.classList.remove('opacity-100', 'scale-100');
-            modalContent.classList.add('opacity-0', 'scale-95');
-            setTimeout(() => {
-                productModal.classList.add('hidden');
-                productModal.classList.remove('flex');
-            }, 300);
-        }
-
-        productModal.addEventListener('click', function(event) {
-            if (event.target === productModal) {
-                closeModal();
-            }
-        });
-
-        document.addEventListener('DOMContentLoaded', loadProducts);
-
-        particlesJS('particles-js', {
-            particles: {
-                number: { value: 50, density: { enable: true, value_area: 800 } },
-                color: { value: '#ffffff' },
-                shape: { type: 'circle' },
-                opacity: { value: 0.5, random: true },
-                size: { value: 3, random: true },
-                line_linked: { enable: true, distance: 150, color: '#ffffff', opacity: 0.4, width: 1 },
-                move: { enable: true, speed: 2, direction: 'none', random: true, out_mode: 'out' }
-            },
-            interactivity: {
-                detect_on: 'canvas',
-                events: { onhover: { enable: true, mode: 'grab' }, onclick: { enable: true, mode: 'push' }, resize: true },
-                modes: { grab: { distance: 200, line_linked: { opacity: 1 } }, push: { particles_nb: 4 } }
-            },
-            retina_detect: true
-        });
-    </script>
-</body>
-</html>
+/* Dalam tag <style> Anda */
+
+:root {
+    /* Tetap menggunakan variabel yang sudah disempurnakan sebelumnya */
+    --sb-slide-speed: 50s;
+    --primary-color: #0f172a; /* Latar belakang sangat gelap */
+    --secondary-color: #1e293b; /* Kartu/modal background, sedikit lebih terang dari primary */
+    --accent-color: #38bdf8; /* Biru cerah (sky-500) */
+    --header-bg-start: #1a202c; /* Hampir hitam, untuk gradien header */
+    --header-bg-end: #1e3a8a; /* Biru gelap, untuk gradien header */
+    --text-light: #e2e8f0; /* Teks terang utama */
+    --text-dark: #94a3b8; /* Teks deskripsi/sekunder */
+    --border-color: #334155; /* Slate-700 untuk subtle borders */
+    --card-shadow-start: rgba(0, 0, 0, 0.4);
+    --card-shadow-end: rgba(0, 0, 0, 0.6);
+}
+
+/* Base styles - Pastikan background body sangat gelap */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--primary-color); /* Pastikan ini sangat gelap */
+    color: var(--text-light);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+}
+
+/* Header Enhancements */
+header {
+    background: linear-gradient(135deg, var(--header-bg-start), var(--header-bg-end)); /* Gradien lebih dalam */
+    padding: 7rem 1rem; /* Padding lebih besar untuk kesan "grand" */
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6); /* Shadow lebih kuat */
+}
+
+header h1 {
+    font-size: 5rem; /* Ukuran lebih besar untuk h1 */
+    font-weight: 900;
+    color: #ffffff;
+    text-shadow: 0 5px 20px rgba(0, 0, 0, 0.5); /* Shadow lebih dalam */
+    letter-spacing: -0.05em; /* Lebih rapat */
+    line-height: 1; /* Lebih rapat */
+}
+
+header p {
+    color: var(--text-dark);
+    font-size: 1.6rem; /* Ukuran lebih besar untuk p */
+    font-weight: 300;
+    max-width: 55rem; /* Lebih lebar */
+    margin-top: 2rem;
+    line-height: 1.6;
+}
+
+/* Logo Strip - Overlays */
+.sb-image-strip-wrap::before,
+.sb-image-strip-wrap::after {
+    /* Pastikan warna gradien menyatu sempurna dengan header */
+    background: linear-gradient(to right, var(--header-bg-start), transparent);
+}
+.sb-image-strip-wrap::after {
+    background: linear-gradient(to left, var(--header-bg-end), transparent);
+}
+
+.sb-image-strip-content img {
+    filter: brightness(0.8) grayscale(0.7); /* Lebih gelap, lebih grayscale */
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), filter 0.4s ease;
+}
+
+.sb-image-strip-content img:hover {
+    transform: scale(1.15); /* Zoom sedikit lebih besar */
+    filter: brightness(1.2) grayscale(0) drop-shadow(0 0 25px var(--accent-color)); /* Lebih cerah, warna penuh, shadow lebih kuat */
+}
+
+/* Product Card Enhancements */
+.product-card {
+    background: var(--secondary-color);
+    border-radius: 1.5rem;
+    box-shadow: 0 5px 20px var(--card-shadow-start);
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); /* Transisi lebih lambat dan halus */
+    border: 1px solid var(--border-color);
+    overflow: hidden; /* Penting untuk gambar yang membesar */
+    position: relative; /* Untuk pseudo-element hover */
+}
+
+.product-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(56, 189, 248, 0.1) 0%, transparent 70%); /* Lingkaran fokus */
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 1; /* Di atas gambar tapi di bawah konten */
+}
+
+.product-card:hover::before {
+    opacity: 1;
+}
+
+.product-card:hover {
+    box-shadow: 0 20px 60px var(--card-shadow-end); /* Shadow lebih dalam */
+    transform: translateY(-12px) scale(1.03); /* Lift dan scale lebih terasa */
+    border-color: var(--accent-color);
+}
+
+.product-card img {
+    border-top-left-radius: 1.5rem;
+    border-top-right-radius: 1.5rem;
+    object-fit: cover;
+    filter: brightness(0.7); /* Lebih gelap, kontras lebih tinggi */
+    transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), filter 0.5s ease;
+    transform: scale(1.0); /* Mulai dari skala 1 */
+    z-index: 0; /* Di bawah pseudo-element */
+    position: relative; /* agar z-index bekerja */
+}
+
+.product-card:hover img {
+    transform: scale(1.1); /* Zoom lebih besar */
+    filter: brightness(1); /* Full brightness */
+}
+
+.product-card h3 {
+    font-size: 1.8rem; /* Ukuran judul produk lebih besar */
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+}
+
+.product-card p {
+    color: var(--text-dark);
+    font-size: 1rem; /* Ukuran deskripsi produk lebih besar */
+    line-height: 1.5;
+}
+
+.product-card .text-emerald-500 {
+    font-size: 2.8rem; /* Ukuran harga lebih besar */
+    color: var(--accent-color);
+    text-shadow: 0 0 15px rgba(56, 189, 248, 0.6);
+    font-weight: 800;
+}
+
+/* Modal Enhancements */
+#productModal {
+    background: rgba(0, 0, 0, 0.95); /* Lebih gelap dan buram */
+    backdrop-filter: blur(20px); /* Blur lebih kuat */
+    -webkit-backdrop-filter: blur(20px);
+}
+
+#modalContent {
+    background: linear-gradient(145deg, #151a24, #212936); /* Gradien modal lebih gelap */
+    border: 2px solid var(--accent-color);
+    border-radius: 2.5rem; /* Lebih bulat */
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.8); /* Shadow lebih dalam */
+    max-height: 95vh;
+    padding: 3rem; /* Padding lebih besar */
+}
+
+#modalContent h2 {
+    font-size: 3.5rem; /* Judul modal lebih besar */
+    font-weight: 800;
+    text-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    margin-bottom: 1.5rem;
+}
+
+#modalContent .prose {
+    color: var(--text-dark);
+    font-size: 1.1rem; /* Ukuran teks deskripsi modal lebih besar */
+    line-height: 1.8;
+}
+
+#modalContent .text-emerald-500 {
+    font-size: 4.5rem; /* Ukuran harga modal sangat besar */
+    font-weight: 900;
+    text-shadow: 0 0 20px rgba(56, 189, 248, 0.8);
+}
+
+/* Modal Buttons - Lebih besar, lebih menonjol */
+#whatsappLink, #locationLink, #brochureLinkContainer a {
+    padding: 1.2rem 2.5rem; /* Padding lebih besar */
+    font-size: 1.1rem; /* Ukuran font lebih besar */
+    border-radius: 9999px; /* Sepenuhnya bulat */
+    font-weight: 700; /* Lebih tebal */
+    box-shadow: 0 5px 20px rgba(56, 189, 248, 0.4);
+}
+
+#whatsappLink:hover, #locationLink:hover, #brochureLinkContainer a:hover {
+    transform: translateY(-5px) scale(1.05); /* Efek lift lebih besar */
+    box-shadow: 0 10px 30px rgba(56, 189, 248, 0.6);
+}
+
+/* Adjust colors for specific buttons to be more prominent */
+#whatsappLink { background-color: #25d366; box-shadow: 0 0 20px rgba(37, 211, 102, 0.5); }
+#whatsappLink:hover { background-color: #1DA851; box-shadow: 0 0 30px rgba(37, 211, 102, 0.8); }
+
+#locationLink { background-color: #4285F4; box-shadow: 0 0 20px rgba(66, 133, 244, 0.5); }
+#locationLink:hover { background-color: #3367D6; box-shadow: 0 0 30px rgba(66, 133, 244, 0.8); }
+
+/* Modal Thumbnails */
+#modalThumbnails img {
+    border-radius: 0.75rem;
+    height: 6rem; /* Ukuran thumbnail lebih besar */
+    border: 3px solid transparent;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+#modalThumbnails img.border-indigo-500 {
+    border-color: var(--accent-color) !important;
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.8); /* Shadow lebih kuat */
+    opacity: 1;
+}
+
+#modalThumbnails img:hover {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 18px rgba(56, 189, 248, 0.6);
+}
+
+/* Loader */
+.loader {
+    width: 70px; /* Loader lebih besar */
+    height: 70px;
+    border: 7px solid transparent;
+    border-top: 7px solid var(--accent-color);
+    border-right: 7px solid var(--accent-color);
+    border-bottom: 7px solid var(--accent-color);
+    box-shadow: 0 0 30px rgba(56, 189, 248, 0.7);
+}
+
+/* Intersection Observer Fade-in */
+.product-card {
+    opacity: 0;
+    transform: translateY(50px); /* Mulai lebih jauh ke bawah */
+    transition: opacity 1s ease-out, transform 1s ease-out; /* Animasi lebih lambat dan halus */
+}
+
+.product-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsiveness - Tambahan */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 3.5rem;
+    }
+    header p {
+        font-size: 1.2rem;
+    }
+    #modalContent h2 {
+        font-size: 2.5rem;
+    }
+    #modalContent .text-emerald-500 {
+        font-size: 3.5rem;
+    }
+    #whatsappLink, #locationLink, #brochureLinkContainer a {
+        padding: 1rem 2rem;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 2.8rem;
+    }
+    header p {
+        font-size: 1rem;
+    }
+    #modalContent h2 {
+        font-size: 2rem;
+    }
+    #modalContent .text-emerald-500 {
+        font-size: 2.8rem;
+    }
+    .product-card h3 {
+        font-size: 1.5rem;
+    }
+    .product-card .text-emerald-500 {
+        font-size: 2rem;
+    }
+    .main-image-display {
+        padding-top: 75%; /* Ratio 4:3 untuk gambar utama di mobile */
+    }
+    #modalThumbnails {
+        grid-template-columns: repeat(3, minmax(0, 1fr)); /* 3 kolom di mobile */
+    }
+    #modalThumbnails img {
+        height: 4rem;
+    }
+}
