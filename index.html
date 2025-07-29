@@ -1,291 +1,421 @@
-/* Dalam tag <style> Anda */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Katalog Produk Kabel & Jaringan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"> <!-- Mengganti Poppins dengan Inter untuk gaya modern -->
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <style>
+        :root {
+            --primary-bg: #0f172a; /* Latar belakang gelap */
+            --accent-color: #00eaff; /* Neon biru */
+            --secondary-accent: #00ff7f; /* Neon hijau */
+            --gradient-bg: linear-gradient(135deg, #0f172a 0%, #1e3a8a 70%, #4b5bd7 100%);
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --glow: 0 0 20px rgba(0, 234, 255, 0.6);
+        }
 
-:root {
-    /* Tetap menggunakan variabel yang sudah disempurnakan sebelumnya */
-    --sb-slide-speed: 50s;
-    --primary-color: #0f172a; /* Latar belakang sangat gelap */
-    --secondary-color: #1e293b; /* Kartu/modal background, sedikit lebih terang dari primary */
-    --accent-color: #38bdf8; /* Biru cerah (sky-500) */
-    --header-bg-start: #1a202c; /* Hampir hitam, untuk gradien header */
-    --header-bg-end: #1e3a8a; /* Biru gelap, untuk gradien header */
-    --text-light: #e2e8f0; /* Teks terang utama */
-    --text-dark: #94a3b8; /* Teks deskripsi/sekunder */
-    --border-color: #334155; /* Slate-700 untuk subtle borders */
-    --card-shadow-start: rgba(0, 0, 0, 0.4);
-    --card-shadow-end: rgba(0, 0, 0, 0.6);
-}
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--primary-bg);
+            color: #e2e8f0;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
 
-/* Base styles - Pastikan background body sangat gelap */
-body {
-    font-family: 'Poppins', sans-serif;
-    background: var(--primary-color); /* Pastikan ini sangat gelap */
-    color: var(--text-light);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    overflow-x: hidden;
-}
+        .header-bg {
+            background: var(--gradient-bg);
+            background-size: cover;
+            position: relative;
+            overflow: hidden;
+        }
 
-/* Header Enhancements */
-header {
-    background: linear-gradient(135deg, var(--header-bg-start), var(--header-bg-end)); /* Gradien lebih dalam */
-    padding: 7rem 1rem; /* Padding lebih besar untuk kesan "grand" */
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6); /* Shadow lebih kuat */
-}
+        .header-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 20%, rgba(0, 234, 255, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(0, 255, 127, 0.1) 0%, transparent 50%);
+            opacity: 0.2;
+            transition: opacity 0.8s ease;
+        }
 
-header h1 {
-    font-size: 5rem; /* Ukuran lebih besar untuk h1 */
-    font-weight: 900;
-    color: #ffffff;
-    text-shadow: 0 5px 20px rgba(0, 0, 0, 0.5); /* Shadow lebih dalam */
-    letter-spacing: -0.05em; /* Lebih rapat */
-    line-height: 1; /* Lebih rapat */
-}
+        .header-bg:hover::before {
+            opacity: 0.4;
+        }
 
-header p {
-    color: var(--text-dark);
-    font-size: 1.6rem; /* Ukuran lebih besar untuk p */
-    font-weight: 300;
-    max-width: 55rem; /* Lebih lebar */
-    margin-top: 2rem;
-    line-height: 1.6;
-}
+        header {
+            padding: 6rem 2rem;
+            position: relative;
+            z-index: 1;
+        }
 
-/* Logo Strip - Overlays */
-.sb-image-strip-wrap::before,
-.sb-image-strip-wrap::after {
-    /* Pastikan warna gradien menyatu sempurna dengan header */
-    background: linear-gradient(to right, var(--header-bg-start), transparent);
-}
-.sb-image-strip-wrap::after {
-    background: linear-gradient(to left, var(--header-bg-end), transparent);
-}
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: #ffffff;
+            text-shadow: var(--glow);
+            letter-spacing: -0.02em;
+            transition: transform 0.6s ease, opacity 0.6s ease;
+        }
 
-.sb-image-strip-content img {
-    filter: brightness(0.8) grayscale(0.7); /* Lebih gelap, lebih grayscale */
-    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), filter 0.4s ease;
-}
+        header h1:hover {
+            transform: scale(1.03);
+            opacity: 0.95;
+        }
 
-.sb-image-strip-content img:hover {
-    transform: scale(1.15); /* Zoom sedikit lebih besar */
-    filter: brightness(1.2) grayscale(0) drop-shadow(0 0 25px var(--accent-color)); /* Lebih cerah, warna penuh, shadow lebih kuat */
-}
+        header p {
+            color: #a0aec0;
+            font-size: 1.25rem;
+            font-weight: 400;
+            max-width: 48rem;
+            margin-top: 1rem;
+            transition: opacity 0.6s ease;
+        }
 
-/* Product Card Enhancements */
-.product-card {
-    background: var(--secondary-color);
-    border-radius: 1.5rem;
-    box-shadow: 0 5px 20px var(--card-shadow-start);
-    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); /* Transisi lebih lambat dan halus */
-    border: 1px solid var(--border-color);
-    overflow: hidden; /* Penting untuk gambar yang membesar */
-    position: relative; /* Untuk pseudo-element hover */
-}
+        header p:hover {
+            opacity: 0.9;
+        }
 
-.product-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at center, rgba(56, 189, 248, 0.1) 0%, transparent 70%); /* Lingkaran fokus */
-    opacity: 0;
-    transition: opacity 0.5s ease;
-    z-index: 1; /* Di atas gambar tapi di bawah konten */
-}
+        .sb-image-strip-wrap {
+            margin-top: 3rem;
+            overflow: hidden;
+            position: relative;
+        }
 
-.product-card:hover::before {
-    opacity: 1;
-}
+        .sb-image-strip {
+            display: flex;
+            align-items: center;
+            animation: slide-left 40s linear infinite;
+        }
 
-.product-card:hover {
-    box-shadow: 0 20px 60px var(--card-shadow-end); /* Shadow lebih dalam */
-    transform: translateY(-12px) scale(1.03); /* Lift dan scale lebih terasa */
-    border-color: var(--accent-color);
-}
+        .sb-image-strip img {
+            height: 16px;
+            margin: 0 1.5rem;
+            filter: brightness(1.5);
+            transition: transform 0.4s ease, filter 0.4s ease;
+        }
 
-.product-card img {
-    border-top-left-radius: 1.5rem;
-    border-top-right-radius: 1.5rem;
-    object-fit: cover;
-    filter: brightness(0.7); /* Lebih gelap, kontras lebih tinggi */
-    transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), filter 0.5s ease;
-    transform: scale(1.0); /* Mulai dari skala 1 */
-    z-index: 0; /* Di bawah pseudo-element */
-    position: relative; /* agar z-index bekerja */
-}
+        .sb-image-strip img:hover {
+            transform: scale(1.2);
+            filter: brightness(2) drop-shadow(var(--glow));
+        }
 
-.product-card:hover img {
-    transform: scale(1.1); /* Zoom lebih besar */
-    filter: brightness(1); /* Full brightness */
-}
+        @keyframes slide-left {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
 
-.product-card h3 {
-    font-size: 1.8rem; /* Ukuran judul produk lebih besar */
-    font-weight: 700;
-    color: #ffffff;
-    margin-bottom: 0.5rem;
-}
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
 
-.product-card p {
-    color: var(--text-dark);
-    font-size: 1rem; /* Ukuran deskripsi produk lebih besar */
-    line-height: 1.5;
-}
+        ::-webkit-scrollbar-track {
+            background: #1a202c;
+        }
 
-.product-card .text-emerald-500 {
-    font-size: 2.8rem; /* Ukuran harga lebih besar */
-    color: var(--accent-color);
-    text-shadow: 0 0 15px rgba(56, 189, 248, 0.6);
-    font-weight: 800;
-}
+        ::-webkit-scrollbar-thumb {
+            background: var(--secondary-accent);
+            border-radius: 4px;
+            transition: background 0.3s ease;
+        }
 
-/* Modal Enhancements */
-#productModal {
-    background: rgba(0, 0, 0, 0.95); /* Lebih gelap dan buram */
-    backdrop-filter: blur(20px); /* Blur lebih kuat */
-    -webkit-backdrop-filter: blur(20px);
-}
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00cc66;
+        }
 
-#modalContent {
-    background: linear-gradient(145deg, #151a24, #212936); /* Gradien modal lebih gelap */
-    border: 2px solid var(--accent-color);
-    border-radius: 2.5rem; /* Lebih bulat */
-    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.8); /* Shadow lebih dalam */
-    max-height: 95vh;
-    padding: 3rem; /* Padding lebih besar */
-}
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 4rem 2rem;
+            position: relative;
+        }
 
-#modalContent h2 {
-    font-size: 3.5rem; /* Judul modal lebih besar */
-    font-weight: 800;
-    text-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
-    margin-bottom: 1.5rem;
-}
+        .product-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 1rem;
+            overflow: hidden;
+            transition: transform 0.6s ease, box-shadow 0.6s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
 
-#modalContent .prose {
-    color: var(--text-dark);
-    font-size: 1.1rem; /* Ukuran teks deskripsi modal lebih besar */
-    line-height: 1.8;
-}
+        .product-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-#modalContent .text-emerald-500 {
-    font-size: 4.5rem; /* Ukuran harga modal sangat besar */
-    font-weight: 900;
-    text-shadow: 0 0 20px rgba(56, 189, 248, 0.8);
-}
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--card-shadow);
+        }
 
-/* Modal Buttons - Lebih besar, lebih menonjol */
-#whatsappLink, #locationLink, #brochureLinkContainer a {
-    padding: 1.2rem 2.5rem; /* Padding lebih besar */
-    font-size: 1.1rem; /* Ukuran font lebih besar */
-    border-radius: 9999px; /* Sepenuhnya bulat */
-    font-weight: 700; /* Lebih tebal */
-    box-shadow: 0 5px 20px rgba(56, 189, 248, 0.4);
-}
+        .product-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
 
-#whatsappLink:hover, #locationLink:hover, #brochureLinkContainer a:hover {
-    transform: translateY(-5px) scale(1.05); /* Efek lift lebih besar */
-    box-shadow: 0 10px 30px rgba(56, 189, 248, 0.6);
-}
+        .product-card:hover img {
+            transform: scale(1.1);
+        }
 
-/* Adjust colors for specific buttons to be more prominent */
-#whatsappLink { background-color: #25d366; box-shadow: 0 0 20px rgba(37, 211, 102, 0.5); }
-#whatsappLink:hover { background-color: #1DA851; box-shadow: 0 0 30px rgba(37, 211, 102, 0.8); }
+        .product-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin: 1rem;
+            transition: color 0.4s ease;
+        }
 
-#locationLink { background-color: #4285F4; box-shadow: 0 0 20px rgba(66, 133, 244, 0.5); }
-#locationLink:hover { background-color: #3367D6; box-shadow: 0 0 30px rgba(66, 133, 244, 0.8); }
+        .product-card:hover h3 {
+            color: var(--accent-color);
+        }
 
-/* Modal Thumbnails */
-#modalThumbnails img {
-    border-radius: 0.75rem;
-    height: 6rem; /* Ukuran thumbnail lebih besar */
-    border: 3px solid transparent;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-}
+        .product-card p {
+            font-size: 0.9rem;
+            color: #a0aec0;
+            margin: 0 1rem 1rem;
+        }
 
-#modalThumbnails img.border-indigo-500 {
-    border-color: var(--accent-color) !important;
-    box-shadow: 0 0 20px rgba(56, 189, 248, 0.8); /* Shadow lebih kuat */
-    opacity: 1;
-}
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 4px solid transparent;
+            border-top: 4px solid var(--accent-color);
+            border-radius: 50%;
+            animation: spin 1s ease infinite;
+            margin: 2rem auto;
+        }
 
-#modalThumbnails img:hover {
-    border-color: var(--accent-color);
-    box-shadow: 0 0 18px rgba(56, 189, 248, 0.6);
-}
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
 
-/* Loader */
-.loader {
-    width: 70px; /* Loader lebih besar */
-    height: 70px;
-    border: 7px solid transparent;
-    border-top: 7px solid var(--accent-color);
-    border-right: 7px solid var(--accent-color);
-    border-bottom: 7px solid var(--accent-color);
-    box-shadow: 0 0 30px rgba(56, 189, 248, 0.7);
-}
+        #productModal {
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
 
-/* Intersection Observer Fade-in */
-.product-card {
-    opacity: 0;
-    transform: translateY(50px); /* Mulai lebih jauh ke bawah */
-    transition: opacity 1s ease-out, transform 1s ease-out; /* Animasi lebih lambat dan halus */
-}
+        #productModal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
 
-.product-card.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
+        #modalContent {
+            background: rgba(26, 32, 44, 0.9);
+            border-radius: 1rem;
+            padding: 2rem;
+            max-width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            transition: transform 0.5s ease;
+            transform: scale(0.95);
+        }
 
-/* Responsiveness - Tambahan */
-@media (max-width: 768px) {
-    header h1 {
-        font-size: 3.5rem;
-    }
-    header p {
-        font-size: 1.2rem;
-    }
-    #modalContent h2 {
-        font-size: 2.5rem;
-    }
-    #modalContent .text-emerald-500 {
-        font-size: 3.5rem;
-    }
-    #whatsappLink, #locationLink, #brochureLinkContainer a {
-        padding: 1rem 2rem;
-        font-size: 1rem;
-    }
-}
+        #productModal.active #modalContent {
+            transform: scale(1);
+        }
 
-@media (max-width: 480px) {
-    header h1 {
-        font-size: 2.8rem;
-    }
-    header p {
-        font-size: 1rem;
-    }
-    #modalContent h2 {
-        font-size: 2rem;
-    }
-    #modalContent .text-emerald-500 {
-        font-size: 2.8rem;
-    }
-    .product-card h3 {
-        font-size: 1.5rem;
-    }
-    .product-card .text-emerald-500 {
-        font-size: 2rem;
-    }
-    .main-image-display {
-        padding-top: 75%; /* Ratio 4:3 untuk gambar utama di mobile */
-    }
-    #modalThumbnails {
-        grid-template-columns: repeat(3, minmax(0, 1fr)); /* 3 kolom di mobile */
-    }
-    #modalThumbnails img {
-        height: 4rem;
-    }
-}
+        #modalContent h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 1rem;
+        }
+
+        #modalContent .main-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            transition: transform 0.5s ease;
+        }
+
+        #modalContent .main-image:hover {
+            transform: scale(1.05);
+        }
+
+        #modalContent .thumbnails {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        #modalContent .thumbnails img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            transition: opacity 0.4s ease;
+        }
+
+        #modalContent .thumbnails img:hover {
+            opacity: 0.8;
+        }
+
+        #modalContent .description {
+            color: #a0aec0;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .action-button {
+            background: var(--accent-color);
+            color: #ffffff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            transition: background 0.4s ease, transform 0.4s ease;
+        }
+
+        .action-button:hover {
+            background: #00ccff;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <header class="header-bg">
+        <div class="max-w-7xl mx-auto text-center px-4">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+                Jelajahi Rangkaian Produk Premium Kami
+            </h1>
+            <p class="text-lg md:text-xl mt-4 max-w-2xl mx-auto">
+                Temukan solusi berkualitas tinggi untuk konektivitas jaringan, dari kabel serat optik hingga solusi LAN inovatif.
+            </p>
+        </div>
+    </header>
+
+    <section class="max-w-7xl mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-bold text-center my-12">Produk Unggulan Kami</h2>
+        <div class="product-grid" id="productGrid">
+            <div class="col-span-full flex flex-col items-center">
+                <div class="loader"></div>
+                <p class="text-gray-400 mt-4">Memuat produk...</p>
+            </div>
+        </div>
+    </section>
+
+    <div id="productModal">
+        <div id="modalContent">
+            <button class="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl" onclick="closeModal()">×</button>
+            <h2 id="modalTitle"></h2>
+            <img id="mainImage" src="" alt="Product Image" class="main-image">
+            <div class="thumbnails" id="thumbnails"></div>
+            <div class="description" id="modalDescription"></div>
+            <div class="flex gap-4 justify-center mt-6">
+                <a id="whatsappLink" href="#" target="_blank" class="action-button">Kirim WhatsApp</a>
+                <a id="locationLink" href="#" target="_blank" class="action-button">Lihat Lokasi</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+        const productModal = document.getElementById('productModal');
+        const modalContent = document.getElementById('modalContent');
+        const productGrid = document.getElementById('productGrid');
+        let allProducts = [];
+
+        async function loadProducts() {
+            try {
+                const response = await fetch('data/products.json');
+                if (!response.ok) throw new Error('Failed to fetch products');
+                allProducts = await response.json();
+                productGrid.innerHTML = '';
+
+                if (allProducts.length === 0) {
+                    productGrid.innerHTML = '<p class="text-center text-gray-400 py-8">Tidak ada produk yang ditemukan.</p>';
+                    return;
+                }
+
+                allProducts.forEach((product, index) => {
+                    const productCard = document.createElement('div');
+                    productCard.className = 'product-card';
+                    productCard.innerHTML = `
+                        <img src="${product.productFolderPath}${product.mainImage}" alt="${product.name}" onerror="this.onerror=null;this.src='https://via.placeholder.com/250x180?text=No+Image';">
+                        <h3>${product.name}</h3>
+                        <p>${product.shortDescription}</p>
+                    `;
+                    productCard.addEventListener('click', () => showDetails(product, index));
+                    productGrid.appendChild(productCard);
+                });
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) entry.target.classList.add('visible');
+                    });
+                }, { threshold: 0.1 });
+                document.querySelectorAll('.product-card').forEach(card => observer.observe(card));
+            } catch (error) {
+                productGrid.innerHTML = '<p class="text-center text-red-500 py-8">Gagal memuat produk. Coba lagi nanti.</p>';
+            }
+        }
+
+        async function showDetails(product, index) {
+            document.getElementById('modalTitle').textContent = product.name;
+            const mainImage = document.getElementById('mainImage');
+            const thumbnails = document.getElementById('thumbnails');
+            thumbnails.innerHTML = '';
+
+            mainImage.src = `${product.productFolderPath}${product.mainImage}` || 'https://via.placeholder.com/600x300?text=No+Image';
+            mainImage.onerror = () => mainImage.src = 'https://via.placeholder.com/600x300?text=No+Image';
+
+            if (product.detailImages) {
+                product.detailImages.forEach(img => {
+                    const thumb = document.createElement('img');
+                    thumb.src = `${product.productFolderPath}${img}` || 'https://via.placeholder.com/60x60?text=Thumb';
+                    thumb.onclick = () => mainImage.src = thumb.src;
+                    thumb.onerror = () => thumb.src = 'https://via.placeholder.com/60x60?text=Thumb';
+                    thumbnails.appendChild(thumb);
+                });
+            }
+
+            try {
+                const response = await fetch(`${product.productFolderPath}description.md`);
+                document.getElementById('modalDescription').innerHTML = response.ok ? marked.parse(await response.text()) : '<p>Deskripsi tidak tersedia.</p>';
+            } catch {
+                document.getElementById('modalDescription').innerHTML = '<p>Deskripsi tidak tersedia.</p>';
+            }
+
+            const whatsappLink = document.getElementById('whatsappLink');
+            const locationLink = document.getElementById('locationLink');
+            whatsappLink.href = `https://wa.me/62895331244803?text=${encodeURIComponent(`Halo, saya tertarik dengan ${product.name}.`)}`;
+            locationLink.href = `https://www.google.com/maps/search/?api=1&query=Tuminting,%20Manado,%20Sulawesi%20Utara`;
+
+            productModal.classList.add('active');
+        }
+
+        function closeModal() {
+            productModal.classList.remove('active');
+        }
+
+        document.addEventListener('DOMContentLoaded', loadProducts);
+    </script>
+</body>
+</html>
