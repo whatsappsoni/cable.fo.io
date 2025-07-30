@@ -282,45 +282,6 @@
             .xl\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
         }
         .hidden { display: none; }
-
-        /* Custom Modal Scroll Fixes */
-        #productModal {
-            align-items: center; /* Ensures the modal content is vertically centered */
-        }
-        #modalContent {
-            display: flex; /* Make modal content a flex container */
-            flex-direction: column; /* Arrange children vertically */
-            max-height: 90vh; /* Limit the overall modal content height */
-            /* Add padding-bottom to ensure space for scrollbar thumb */
-            padding-bottom: 1.5rem; 
-        }
-        #modalMainContent {
-            display: flex; /* Make main content a flex container */
-            flex-direction: column; /* Arrange children vertically */
-            flex-grow: 1; /* Allow it to grow and take available space */
-            min-height: 0; /* Important for flex items with overflow */
-        }
-        #modalDescription {
-            flex-grow: 1; /* Allow description to grow and be scrollable */
-            overflow-y: auto; /* Ensure vertical scrolling */
-            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
-            padding-right: 0.5rem; /* Add some padding for the scrollbar to prevent text touching it */
-        }
-        /* Style the scrollbar for better visibility (optional) */
-        #modalDescription::-webkit-scrollbar {
-            width: 8px;
-        }
-        #modalDescription::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 10px;
-        }
-        #modalDescription::-webkit-scrollbar-thumb {
-            background: #888;
-            border-radius: 10px;
-        }
-        #modalDescription::-webkit-scrollbar-thumb:hover {
-            background: #555;
-        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900">
@@ -368,7 +329,7 @@
     </section>
 
     <div class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center p-4 z-[1000] hidden" id="productModal">
-        <div class="bg-white rounded-2xl shadow-2xl p-6 sm:p-8 max-w-3xl w-full relative transform transition-all duration-400 ease-out opacity-0 translate-y-20" id="modalContent">
+        <div class="bg-white rounded-2xl shadow-2xl p-6 sm:p-8 max-w-3xl w-full relative overflow-y-auto max-h-[90vh]" id="modalContent">
             <button class="absolute top-4 right-4 text-gray-400 hover:text-gray-800 text-3xl font-light leading-none transition-colors" onclick="closeModal()">×</button>
             <div id="modalLoading" class="flex flex-col items-center justify-center py-10">
                 <div class="loader"></div>
@@ -384,7 +345,7 @@
                     </div>
                 </div>
                 <div class="grid grid-cols-5 sm:grid-cols-6 md:grid-cols-8 gap-2 mb-6" id="modalThumbnails"></div>
-                <div class="prose max-w-none text-gray-700 text-base leading-relaxed mb-6 overflow-y-auto max-h-[70vh]" id="modalDescription"></div>
+                <div class="prose max-w-none text-gray-700 text-base leading-relaxed mb-6 overflow-y-auto max-h-[50vh]" id="modalDescription"></div>
                 <div id="brochureLinkContainer" class="mb-6 flex justify-center"></div>
                 <div class="mb-8 border-t pt-6 border-gray-200">
                     <h3 class="text-lg font-semibold text-gray-800 mb-4">Hubungi Kami</h3>
@@ -582,17 +543,13 @@
                 const productUrlForMessage = `${currentFullUrl}#${product.id}`;
                 const whatsappMessage = encodeURIComponent(`Halo, saya tertarik dengan produk ${product.name} Harga: ${product.price} yang saya lihat pada link: ${productUrlForMessage}\n\nApakah Stok Ready?`);
                 whatsappLink.href = `https://wa.me/${phoneNumber}?text=${whatsappMessage}`;
-                const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(locationAddress)}`; // Corrected Maps URL
+                const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(locationAddress)}`;
                 locationLink.href = mapsUrl;
 
                 document.getElementById('modalPrice').textContent = product.price;
 
                 document.getElementById('modalLoading').classList.add('hidden');
                 document.getElementById('modalMainContent').classList.remove('hidden');
-                setTimeout(() => {
-                    modalContent.classList.remove('opacity-0', 'translate-y-20');
-                    modalContent.classList.add('opacity-100', 'translate-y-0');
-                }, 50);
             } catch (error) {
                 console.error('Error in showDetails:', error);
                 document.getElementById('modalDescription').innerHTML = '<p class="text-red-500">Gagal memuat detail produk.</p>';
@@ -602,14 +559,10 @@
         }
 
         function closeModal() {
-            modalContent.classList.remove('opacity-100', 'translate-y-0');
-            modalContent.classList.add('opacity-0', 'translate-y-20');
-            setTimeout(() => {
-                productModal.classList.add('hidden');
-                productModal.classList.remove('flex');
-                document.getElementById('modalLoading').classList.add('hidden');
-                document.getElementById('modalMainContent').classList.add('hidden');
-            }, 300);
+            productModal.classList.add('hidden');
+            productModal.classList.remove('flex');
+            document.getElementById('modalLoading').classList.add('hidden');
+            document.getElementById('modalMainContent').classList.add('hidden');
         }
 
         productModal.addEventListener('click', function(event) {
