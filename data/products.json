@@ -12,7 +12,8 @@
       "detail-3.png",
       "detail-4.png"
     ],
-    "brochurePdf": "products/product-kabel-fo-link/brosur.pdf"
+    "brochurePdf": "products/product-kabel-fo-link/brosur.pdf",
+    "description": "## Kabel FO Cable Link 1 Core 0.9 mm\n\n**Spesifikasi**:\n- **Kabel FO**: Kabel serat optik menggunakan serat kaca untuk transmisi data berkecepatan tinggi melalui sinyal cahaya dengan kehilangan sinyal minimal.\n- **GJYXCH**: Kode model standar untuk kabel drop serat optik dengan desain self-supporting, mencakup serat optik, kawat baja, dan penguat FRP dalam selubung pelindung.\n- **G6571A**: Serat optik single-mode dengan ketahanan tekukan tinggi (radius minimum 10 mm), menggunakan inti silika dopan germanium dan pelapis silika murni dengan lapisan akrilik UV-curable.\n- **Cable Link**: Nama merek produk, menunjukkan standar kualitas untuk kabel serat optik.\n- **1 Core**: Satu inti serat optik sebagai saluran tunggal untuk transmisi data, dilapisi pelindung untuk integritas sinyal.\n- **3 Seling 0.9 mm**: Tiga elemen penguat: satu kawat baja messenger berdiameter 0.9 mm untuk kekuatan tarik, dua batang FRP berdiameter 0.40 ± 0.05 mm untuk stabilitas struktural.\n- **1000m**: Panjang kabel 1000 meter dalam satu gulungan.\n- **Box**: Kabel dikemas dalam box untuk perlindungan selama penyimpanan dan pengiriman.\n- Selubung LSZH (Low Smoke Zero Halogen), dimensi kabel 5.0 ± 0.2 x 2.0 ± 0.2 mm, berat sekitar 23 kg/km.\n- Karakteristik mekanis: ketahanan tarik jangka pendek 600 N, jangka panjang 300 N; ketahanan tekan 2200 N/10 cm (jangka pendek), 1000 N/10 cm (jangka panjang); rentang suhu -40°C hingga +70°C; radius tekukan statis/dinamis 30 mm."
   },
   {
     "id": "fo-falcom-1mm-premium",
@@ -27,7 +28,8 @@
       "detail-3.png",
       "detail-4.png"
     ],
-    "brochurePdf": "products/product-kabel-fo-falcom-1mm/brosur.pdf"
+    "brochurePdf": "products/product-kabel-fo-falcom-1mm/brosur.pdf",
+    "description": "## Kabel FO Falcom 1 Core 1 mm\n\n**Spesifikasi**:\n- **Kabel FO**: Kabel serat optik menggunakan serat kaca untuk transmisi data berkecepatan tinggi melalui sinyal cahaya dengan kehilangan sinyal minimal.\n- **GJYXCH**: Kode model standar untuk kabel drop serat optik dengan desain self-supporting, mencakup serat optik, kawat baja, dan penguat FRP dalam selubung pelindung.\n- **G6571A**: Serat optik single-mode dengan ketahanan tekukan tinggi (radius minimum 10 mm), menggunakan inti silika dopan germanium dan pelapis silika murni dengan lapisan akrilik UV-curable.\n- **Falcom**: Nama merek produk, menunjukkan standar kualitas untuk kabel serat optik.\n- **1 Core**: Satu inti serat optik sebagai saluran tunggal untuk transmisi data, dilapisi pelindung untuk integritas sinyal.\n- **3 Seling 1 mm**: Tiga elemen penguat: satu kawat baja messenger berdiameter 1 mm untuk kekuatan tarik, dua batang FRP berdiameter 0.40 ± 0.05 mm untuk stabilitas struktural.\n- **1000m**: Panjang kabel 1000 meter dalam satu gulungan.\n- **Premium**: Kategori kualitas tinggi dengan konstruksi yang ditingkatkan.\n- Selubung LSZH (Low Smoke Zero Halogen), dimensi kabel 5.0 ± 0.2 x 2.0 ± 0.2 mm, berat sekitar 23 kg/km.\n- Karakteristik mekanis: ketahanan tarik jangka pendek 600 N, jangka panjang 300 N; ketahanan tekan 2200 N/10 cm (jangka pendek), 1000 N/10 cm (jangka panjang); rentang suhu -40°C hingga +70°C; radius tekukan statis/dinamis 30 mm."
   },
   {
     "id": "fo-falcom-1-2mm-premium",
@@ -42,7 +44,8 @@
       "detail-3.png",
       "detail-4.png"
     ],
-    "brochurePdf": "products/product-kabel-fo-falcom-1-2mm/brosur.pdf"
+    "brochurePdf": "products/product-kabel-fo-falcom-1-2mm/brosur.pdf",
+    "description": "## Kabel FO Falcom 1 Core 1.2 mm\n\n**Spesifikasi**:\n- **Kabel FO**: Kabel serat optik menggunakan serat kaca untuk transmisi data berkecepatan tinggi melalui sinyal cahaya dengan kehilangan sinyal minimal.\n- **GJYXCH**: Kode model standar untuk kabel drop serat optik dengan desain self-supporting, mencakup serat optik, kawat baja, dan penguat FRP dalam selubung pelindung.\n- **G6571A**: Serat optik single-mode dengan ketahanan tekukan tinggi (radius minimum 10 mm), menggunakan inti silika dopan germanium dan pelapis silika murni dengan lapisan akrilik UV-curable.\n- **Falcom**: Nama merek produk, menunjukkan standar kualitas untuk kabel serat optik.\n- **1 Core**: Satu inti serat optik sebagai saluran tunggal untuk transmisi data, dilapisi pelindung untuk integritas sinyal.\n- **3 Seling 1.2 mm**: Tiga elemen penguat: satu kawat baja messenger berdiameter 1.2 mm untuk kekuatan tarik, dua batang FRP berdiameter 0.40 ± 0.05 mm untuk stabilitas struktural.\n- **1000m**: Panjang kabel 1000 meter dalam satu gulungan.\n- **Super Premium**: Kategori kualitas tinggi dengan konstruksi lebih kokoh.\n- Selubung LSZH (Low Smoke Zero Halogen), dimensi kabel 5.0 ± 0.2 x 2.0 ± 0.2 mm, berat sekitar 23 kg/km.\n- Karakteristik mekanis: ketahanan tarik jangka pendek 600 N, jangka panjang 300 N; ketahanan tekan 2200 N/10 cm (jangka pendek), 1000 N/10 cm (jangka panjang); rentang suhu -40°C hingga +70°C; radius tekukan statis/dinamis 30 mm."
   },
   {
     "id": "fo-global-1-2mm-red",
@@ -57,7 +60,8 @@
       "detail-3.png",
       "detail-4.png"
     ],
-    "brochurePdf": "products/product-kabel-fo-global-red/brosur.pdf"
+    "brochurePdf": "products/product-kabel-fo-global-red/brosur.pdf",
+    "description": "## Kabel FO Global 1 Core 1.2 mm Red\n\n**Spesifikasi**:\n- **Kabel FO**: Kabel serat optik menggunakan serat kaca untuk transmisi data berkecepatan tinggi melalui sinyal cahaya dengan kehilangan sinyal minimal.\n- **GJYXCH**: Kode model standar untuk kabel drop serat optik dengan desain self-supporting, mencakup serat optik, kawat baja, dan penguat FRP dalam selubung pelindung.\n- **G6571A**: Serat optik single-mode dengan ketahanan tekukan tinggi (radius minimum 10 mm), menggunakan inti silika dopan germanium dan pelapis silika murni dengan lapisan akrilik UV-curable.\n- **Global**: Nama merek produk, menunjukkan standar kualitas untuk kabel serat optik.\n- **1 Core**: Satu inti serat optik sebagai saluran tunggal untuk transmisi data, dilapisi pelindung untuk integritas sinyal.\n- **3 Seling 1.2 mm**: Tiga elemen penguat: satu kawat baja messenger berdiameter 1.2 mm untuk kekuatan tarik, dua batang FRP berdiameter 0.40 ± 0.05 mm untuk stabilitas struktural.\n- **1000m**: Panjang kabel 1000 meter dalam satu gulungan.\n- **Red Special Type Box**: Selubung berwarna merah untuk identifikasi visual, dikemas dalam box dengan desain khusus untuk perlindungan.\n- Selubung LSZH (Low Smoke Zero Halogen), dimensi kabel 5.0 ± 0.2 x 2.0 ± 0.2 mm, berat sekitar 23 kg/km.\n- Karakteristik mekanis: ketahanan tarik jangka pendek 600 N, jangka panjang 300 N; ketahanan tekan 2200 N/10 cm (jangka pendek), 1000 N/10 cm (jangka panjang); rentang suhu -40°C hingga +70°C; radius tekukan statis/dinamis 30 mm."
   },
   {
     "id": "fo-global-2-core",
@@ -72,7 +76,8 @@
       "detail-3.png",
       "detail-4.png"
     ],
-    "brochurePdf": "products/product-kabel-fo-global-2core/brosur.pdf"
+    "brochurePdf": "products/product-kabel-fo-global-2core/brosur.pdf",
+    "description": "## Kabel FO Global 2 Core 1.2 mm\n\n**Spesifikasi**:\n- **Kabel FO**: Kabel serat optik menggunakan serat kaca untuk transmisi data berkecepatan tinggi melalui sinyal cahaya dengan kehilangan sinyal minimal.\n- **GJYXCH**: Kode model standar untuk kabel drop serat optik dengan desain self-supporting, mencakup serat optik, kawat baja, dan penguat FRP dalam selubung pelindung.\n- **G6571A**: Serat optik single-mode dengan ketahanan tekukan tinggi (radius minimum 10 mm), menggunakan inti silika dopan germanium dan pelapis silika murni dengan lapisan akrilik UV-curable.\n- **Global**: Nama merek produk, menunjukkan standar kualitas untuk kabel serat optik.\n- **2 Core**: Dua inti serat optik untuk transmisi data dalam dua saluran, masing-masing dilapisi pelindung untuk integritas sinyal.\n- **3 Seling 1.2 mm**: Tiga elemen penguat: satu kawat baja messenger berdiameter 1.2 mm untuk kekuatan tarik, dua batang FRP berdiameter 0.40 ± 0.05 mm untuk stabilitas struktural.\n- **1000m**: Panjang kabel 1000 meter dalam satu gulungan.\n- **Special Type Box**: Kabel dikemas dalam box dengan desain khusus untuk perlindungan dan penanganan.\n- Selubung LSZH (Low Smoke Zero Halogen), dimensi kabel 5.0 ± 0.2 x 2.0 ± 0.2 mm, berat sekitar 23 kg/km.\n- Karakteristik mekanis: ketahanan tarik jangka pendek 600 N, jangka panjang 300 N; ketahanan tekan 2200 N/10 cm (jangka pendek), 1000 N/10 cm (jangka panjang); rentang suhu -40°C hingga +70°C; radius tekukan statis/dinamis 30 mm."
   },
   {
     "id": "fo-global-4-core",
@@ -87,7 +92,8 @@
       "detail-3.png",
       "detail-4.png"
     ],
-    "brochurePdf": "products/product-kabel-fo-global-4core/brosur.pdf"
+    "brochurePdf": "products/product-kabel-fo-global-4core/brosur.pdf",
+    "description": "## Kabel FO Global 4 Core 1.2 mm\n\n**Spesifikasi**:\n- **Kabel FO**: Kabel serat optik menggunakan serat kaca untuk transmisi data berkecepatan tinggi melalui sinyal cahaya dengan kehilangan sinyal minimal.\n- **GJYXCH**: Kode model standar untuk kabel drop serat optik dengan desain self-supporting, mencakup serat optik, kawat baja, dan penguat FRP dalam selubung pelindung.\n- **G6571A**: Serat optik single-mode dengan ketahanan tekukan tinggi (radius minimum 10 mm), menggunakan inti silika dopan germanium dan pelapis silika murni dengan lapisan akrilik UV-curable.\n- **Global**: Nama merek produk, menunjukkan standar kualitas untuk kabel serat optik.\n- **4 Core**: Empat inti serat optik untuk transmisi data dalam empat saluran, masing-masing dilapisi pelindung untuk integritas sinyal.\n- **3 Seling 1.2 mm**: Tiga elemen penguat: satu kawat baja messenger berdiameter 1.2 mm untuk kekuatan tarik, dua batang FRP berdiameter 0.40 ± 0.05 mm untuk stabilitas struktural.\n- **1000m**: Panjang kabel 1000 meter dalam satu gulungan.\n- **Special Type Box**: Kabel dikemas dalam box dengan desain khusus untuk perlindungan dan penanganan.\n- Selubung LSZH (Low Smoke Zero Halogen), dimensi kabel 5.0 ± 0.2 x 2.0 ± 0.2 mm, berat sekitar 23 kg/km.\n- Karakteristik mekanis: ketahanan tarik jangka pendek 600 N, jangka panjang 300 N; ketahanan tekan 2200 N/10 cm (jangka pendek), 1000 N/10 cm (jangka panjang); rentang suhu -40°C hingga +70°C; radius tekukan statis/dinamis 30 mm."
   },
   {
     "id": "lan-ftp-cat5e-global-double",
@@ -102,7 +108,8 @@
       "detail-3.png",
       "detail-4.png"
     ],
-    "brochurePdf": "products/product-lan-ftp-global-double-cat5e/brosur.pdf"
+    "brochurePdf": "products/product-lan-ftp-global-double-cat5e/brosur.pdf",
+    "description": "## Kabel LAN FTP CAT5E Global Double Jacket\n\n**Spesifikasi**:\n- **Kabel LAN**: Kabel jaringan untuk transmisi data menggunakan konduktor tembaga atau campuran tembaga dalam struktur pasangan kawat untuk menghubungkan perangkat jaringan.\n- **FTP**: Foiled Twisted Pair, dilengkapi lapisan foil aluminium untuk mengurangi interferensi elektromagnetik (EMI).\n- **CAT5E**: Kategori 5 Enhanced, mendukung kecepatan data hingga 1 Gbps pada jarak maksimum 100 meter.\n- **Global**: Nama merek produk, menunjukkan standar kualitas untuk kabel jaringan.\n- **Outdoor**: Dirancang untuk penggunaan luar dengan selubung tahan terhadap sinar UV, kelembapan, dan perubahan suhu.\n- **Double Jacket**: Dua lapisan selubung pelindung untuk meningkatkan ketahanan terhadap abrasi dan kondisi lingkungan keras.\n- **305m**: Panjang kabel 305 meter dalam satu gulungan.\n- **Box**: Kabel dikemas dalam box untuk perlindungan selama penyimpanan dan pengiriman.\n- Konduktor CCA (Copper Clad Aluminum) berdiameter 0.51 mm, 4 pasang kawat, selubung PVC tahan UV."
   },
   {
     "id": "lan-ftp-cat5e-global-single",
@@ -117,7 +124,8 @@
       "detail-3.png",
       "detail-4.png"
     ],
-    "brochurePdf": "products/product-lan-ftp-global-single-cat5e/brosur.pdf"
+    "brochurePdf": "products/product-lan-ftp-global-single-cat5e/brosur.pdf",
+    "description": "## Kabel LAN FTP CAT5E Global Single Jacket\n\n**Spesifikasi**:\n- **Kabel LAN**: Kabel jaringan untuk transmisi data menggunakan konduktor tembaga atau campuran tembaga dalam struktur pasangan kawat untuk menghubungkan perangkat jaringan.\n- **FTP**: Foiled Twisted Pair, dilengkapi lapisan foil aluminium untuk mengurangi interferensi elektromagnetik (EMI).\n- **CAT5E**: Kategori 5 Enhanced, mendukung kecepatan data hingga 1 Gbps pada jarak maksimum 100 meter.\n- **Global**: Nama merek produk, menunjukkan standar kualitas untuk kabel jaringan.\n- **Outdoor**: Dirancang untuk penggunaan luar dengan selubung tahan terhadap sinar UV, kelembapan, dan perubahan suhu.\n- **Single Jacket**: Satu lapisan selubung pelindung untuk ketahanan terhadap lingkungan.\n- **305m**: Panjang kabel 305 meter dalam satu gulungan.\n- **Box**: Kabel dikemas dalam box untuk perlindungan selama penyimpanan dan pengiriman.\n- Konduktor CCA (Copper Clad Aluminum) berdiameter 0.51 mm, 4 pasang kawat, selubung PVC tahan UV."
   },
   {
     "id": "lan-ftp-cat6-falcom-cca",
@@ -132,7 +140,8 @@
       "detail-3.png",
       "detail-4.png"
     ],
-    "brochurePdf": "products/product-lan-ftp-falcom-cca-cat6/brosur.pdf"
+    "brochurePdf": "products/product-lan-ftp-falcom-cca-cat6/brosur.pdf",
+    "description": "## Kabel LAN FTP CAT6 Falcom CCA\n\n**Spesifikasi**:\n- **Kabel LAN**: Kabel jaringan untuk transmisi data menggunakan konduktor tembaga atau campuran tembaga dalam struktur pasangan kawat untuk menghubungkan perangkat jaringan.\n- **FTP**: Foiled Twisted Pair, dilengkapi lapisan foil aluminium untuk mengurangi interferensi elektromagnetik (EMI) dan interferensi frekuensi radio (RFI).\n- **CAT6**: Kategori 6, mendukung kecepatan data hingga 10 Gbps pada jarak maksimum 50 meter dengan pengurangan crosstalk.\n- **CCA**: Copper Clad Aluminum, konduktor campuran tembaga dan aluminium untuk efisiensi biaya.\n- **Falcom**: Nama merek produk, menunjukkan standar kualitas untuk kabel jaringan.\n- **23AWG**: Diameter konduktor 23 American Wire Gauge (sekitar 0.573 mm) untuk transmisi data yang stabil.\n- **Single Jacket**: Satu lapisan selubung pelindung untuk ketahanan terhadap lingkungan.\n- **305m**: Panjang kabel 305 meter dalam satu gulungan.\n- **Box**: Kabel dikemas dalam box untuk perlindungan selama penyimpanan dan pengiriman.\n- Konduktor CCA berdiameter 0.573 mm, 4 pasang kawat, selubung PVC tahan lama, sesuai standar IEC/ISO 61556-5, ISO/IEC 11801, ANSI/TIA568C-2."
   },
   {
     "id": "lan-ftp-cat6-falcom-outdoor-nonbox",
@@ -147,7 +156,8 @@
       "detail-3.png",
       "detail-4.png"
     ],
-    "brochurePdf": "products/product-lan-ftp-falcom-outdoor-nonbox-cat6/brosur.pdf"
+    "brochurePdf": "products/product-lan-ftp-falcom-outdoor-nonbox-cat6/brosur.pdf",
+    "description": "## Kabel LAN FTP CAT6 Falcom Outdoor\n\n**Spesifikasi**:\n- **Kabel LAN**: Kabel jaringan untuk transmisi data menggunakan konduktor tembaga dalam struktur pasangan kawat untuk menghubungkan perangkat jaringan.\n- **FTP**: Foiled Twisted Pair, dilengkapi lapisan foil aluminium untuk mengurangi interferensi elektromagnetik (EMI) dan interferensi frekuensi radio (RFI).\n- **CAT6**: Kategori 6, mendukung kecepatan data hingga 10 Gbps pada jarak maksimum 50 meter dengan pengurangan crosstalk.\n- **Falcom**: Nama merek produk, menunjukkan standar kualitas untuk kabel jaringan.\n- **Outdoor**: Dirancang untuk penggunaan luar dengan selubung tahan terhadap sinar UV, kelembapan, dan perubahan suhu.\n- **Double Jacket**: Dua lapisan selubung pelindung untuk meningkatkan ketahanan terhadap abrasi dan kondisi lingkungan keras.\n- **305m**: Panjang kabel 305 meter dalam satu gulungan.\n- **Non Box**: Kabel dikemas tanpa box, dalam bentuk gulungan langsung untuk penanganan lapangan.\n- Konduktor Solid Bare Copper 23 AWG (diameter sekitar 0.573 mm), 4 pasang kawat, selubung LDPE tahan UV, sesuai standar IEC/ISO 61556-5, ISO/IEC 11801, ANSI/TIA568C-2."
   },
   {
     "id": "lan-utp-cat5e-falcom-black",
@@ -162,7 +172,8 @@
       "detail-3.png",
       "detail-4.png"
     ],
-    "brochurePdf": "products/product-lan-utp-falcom-black-cat5e/brosur.pdf"
+    "brochurePdf": "products/product-lan-utp-falcom-black-cat5e/brosur.pdf",
+    "description": "## Kabel LAN UTP CAT5E Falcom Black\n\n**Spesifikasi**:\n- **Kabel LAN**: Kabel jaringan untuk transmisi data menggunakan konduktor tembaga atau campuran tembaga dalam struktur pasangan kawat untuk menghubungkan perangkat jaringan.\n- **UTP**: Unshielded Twisted Pair, menggunakan struktur kawat terpilin tanpa lapisan pelindung untuk transmisi data dengan minim crosstalk.\n- **CAT5E**: Kategori 5 Enhanced, mendukung kecepatan data hingga 1 Gbps pada jarak maksimum 100 meter.\n- **Falcom**: Nama merek produk, menunjukkan standar kualitas untuk kabel jaringan.\n- **Black**: Selubung berwarna hitam untuk identifikasi visual.\n- **Single Jacket**: Satu lapisan selubung pelindung untuk ketahanan terhadap lingkungan.\n- **305m**: Panjang kabel 305 meter dalam satu gulungan.\n- **Box**: Kabel dikemas dalam box untuk perlindungan selama penyimpanan dan pengiriman.\n- Konduktor CCA (Copper Clad Aluminum) berdiameter 0.51 mm, 4 pasang kawat, selubung PVC tahan lama."
   },
   {
     "id": "lan-utp-cat5e-falcom-grey",
@@ -177,7 +188,8 @@
       "detail-3.png",
       "detail-4.png"
     ],
-    "brochurePdf": "products/product-lan-utp-falcom-grey-cat5e/brosur.pdf"
+    "brochurePdf": "products/product-lan-utp-falcom-grey-cat5e/brosur.pdf",
+    "description": "## Kabel LAN UTP CAT5E Falcom Grey\n\n**Spesifikasi**:\n- **Kabel LAN**: Kabel jaringan untuk transmisi data menggunakan konduktor tembaga atau campuran tembaga dalam struktur pasangan kawat untuk menghubungkan perangkat jaringan.\n- **UTP**: Unshielded Twisted Pair, menggunakan struktur kawat terpilin tanpa lapisan pelindung untuk transmisi data dengan minim crosstalk.\n- **CAT5E**: Kategori 5 Enhanced, mendukung kecepatan data hingga 1 Gbps pada jarak maksimum 100 meter.\n- **Falcom**: Nama merek produk, menunjukkan standar kualitas untuk kabel jaringan.\n- **Grey**: Selubung berwarna abu-abu untuk identifikasi visual.\n- **Single Jacket**: Satu lapisan selubung pelindung untuk ketahanan terhadap lingkungan.\n- **305m**: Panjang kabel 305 meter dalam satu gulungan.\n- **Box**: Kabel dikemas dalam box untuk perlindungan selama penyimpanan dan pengiriman.\n- Konduktor CCA (Copper Clad Aluminum) berdiameter 0.51 mm, 4 pasang kawat, selubung PVC tahan lama."
   },
   {
     "id": "lan-utp-cat6-falcom-standard",
@@ -192,6 +204,55 @@
       "detail-3.png",
       "detail-4.png"
     ],
-    "brochurePdf": "products/product-lan-utp-falcom-standard-cat6/brosur.pdf"
+    "brochurePdf": "products/product-lan-utp-falcom-standard-cat6/brosur.pdf",
+    "description": "## Kabel LAN UTP CAT6 Falcom\n\n**Spesifikasi**:\n- **Kabel LAN**: Kabel jaringan untuk transmisi data menggunakan konduktor tembaga atau campuran tembaga dalam struktur pasangan kawat untuk menghubungkan perangkat jaringan.\n- **UTP**: Unshielded Twisted Pair, menggunakan struktur kawat terpilin tanpa lapisan pelindung untuk transmisi data dengan minim crosstalk.\n- **CAT6**: Kategori 6, mendukung kecepatan data hingga 10 Gbps pada jarak maksimum 50 meter dengan pengurangan crosstalk.\n- **Falcom**: Nama merek produk, menunjukkan standar kualitas untuk kabel jaringan.\n- **Single Jacket**: Satu lapisan selubung pelindung untuk ketahanan terhadap lingkungan.\n- **305m**: Panjang kabel 305 meter dalam satu gulungan.\n- **Box**: Kabel dikemas dalam box untuk perlindungan selama penyimpanan dan pengiriman.\n- Konduktor CCA (Copper Clad Aluminum) berdiameter 0.57 mm, 4 pasang kawat, selubung PVC tahan lama, sesuai standar IEC/ISO 61556-5, ISO/IEC 11801, ANSI/TIA568C-2."
+  },
+  {
+    "id": "fo-global-1-core-09mm",
+    "name": "Kabel Fiber Optik GJYXCH-G657A1 1 Core 3 Seling 0.9mm – 1000 Meter",
+    "shortDescription": "Kabel serat optik Global dengan 1 inti dan kawat baja messenger 0.9 mm.",
+    "price": "Rp 730.000,00",
+    "productFolderPath": "products/product-kabel-fo-global-09mm/",
+    "mainImage": "main.png",
+    "detailImages": [
+      "detail-1.png",
+      "detail-2.png",
+      "detail-3.png",
+      "detail-4.png"
+    ],
+    "brochurePdf": "products/product-kabel-fo-global-09mm/brosur.pdf",
+    "description": "## Kabel FO Global 1 Core 0.9 mm\n\n**Spesifikasi**:\n- **Kabel Fiber Optik**: Kabel serat optik menggunakan serat kaca untuk transmisi data berkecepatan tinggi melalui sinyal cahaya dengan kehilangan sinyal minimal.\n- **GJYXCH**: Kode model standar untuk kabel drop serat optik dengan desain self-supporting, mencakup serat optik, kawat baja, dan penguat FRP dalam selubung pelindung.\n- **G657A1**: Serat optik single-mode dengan ketahanan tekukan tinggi (radius minimum 10 mm), menggunakan inti silika dopan germanium dan pelapis silika murni dengan lapisan akrilik UV-curable.\n- **Global**: Nama merek produk, menunjukkan standar kualitas untuk kabel serat optik.\n- **1 Core**: Satu inti serat optik sebagai saluran tunggal untuk transmisi data, dilapisi pelindung untuk integritas sinyal.\n- **3 Seling 0.9 mm**: Tiga elemen penguat: satu kawat baja messenger berdiameter 0.9 mm untuk kekuatan tarik, dua batang FRP berdiameter 0.40 ± 0.05 mm untuk stabilitas struktural.\n- **1000 Meter**: Panjang kabel 1000 meter dalam satu gulungan.\n- Selubung LSZH (Low Smoke Zero Halogen), dimensi kabel 5.0 ± 0.2 x 2.0 ± 0.2 mm, berat sekitar 23 kg/km.\n- Karakteristik mekanis: ketahanan tarik jangka pendek 600 N, jangka panjang 300 N; ketahanan tekan 2200 N/10 cm (jangka pendek), 1000 N/10 cm (jangka panjang); rentang suhu -40°C hingga +70°C; radius tekukan statis/dinamis 30 mm."
+  },
+  {
+    "id": "fo-gjyxch-1f-super-premium",
+    "name": "Kabel Fiber Optik GJYXCH-1F Super Premium Dropcore 1.2 mm – 1000 Meter",
+    "shortDescription": "Kabel serat optik dengan 1 inti dan kawat baja messenger 1.2 mm.",
+    "price": "Rp 950.000,00",
+    "productFolderPath": "products/product-kabel-fo-gjyxch-1f-super-premium/",
+    "mainImage": "main.png",
+    "detailImages": [
+      "detail-1.png",
+      "detail-2.png",
+      "detail-3.png",
+      "detail-4.png"
+    ],
+    "brochurePdf": "products/product-kabel-fo-gjyxch-1f-super-premium/brosur.pdf",
+    "description": "## Kabel FO GJYXCH-1F Super Premium 1.2 mm\n\n**Spesifikasi**:\n- **Kabel Fiber Optik**: Kabel serat optik menggunakan serat kaca untuk transmisi data berkecepatan tinggi melalui sinyal cahaya dengan kehilangan sinyal minimal.\n- **GJYXCH**: Kode model standar untuk kabel drop serat optik dengan desain self-supporting, mencakup serat optik, kawat baja, dan penguat FRP dalam selubung pelindung.\n- **1F**: Menunjukkan satu serat optik (fiber) single-mode, setara dengan 1 core.\n- **Super Premium**: Kategori kualitas tinggi dengan konstruksi lebih kokoh dan bahan unggul.\n- **Dropcore**: Desain kabel drop untuk instalasi aerial dengan struktur ringkas.\n- **1.2 mm**: Tiga elemen penguat: satu kawat baja messenger berdiameter 1.2 mm untuk kekuatan tarik, dua batang FRP berdiameter 0.40 ± 0.05 mm untuk stabilitas struktural.\n- **1000 Meter**: Panjang kabel 1000 meter dalam satu gulungan.\n- Selubung LSZH (Low Smoke Zero Halogen), dimensi kabel 5.0 ± 0.2 x 2.0 ± 0.2 mm, berat sekitar 23 kg/km.\n- Karakteristik mekanis: ketahanan tarik jangka pendek 600 N, jangka panjang 300 N; ketahanan tekan 2200 N/10 cm (jangka pendek), 1000 N/10 cm (jangka panjang); rentang suhu -40°C hingga +70°C; radius tekukan statis/dinamis 30 mm."
+  },
+  {
+    "id": "fo-gjyxch-1f-high-quality",
+    "name": "Kabel Fiber Optik GJYXCH-1F High Quality Dropcore 1 Core – 1000 Meter",
+    "shortDescription": "Kabel serat optik dengan 1 inti dan kawat baja messenger 1 mm.",
+    "price": "Rp 800.000,00",
+    "productFolderPath": "products/product-kabel-fo-gjyxch-1f-high-quality/",
+    "mainImage": "main.png",
+    "detailImages": [
+      "detail-1.png",
+      "detail-2.png",
+      "detail-3.png",
+      "detail-4.png"
+    ],
+    "brochurePdf": "products/product-kabel-fo-gjyxch-1f-high-quality/brosur.pdf",
+    "description": "## Kabel FO GJYXCH-1F High Quality 1 Core\n\n**Spesifikasi**:\n- **Kabel Fiber Optik**: Kabel serat optik menggunakan serat kaca untuk transmisi data berkecepatan tinggi melalui sinyal cahaya dengan kehilangan sinyal minimal.\n- **GJYXCH**: Kode model standar untuk kabel drop serat optik dengan desain self-supporting, mencakup serat optik, kawat baja, dan penguat FRP dalam selubung pelindung.\n- **1F**: Menunjukkan satu serat optik (fiber) single-mode, setara dengan 1 core.\n- **High Quality**: Kategori kualitas tinggi dengan konstruksi yang ditingkatkan.\n- **Dropcore**: Desain kabel drop untuk instalasi aerial dengan struktur ringkas.\n- **1 Core**: Satu inti serat optik sebagai saluran tunggal untuk transmisi data, dilapisi pelindung untuk integritas sinyal.\n- **1 mm**: Tiga elemen penguat: satu kawat baja messenger berdiameter 1 mm untuk kekuatan tarik, dua batang FRP berdiameter 0.40 ± 0.05 mm untuk stabilitas struktural.\n- **1000 Meter**: Panjang kabel 1000 meter dalam satu gulungan.\n- Selubung LSZH (Low Smoke Zero Halogen), dimensi kabel 5.0 ± 0.2 x 2.0 ± 0.2 mm, berat sekitar 23 kg/km.\n- Karakteristik mekanis: ketahanan tarik jangka pendek 600 N, jangka panjang 300 N; ketahanan tekan 2200 N/10 cm (jangka pendek), 1000 N/10 cm (jangka panjang); rentang suhu -40°C hingga +70°C; radius tekukan statis/dinamis 30 mm."
   }
 ]
