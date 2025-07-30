@@ -180,6 +180,11 @@
             return Promise.all(checks);
         }
 
+        // Fungsi baru untuk mendapatkan produk berdasarkan ID
+        function getProductById(id) {
+            return allProducts.find(product => product.id === id);
+        }
+
         async function loadProducts() {
             try {
                 const response = await fetch('data/products.json');
@@ -334,8 +339,7 @@
 
                 const whatsappMessage = encodeURIComponent(`Halo, saya tertarik dengan produk ${product.name} Harga: ${product.price} yang saya lihat pada link: ${productUrlForMessage}\n\nApakah Stok Ready?`);
                 whatsappLink.href = `https://wa.me/${phoneNumber}?text=${whatsappMessage}`;
-                // URL Google Maps yang sudah diperbaiki
-                locationLink.href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(locationAddress)}`;
+                locationLink.href = `https://www.google.com/maps/search/?api=1&query=$${encodeURIComponent(locationAddress)}`;
 
                 copyLinkButton.onclick = async () => {
                     try {
@@ -390,12 +394,25 @@
             return navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 2;
         }
 
-        document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('DOMContentLoaded', async () => {
             if (isLowPerformanceDevice()) {
                 document.querySelector('.sb-image-strip-track').style.animation = 'none';
                 document.querySelector('.sb-image-strip-track').style.transform = 'translateX(0)';
             }
-            loadProducts();
+
+            await loadProducts(); // Pastikan produk sudah dimuat
+
+            // Cek hash URL setelah produk dimuat
+            if (window.location.hash) {
+                const productIdFromHash = window.location.hash.substring(1); // Hapus '#'
+                const productToShow = getProductById(productIdFromHash);
+
+                if (productToShow) {
+                    showDetails(productToShow);
+                } else {
+                    console.warn(`Produk dengan ID '${productIdFromHash}' tidak ditemukan.`);
+                }
+            }
         });
     </script>
 </body>
