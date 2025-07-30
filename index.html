@@ -282,6 +282,45 @@
             .xl\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
         }
         .hidden { display: none; }
+
+        /* Custom Modal Scroll Fixes */
+        #productModal {
+            align-items: center; /* Ensures the modal content is vertically centered */
+        }
+        #modalContent {
+            display: flex; /* Make modal content a flex container */
+            flex-direction: column; /* Arrange children vertically */
+            max-height: 90vh; /* Limit the overall modal content height */
+            /* Add padding-bottom to ensure space for scrollbar thumb */
+            padding-bottom: 1.5rem; 
+        }
+        #modalMainContent {
+            display: flex; /* Make main content a flex container */
+            flex-direction: column; /* Arrange children vertically */
+            flex-grow: 1; /* Allow it to grow and take available space */
+            min-height: 0; /* Important for flex items with overflow */
+        }
+        #modalDescription {
+            flex-grow: 1; /* Allow description to grow and be scrollable */
+            overflow-y: auto; /* Ensure vertical scrolling */
+            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+            padding-right: 0.5rem; /* Add some padding for the scrollbar to prevent text touching it */
+        }
+        /* Style the scrollbar for better visibility (optional) */
+        #modalDescription::-webkit-scrollbar {
+            width: 8px;
+        }
+        #modalDescription::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        #modalDescription::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 10px;
+        }
+        #modalDescription::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900">
@@ -543,7 +582,7 @@
                 const productUrlForMessage = `${currentFullUrl}#${product.id}`;
                 const whatsappMessage = encodeURIComponent(`Halo, saya tertarik dengan produk ${product.name} Harga: ${product.price} yang saya lihat pada link: ${productUrlForMessage}\n\nApakah Stok Ready?`);
                 whatsappLink.href = `https://wa.me/${phoneNumber}?text=${whatsappMessage}`;
-                const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(locationAddress)}`;
+                const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(locationAddress)}`; // Corrected Maps URL
                 locationLink.href = mapsUrl;
 
                 document.getElementById('modalPrice').textContent = product.price;
