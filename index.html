@@ -144,6 +144,35 @@
             transform: scale(1.05);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
+
+        /* --- CSS Tambahan untuk Status Stok --- */
+        .product-stock {
+            font-weight: bold;
+            margin-top: 10px;
+            padding: 5px 10px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 0.9rem; /* Ukuran font lebih kecil */
+        }
+
+        .stock-ready {
+            background-color: #d4edda; /* Warna latar belakang hijau muda */
+            color: #155724; /* Warna teks hijau tua */
+            border: 1px solid #c3e6cb;
+        }
+
+        .stock-indent {
+            background-color: #fff3cd; /* Warna latar belakang kuning muda */
+            color: #856404; /* Warna teks kuning tua */
+            border: 1px solid #ffeeba;
+        }
+
+        .stock-unknown {
+            background-color: #e2e3e5; /* Warna latar belakang abu-abu */
+            color: #383d41; /* Warna teks abu-abu tua */
+            border: 1px solid #d6d8db;
+        }
+        /* --- Akhir CSS Tambahan --- */
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900">
@@ -160,14 +189,14 @@
                     <div class="sb-image-strip">
                         <div class="sb-image-strip-track">
                             <div class="sb-image-strip-content">
-                                <img alt="Brand Logo Falcom" src="data/logos/cablelink-logo.png" class="h-14 mx-6 object-contain transition-all duration-300" onerror="this.onerror=null;this.src='assets/images/no-logo-120x60.png';">
+                                <img alt="Brand Logo Cablelink" src="data/logos/cablelink-logo.png" class="h-14 mx-6 object-contain transition-all duration-300" onerror="this.onerror=null;this.src='assets/images/no-logo-120x60.png';">
                                 <img alt="Brand Logo Global" src="data/logos/global-logo.png" class="h-14 mx-6 object-contain transition-all duration-300" onerror="this.onerror=null;this.src='assets/images/no-logo-120x60.png';">
                                 <img alt="Brand Logo Falcom" src="data/logos/falcom-logo.png" class="h-14 mx-6 object-contain transition-all duration-300" onerror="this.onerror=null;this.src='assets/images/no-logo-120x60.png';">
                                 <img alt="Brand Logo Lainnya" src="data/logos/cablelink-logo.png" class="h-14 mx-6 object-contain transition-all duration-300" onerror="this.onerror=null;this.src='assets/images/no-logo-120x60.png';">
                                 <img alt="Brand Logo Network" src="data/logos/falcom-logo.png" class="h-14 mx-6 object-contain transition-all duration-300" onerror="this.onerror=null;this.src='assets/images/no-logo-120x60.png';">
                             </div>
                             <div class="sb-image-strip-content">
-                                <img alt="Brand Logo Falcom" src="data/logos/cablelink-logo.png" class="h-14 mx-6 object-contain transition-all duration-300" onerror="this.onerror=null;this.src='assets/images/no-logo-120x60.png';">
+                                <img alt="Brand Logo Cablelink" src="data/logos/cablelink-logo.png" class="h-14 mx-6 object-contain transition-all duration-300" onerror="this.onerror=null;this.src='assets/images/no-logo-120x60.png';">
                                 <img alt="Brand Logo Global" src="data/logos/global-logo.png" class="h-14 mx-6 object-contain transition-all duration-300" onerror="this.onerror=null;this.src='assets/images/no-logo-120x60.png';">
                                 <img alt="Brand Logo Falcom" src="data/logos/falcom-logo.png" class="h-14 mx-6 object-contain transition-all duration-300" onerror="this.onerror=null;this.src='assets/images/no-logo-120x60.png';">
                                 <img alt="Brand Logo Lainnya" src="data/logos/cablelink-logo.png" class="h-14 mx-6 object-contain transition-all duration-300" onerror="this.onerror=null;this.src='assets/images/no-logo-120x60.png';">
@@ -199,6 +228,7 @@
             </div>
             <div id="modalMainContent" class="hidden">
                 <h2 class="text-2xl sm:text-3xl font-semibold text-gray-900 mb-4" id="modalTitle"></h2>
+                <div id="modalStockStatus" class="mb-4"></div>
                 <div class="mb-6">
                     <div class="square-image">
                         <img id="currentMainModalImage" src="" alt="Main Product Image" 
@@ -246,11 +276,12 @@
         const modalContent = document.getElementById('modalContent');
         const productGrid = document.getElementById('productGrid');
         const brochureLinkContainer = document.getElementById('brochureLinkContainer');
+        const modalStockStatus = document.getElementById('modalStockStatus'); // Mendapatkan elemen baru untuk status stok di modal
 
         // Menggunakan placeholder lokal
         const DEFAULT_IMAGE_PLACEHOLDER = `${BASE_URL_ASSETS}no-image-600x600.png`;
         const THUMBNAIL_PLACEHOLDER = `${BASE_URL_ASSETS}no-image-80x80.png`;
-        const LOGO_PLACEHOLDER = `${BASE_URL_ASSETS}no-logo-120x60.png`;
+        const LOGO_PLACEHOLDER = `${BASE_URL_ASSETS}no-logo-120x60.png`; // Placeholder baru untuk logo
 
         let allProducts = [];
         let isModalLoading = false;
@@ -294,8 +325,20 @@
                     );
                     productCard.onclick = () => showDetails(product);
 
-                    // Menggunakan placeholder yang sesuai untuk kartu produk
                     const productMainImagePath = `${product.productFolderPath}${product.mainImage}`;
+                    
+                    // --- Bagian Penambahan Status Stok pada Kartu Produk ---
+                    let stockHtml = '';
+                    let stockClass = '';
+                    if (product.stockStatus === 'ready') {
+                        stockHtml = `<div class="product-stock stock-ready">Stok: READY</div>`;
+                    } else if (product.stockStatus === 'indent') {
+                        stockHtml = `<div class="product-stock stock-indent">Stok: INDEN</div>`;
+                    } else {
+                        stockHtml = `<div class="product-stock stock-unknown">Stok: Info Lebih Lanjut</div>`;
+                    }
+                    // --- Akhir Bagian Penambahan Status Stok pada Kartu Produk ---
+
                     productCard.innerHTML = `
                         <div class="square-image">
                             <img src="${productMainImagePath}" alt="${product.name}" 
@@ -305,7 +348,7 @@
                         <div class="p-5 flex flex-col flex-grow">
                             <h3 class="text-lg font-semibold text-gray-900 mb-2 leading-tight line-clamp-2">${product.name}</h3>
                             <p class="text-gray-600 text-sm mb-4 line-clamp-3 flex-grow">${product.shortDescription}</p>
-                            <div class="mt-auto text-xl font-bold text-blue-900">${product.price}</div>
+                            ${stockHtml} <div class="mt-auto text-xl font-bold text-blue-900 mt-2">${product.price}</div>
                         </div>
                     `;
                     productGrid.appendChild(productCard);
@@ -340,6 +383,18 @@
                 const modalThumbnails = document.getElementById('modalThumbnails');
                 modalThumbnails.innerHTML = '';
                 brochureLinkContainer.innerHTML = '';
+
+                // --- Penambahan Status Stok di Modal Detail Produk ---
+                let modalStockHtml = '';
+                if (product.stockStatus === 'ready') {
+                    modalStockHtml = `<div class="product-stock stock-ready">Stok: READY</div>`;
+                } else if (product.stockStatus === 'indent') {
+                    modalStockHtml = `<div class="product-stock stock-indent">Stok: INDEN</div>`;
+                } else {
+                    modalStockHtml = `<div class="product-stock stock-unknown">Stok: Info Lebih Lanjut</div>`;
+                }
+                modalStockStatus.innerHTML = modalStockHtml;
+                // --- Akhir Penambahan Status Stok di Modal Detail Produk ---
 
                 // Pastikan productFolderPath diakhiri dengan '/'
                 const productFolder = product.productFolderPath.endsWith('/') ? product.productFolderPath : `${product.productFolderPath}/`;
@@ -422,7 +477,7 @@
                 const locationLink = document.getElementById('locationLink');
                 const phoneNumber = '62895331244803';
                 const locationAddress = 'Tuminting, Manado, Sulawesi Utara'; // Menggunakan lokasi Anda
-                const whatsappMessage = encodeURIComponent(`Halo, saya tertarik dengan produk ${product.name}. Saya ingin bertanya lebih lanjut. Lokasi saya di ${locationAddress}.`);
+                const whatsappMessage = encodeURIComponent(`Halo, saya tertarik dengan produk ${product.name}. Saya ingin bertanya lebih lanjut tentang stok dan harga. Kode produk: ${product.id}.`);
                 whatsappLink.href = `https://wa.me/${phoneNumber}?text=${whatsappMessage}`;
                 // Perbaikan link Google Maps
                 locationLink.href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(locationAddress)}`;
@@ -459,7 +514,14 @@
             }, 300);
         }
 
+        // Fungsi untuk memperbarui placeholder logo pada header
         document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('header .sb-image-strip-content img').forEach(img => {
+                img.onerror = function() {
+                    this.onerror = null;
+                    this.src = LOGO_PLACEHOLDER;
+                };
+            });
             loadProducts();
         });
     </script>
