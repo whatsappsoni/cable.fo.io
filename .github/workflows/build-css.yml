@@ -1,0 +1,40 @@
+name: Build Tailwind CSS
+
+# Event trigger: setiap kali ada push atau PR ke branch 'main'
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Gunakan runner Linux versi terbaru
+
+    steps:
+      # 1. Checkout kode dari repo
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # 2. Install Node.js versi 18 (atau sesuaikan dengan versi di proyekmu)
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      # 3. Install semua dependency dari package.json
+      - name: Install dependencies
+        run: npm install
+
+      # 4. Jalankan proses build CSS dari input.css → output.css
+      - name: Build Tailwind CSS
+        run: npm run build:css
+
+      # 5. Upload hasil file CSS ke tab "Artifacts" di GitHub
+      - name: Upload CSS artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: output-css
+          path: dist/output.css
