@@ -356,23 +356,19 @@
             return Promise.all(checks);
         }
 
-        async function loadProducts(page = 1, limit = 4) {
+        async function loadProducts() {
             try {
                 const response = await fetch('data/products.json');
                 if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                 allProducts = await response.json();
                 productGrid.innerHTML = '';
-
-                const start = (page - 1) * limit;
-                const end = start + limit;
-                const paginatedProducts = allProducts.slice(start, end);
-
-                if (paginatedProducts.length === 0) {
+        
+                if (allProducts.length === 0) {
                     productGrid.innerHTML = '<p class="col-span-full text-center text-gray-500 py-10">Tidak ada produk yang ditemukan.</p>';
                     return;
                 }
-
-                paginatedProducts.forEach(product => {
+        
+                allProducts.forEach(product => {
                     const productCard = document.createElement('div');
                     productCard.classList.add(
                         'bg-white', 'rounded-xl', 'shadow-md', 'hover:shadow-xl',
@@ -381,7 +377,7 @@
                         'border', 'border-gray-100', 'hover:border-blue-200'
                     );
                     productCard.onclick = () => showDetails(product);
-
+        
                     const stockStatusClass = product.stockStatus === 'ready' ? 'text-green-700 bg-green-100' : 'text-yellow-700 bg-yellow-100';
                     productCard.innerHTML = `
                         <div class="square-image">
@@ -398,14 +394,6 @@
                     `;
                     productGrid.appendChild(productCard);
                 });
-
-                const pagination = document.createElement('div');
-                pagination.classList.add('flex', 'justify-center', 'mt-6', 'gap-4');
-                pagination.innerHTML = `
-                    <button onclick="loadProducts(${page - 1}, ${limit})" ${page === 1 ? 'disabled' : ''} class="px-4 py-2 bg-gray-200 rounded-md">Sebelumnya</button>
-                    <button onclick="loadProducts(${page + 1}, ${limit})" ${end >= allProducts.length ? 'disabled' : ''} class="px-4 py-2 bg-gray-200 rounded-md">Selanjutnya</button>
-                `;
-                productGrid.appendChild(pagination);
             } catch (error) {
                 console.error('Error loading products:', error);
                 productGrid.innerHTML = `
