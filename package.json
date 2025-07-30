@@ -1,4 +1,0 @@
-"scripts": {
-  "build:css": "tailwindcss -i ./src/input.css -o ./dist/output.css --minify",
-  "watch:css": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch"
-}
