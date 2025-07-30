@@ -246,14 +246,6 @@
             transform: scale(1.05);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
-        /* Custom Scrollbar Style */
-        .scrollbar-hidden {
-            -ms-overflow-style: none; /* IE and Edge */
-            scrollbar-width: none; /* Firefox */
-        }
-        .scrollbar-hidden::-webkit-scrollbar {
-            display: none; /* Chrome, Safari, and Opera */
-        }
         @keyframes slide-left {
             from { transform: translateX(0); }
             to { transform: translateX(-50%); }
@@ -329,7 +321,7 @@
     </section>
 
     <div class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center p-4 z-[1000] hidden" id="productModal">
-        <div class="bg-white rounded-2xl shadow-2xl p-6 sm:p-8 max-w-3xl w-full relative" id="modalContent">
+        <div class="bg-white rounded-2xl shadow-2xl p-6 sm:p-8 max-w-3xl w-full relative transform transition-all duration-400 ease-out opacity-0 translate-y-20" id="modalContent">
             <button class="absolute top-4 right-4 text-gray-400 hover:text-gray-800 text-3xl font-light leading-none transition-colors" onclick="closeModal()">×</button>
             <div id="modalLoading" class="flex flex-col items-center justify-center py-10">
                 <div class="loader"></div>
@@ -345,19 +337,19 @@
                     </div>
                 </div>
                 <div class="grid grid-cols-5 sm:grid-cols-6 md:grid-cols-8 gap-2 mb-6" id="modalThumbnails"></div>
-                <div class="prose max-w-none text-gray-700 text-base leading-relaxed mb-6 overflow-y-auto max-h-[60vh]" id="modalDescription"></div>
+                <div class="prose max-w-none text-gray-700 text-base leading-relaxed mb-6" id="modalDescription"></div>
                 <div id="brochureLinkContainer" class="mb-6 flex justify-center"></div>
                 <div class="mb-8 border-t pt-6 border-gray-200">
                     <h3 class="text-lg font-semibold text-gray-800 mb-4">Hubungi Kami</h3>
                     <div class="flex flex-col sm:flex-row justify-center gap-4">
-                        <a id="whatsappLink" href="#" target="_blank" class="inline-flex items-center justify-center px-3 py-1.5 bg-green-600 text-white text-xs font-medium rounded-full shadow-md hover:bg-green-700 transition-colors duration-200">
-                            <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <a id="whatsappLink" href="#" target="_blank" class="inline-flex items-center justify-center px-4 py-2 bg-green-600 text-white text-sm font-medium rounded-lg shadow-md hover:bg-green-700 transition-colors duration-200">
+                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M12.04 2C6.58 2 2.14 6.22 2.11 11.33c-.04 1.83.48 3.58 1.48 5.09L2 22l5.31-1.38c1.47.8 3.16 1.22 4.9.96 5.56 0 10.09-4.22 10.12-9.33.02-2.73-1.07-5.26-2.92-7.16C17.3 3.06 14.73 2 12.04 2zm5.73 14.78c-.28.16-.67.25-1.09.25-.42 0-.8-.09-1.09-.25-.28-.16-.54-.45-.76-.8-.22-.35-.37-.77-.45-1.23-.09-.45-.16-.9-.07-1.35.09-.45.3-.85.57-1.16.27-.3.59-.44.92-.44.33 0 .61.12.87.37.26.25.46.59.63.99.17.4.28.84.32 1.28.04.44-.01.8-.18 1.15-.17.35-.45.64-.81.85z"/>
                             </svg>
                             WhatsApp
                         </a>
-                        <a id="locationLink" href="#" target="_blank" class="inline-flex items-center justify-center px-3 py-1.5 bg-blue-600 text-white text-xs font-medium rounded-full shadow-md hover:bg-blue-700 transition-colors duration-200">
-                            <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <a id="locationLink" href="#" target="_blank" class="inline-flex items-center justify-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg shadow-md hover:bg-blue-700 transition-colors duration-200">
+                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
                             </svg>
                             Lokasi
@@ -550,6 +542,10 @@
 
                 document.getElementById('modalLoading').classList.add('hidden');
                 document.getElementById('modalMainContent').classList.remove('hidden');
+                setTimeout(() => {
+                    modalContent.classList.remove('opacity-0', 'translate-y-20');
+                    modalContent.classList.add('opacity-100', 'translate-y-0');
+                }, 50);
             } catch (error) {
                 console.error('Error in showDetails:', error);
                 document.getElementById('modalDescription').innerHTML = '<p class="text-red-500">Gagal memuat detail produk.</p>';
@@ -559,10 +555,14 @@
         }
 
         function closeModal() {
-            productModal.classList.add('hidden');
-            productModal.classList.remove('flex');
-            document.getElementById('modalLoading').classList.add('hidden');
-            document.getElementById('modalMainContent').classList.add('hidden');
+            modalContent.classList.remove('opacity-100', 'translate-y-0');
+            modalContent.classList.add('opacity-0', 'translate-y-20');
+            setTimeout(() => {
+                productModal.classList.add('hidden');
+                productModal.classList.remove('flex');
+                document.getElementById('modalLoading').classList.add('hidden');
+                document.getElementById('modalMainContent').classList.add('hidden');
+            }, 300);
         }
 
         productModal.addEventListener('click', function(event) {
