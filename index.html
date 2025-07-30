@@ -46,6 +46,7 @@
         .text-yellow-700 { color: #b45309; }
         .text-base { font-size: 1rem; }
         .text-sm { font-size: 0.875rem; }
+        .text-xs { font-size: 0.75rem; } /* Added for smaller text on buttons */
         .text-lg { font-size: 1.125rem; }
         .text-xl { font-size: 1.25rem; }
         .text-2xl { font-size: 1.5rem; }
@@ -60,7 +61,8 @@
         .leading-none { line-height: 1; }
         .tracking-tight { letter-spacing: -0.025em; }
         .px-4 { padding-left: 1rem; padding-right: 1rem; }
-        .py-2.5 { padding-top: 0.625rem; padding-bottom: 0.625rem; }
+        .py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; } /* Adjusted for smaller buttons */
+        .py-2\.5 { padding-top: 0.625rem; padding-bottom: 0.625rem; } /* Original for comparison, not used on buttons now */
         .py-4 { padding-top: 1rem; padding-bottom: 1rem; }
         .py-6 { padding-top: 1.5rem; padding-bottom: 1.5rem; }
         .py-8 { padding-top: 2rem; padding-bottom: 2rem; }
@@ -277,8 +279,8 @@
                 <h2 class="text-2xl sm:text-3xl font-semibold text-gray-900 mb-4" id="modalTitle"></h2>
                 <div class="mb-6">
                     <div class="square-image">
-                        <img id="currentMainModalImage" src="" alt="Main Product Image" 
-                             class="transition-opacity duration-300" 
+                        <img id="currentMainModalImage" src="" alt="Main Product Image"
+                             class="transition-opacity duration-300"
                              onerror="this.onerror=null;this.src='https://via.placeholder.com/600x600?text=No+Image';" loading="lazy">
                     </div>
                 </div>
@@ -288,26 +290,26 @@
                 <div class="mb-8 border-t pt-6 border-gray-200">
                     <h3 class="text-lg font-semibold text-gray-800 mb-4">Informasi Kontak & Bagikan</h3>
                     <div class="flex flex-col sm:flex-row justify-center gap-4">
-                        <a id="whatsappLink" href="#" target="_blank" class="inline-flex items-center justify-center px-6 py-2.5 bg-green-600 text-white text-sm font-medium rounded-full shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-all duration-200 transform hover:scale-105 w-full sm:w-auto">
-                            <svg class="w-3 h-3 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <a id="whatsappLink" href="#" target="_blank" class="inline-flex items-center justify-center px-4 py-2 bg-green-600 text-white text-xs font-medium rounded-full shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-all duration-200 transform hover:scale-105 w-full sm:w-auto">
+                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M12.04 2C6.58 2 2.14 6.22 2.11 11.33c-.04 1.83.48 3.58 1.48 5.09L2 22l5.31-1.38c1.47.8 3.16 1.22 4.9.96 5.56 0 10.09-4.22 10.12-9.33.02-2.73-1.07-5.26-2.92-7.16C17.3 3.06 14.73 2 12.04 2zm5.73 14.78c-.28.16-.67.25-1.09.25-.42 0-.8-.09-1.09-.25-.28-.16-.54-.45-.76-.80-.22-.35-.37-.77-.45-1.23-.09-.45-.16-.9-.07-1.35.09-.45.3-.85.57-1.16.27-.30.59-.44.92-.44.33 0 .61.12.87.37.26.25.46.59.63.99.17.4.28.84.32 1.28.04.44-.01.8-.18 1.15-.17.35-.45.64-.81.85z"/>
                             </svg>
                             Kirim WhatsApp
                         </a>
-                        <a id="locationLink" href="#" target="_blank" class="inline-flex items-center justify-center px-6 py-2.5 bg-blue-600 text-white text-sm font-medium rounded-full shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 transform hover:scale-105 w-full sm:w-auto">
-                            <svg class="w-3 h-3 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <a id="locationLink" href="#" target="_blank" class="inline-flex items-center justify-center px-4 py-2 bg-blue-600 text-white text-xs font-medium rounded-full shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 transform hover:scale-105 w-full sm:w-auto">
+                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
                             </svg>
                             Lihat Lokasi di Google Maps
                         </a>
-                        <button id="copyLinkButton" class="inline-flex items-center justify-center px-6 py-2.5 bg-gray-600 text-white text-sm font-medium rounded-full shadow-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-all duration-200 transform hover:scale-105 w-full sm:w-auto">
-                            <svg class="w-3 h-3 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <button id="copyLinkButton" class="inline-flex items-center justify-center px-4 py-2 bg-gray-600 text-white text-xs font-medium rounded-full shadow-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-all duration-200 transform hover:scale-105 w-full sm:w-auto">
+                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M16 1H4a2 2 0 00-2 2v14h2V3h12V1zm3 4H8a2 2 0 00-2 2v14a2 2 0 002 2h11a2 2 0 002-2V7a2 2 0 00-2-2zm0 16H8V7h11v14z"/>
                             </svg>
                             <span id="copyLinkText">Salin Link Produk</span>
                         </button>
-                        <button id="shareButton" class="inline-flex items-center justify-center px-6 py-2.5 bg-indigo-600 text-white text-sm font-medium rounded-full shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all duration-200 transform hover:scale-105 w-full sm:w-auto">
-                            <svg class="w-3 h-3 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <button id="shareButton" class="inline-flex items-center justify-center px-4 py-2 bg-indigo-600 text-white text-xs font-medium rounded-full shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all duration-200 transform hover:scale-105 w-full sm:w-auto">
+                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.70s-.04-.47-.09-.70l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.70L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/>
                             </svg>
                             Bagikan Produk
@@ -381,7 +383,7 @@
                     const stockStatusClass = product.stockStatus === 'ready' ? 'text-green-700 bg-green-100' : 'text-yellow-700 bg-yellow-100';
                     productCard.innerHTML = `
                         <div class="square-image">
-                            <img src="${product.productFolderPath}${product.mainImage}" alt="${product.name}" 
+                            <img src="${product.productFolderPath}${product.mainImage}" alt="${product.name}"
                                  class="transition-transform duration-300 group-hover:scale-105"
                                  onerror="this.onerror=null;this.src='https://via.placeholder.com/300x300?text=No+Image';" loading="lazy">
                         </div>
@@ -500,15 +502,17 @@
                 const copyLinkButton = document.getElementById('copyLinkButton');
                 const copyLinkText = document.getElementById('copyLinkText');
                 const shareButton = document.getElementById('shareButton');
-				
+
                 const phoneNumber = '62895331244803';
                 const locationAddress = 'Tuminting, Manado, Sulawesi Utara';
-                
+
                 const currentFullUrl = window.location.origin + window.location.pathname;
                 const productUrlForMessage = `${currentFullUrl}#${product.id}`;
+                const productUrl = productUrlForMessage; // Fix: Defined productUrl for copy and share functionality
 
                 const whatsappMessage = encodeURIComponent(`Halo, saya tertarik dengan produk ${product.name} Harga: ${product.price} yang saya lihat pada link: ${productUrlForMessage}\n\nApakah Stok Ready?`);
                 whatsappLink.href = `https://wa.me/${phoneNumber}?text=${whatsappMessage}`;
+                // Fix for Google Maps link, ensuring proper URL encoding for address
                 locationLink.href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(locationAddress)}`;
 
                 copyLinkButton.onclick = async () => {
