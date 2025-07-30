@@ -1,0 +1,142 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Pindahkan semua <style> dari index.html ke sini */
+:root {
+    --sb-slide-speed: 56s;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #f9fafb;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(45deg, #f3f4f6 25%, transparent 25%, transparent 75%, #f3f4f6 75%), 
+                     linear-gradient(45deg, #f3f4f6 25%, transparent 25%, transparent 75%, #f3f4f6 75%);
+    background-size: 16px 16px;
+    background-position: 0 0, 8px 8px;
+    opacity: 0.05;
+    z-index: -1;
+}
+
+.sb-image-strip-wrap::before,
+.sb-image-strip-wrap::after {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 16.666667%;
+    top: 0;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.sb-image-strip-wrap::before {
+    left: 0;
+    background: linear-gradient(to right, #ffffff, transparent);
+}
+
+.sb-image-strip-wrap::after {
+    right: 0;
+    background: linear-gradient(to left, #ffffff, transparent);
+}
+
+.sb-image-strip {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.sb-image-strip-track {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    animation: slide-left var(--sb-slide-speed) linear infinite;
+}
+
+.sb-image-strip-content {
+    display: flex;
+    justify-content: space-around;
+    min-width: 100%;
+}
+
+@keyframes slide-left {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #6b7280;
+    border-radius: 12px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #4b5563;
+}
+
+.modal-enter-active {
+    transition: all 0.4s ease-out;
+}
+.modal-leave-active {
+    transition: all 0.3s ease-in;
+}
+.modal-enter-from,
+.modal-leave-to {
+    transform: translateY(20px);
+    opacity: 0;
+}
+
+.loader {
+    border: 4px solid #e5e7eb;
+    border-top: 4px solid #1e3a8a;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.square-image {
+    position: relative;
+    width: 100%;
+    padding-top: 100%;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.square-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.thumbnail:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
