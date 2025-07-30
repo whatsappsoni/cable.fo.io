@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -239,6 +239,17 @@
                 <div class="grid grid-cols-5 sm:grid-cols-6 md:grid-cols-8 gap-2 mb-6" id="modalThumbnails"></div>
                 <div class="prose max-w-none text-gray-700 text-base leading-relaxed mb-6" id="modalDescription"></div>
                 <div id="brochureLinkContainer" class="mb-6 flex justify-center"></div>
+                
+                <div class="mb-6 flex justify-center">
+                    <button id="copyLinkButton" class="inline-flex items-center justify-center px-6 py-2.5 bg-gray-600 text-white text-sm font-medium rounded-full shadow-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-all duration-200 transform hover:scale-105">
+                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+                            <path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"></path>
+                        </svg>
+                        Salin Tautan Produk
+                    </button>
+                </div>
+
                 <div class="mb-8 border-t pt-6 border-gray-200">
                     <h3 class="text-lg font-semibold text-gray-800 mb-4">Informasi Kontak</h3>
                     <div class="flex flex-col sm:flex-row justify-center gap-4">
@@ -364,6 +375,21 @@
             }
         }
 
+        // Fungsi untuk menyalin tautan produk
+        function copyProductLink(productId) {
+            const currentBaseUrl = window.location.origin + window.location.pathname;
+            const productSpecificUrl = `${currentBaseUrl}#${productId}`;
+
+            navigator.clipboard.writeText(productSpecificUrl)
+                .then(() => {
+                    alert('Tautan produk berhasil disalin!');
+                })
+                .catch(err => {
+                    console.error('Gagal menyalin tautan: ', err);
+                    alert('Gagal menyalin tautan. Silakan salin manual dari bilah alamat.');
+                });
+        }
+
         async function showDetails(product) {
             if (isModalLoading) return;
             isModalLoading = true;
@@ -472,17 +498,27 @@
                     brochureLinkContainer.innerHTML = '<p class="text-gray-500 text-sm text-center">Brosur tidak tersedia untuk produk ini.</p>';
                 }
 
-
                 const whatsappLink = document.getElementById('whatsappLink');
                 const locationLink = document.getElementById('locationLink');
                 const phoneNumber = '62895331244803';
-                const locationAddress = 'Tuminting, Manado, Sulawesi Utara'; // Menggunakan lokasi Anda
-                const whatsappMessage = encodeURIComponent(`Halo, saya tertarik dengan produk ${product.name}. Saya ingin bertanya lebih lanjut tentang stok dan harga. Kode produk: ${product.id}.`);
+                const locationAddress = 'Tuminting, Manado, Sulawesi Utara'; 
+                // Mengambil base URL dinamis dan menambahkan hash ID produk
+                const currentBaseUrl = window.location.origin + window.location.pathname;
+                const productUrl = encodeURIComponent(`${currentBaseUrl}#${product.id}`); 
+                
+                const whatsappMessage = encodeURIComponent(
+                    `Halo, saya tertarik dengan produk ${product.name} Harga: ${product.price} yang saya lihat pada link: ${productUrl} \nApakah Stok Ready?`
+                );
                 whatsappLink.href = `https://wa.me/${phoneNumber}?text=${whatsappMessage}`;
-                // Perbaikan link Google Maps
-                locationLink.href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(locationAddress)}`;
+                locationLink.href = `http://googleusercontent.com/maps/search/?api=1&query=${encodeURIComponent(locationAddress)}`; // Perbaikan link Google Maps
 
                 document.getElementById('modalPrice').textContent = product.price;
+
+                // Mengikat fungsi copyProductLink ke tombol saat modal dibuka
+                const copyBtn = document.getElementById('copyLinkButton');
+                if (copyBtn) {
+                    copyBtn.onclick = () => copyProductLink(product.id);
+                }
 
                 document.getElementById('modalLoading').classList.add('hidden');
                 document.getElementById('modalMainContent').classList.remove('hidden');
@@ -506,6 +542,12 @@
             modalContent.classList.remove('opacity-100', 'translate-y-0');
             modalContent.classList.add('opacity-0', 'translate-y-20');
             productModal.setAttribute('aria-hidden', 'true'); // Untuk aksesibilitas
+            
+            // Hapus hash dari URL saat modal ditutup
+            if (window.location.hash) {
+                history.pushState("", document.title, window.location.pathname + window.location.search);
+            }
+
             setTimeout(() => {
                 productModal.classList.add('hidden');
                 productModal.classList.remove('flex');
@@ -522,7 +564,20 @@
                     this.src = LOGO_PLACEHOLDER;
                 };
             });
-            loadProducts();
+            loadProducts(); // Panggil ini terlebih dahulu untuk memuat data produk
+
+            // --- LOGIKA UNTUK MEMBUKA MODAL BERDASARKAN URL HASH ---
+            const hash = window.location.hash.substring(1); // Ambil hash tanpa '#'
+            if (hash) {
+                // Beri sedikit waktu untuk produk dimuat, lalu cari dan tampilkan modal
+                setTimeout(() => {
+                    const productToOpen = allProducts.find(p => p.id === hash);
+                    if (productToOpen) {
+                        showDetails(productToOpen);
+                    }
+                }, 500); // Penundaan 500ms untuk memastikan allProducts sudah terisi
+            }
+            // --- AKHIR LOGIKA HASH ---
         });
     </script>
 </body>
