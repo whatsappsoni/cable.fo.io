@@ -44,6 +44,14 @@
 
         /* Loader specific styling */
         .loader { width: 40px; height: 40px; border: 4px solid #e5e7eb; border-top-color: #3b82f6; border-radius: 50%; animation: spin 1s linear infinite; }
+
+        /* Styling for image strip */
+        .sb-image-strip-wrap { position: relative; width: 100%; overflow: hidden; height: 80px; }
+        .sb-image-strip { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; }
+        .sb-image-strip-track { display: flex; animation: scroll 40s linear infinite; /* Kecepatan bisa disesuaikan */ }
+        .sb-image-strip-content { flex-shrink: 0; display: flex; justify-content: space-around; align-items: center; gap: 4rem; min-width: 100%; }
+        /* Pastikan gambar di dalam sb-image-strip-content memiliki tinggi tetap agar strip tidak berantakan */
+        .sb-image-strip-content img { height: 56px; /* h-14 */ object-fit: contain; }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900">
@@ -163,6 +171,20 @@
         let allProducts = [];
         let isModalLoading = false;
         const imageCache = new Map();
+
+        // **Fungsi baru untuk menutup modal**
+        function closeModal() {
+            modalContent.classList.remove('opacity-100', 'translate-y-0');
+            modalContent.classList.add('opacity-0', 'translate-y-20');
+            // Menunggu transisi selesai sebelum menyembunyikan display
+            setTimeout(() => {
+                productModal.classList.remove('flex');
+                productModal.classList.add('hidden');
+                // Opsional: Hapus hash dari URL saat modal ditutup
+                history.replaceState(null, '', window.location.pathname + window.location.search);
+            }, 400); // Sesuaikan dengan durasi transisi di CSS (transition-all duration-400)
+        }
+
 
         async function checkImagesExist(imagePaths) {
             const checks = imagePaths.map(async (path) => {
@@ -390,15 +412,17 @@
             }
         }
 
-        function isLowPerformanceDevice() {
-            return navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 2;
-        }
+        // isLowPerformanceDevice() dan logika yang menonaktifkan animasi telah dihapus/dikomentari
+        // untuk memastikan animasi selalu berjalan.
+        // function isLowPerformanceDevice() {
+        //     return navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 2;
+        // }
 
         document.addEventListener('DOMContentLoaded', async () => {
-            if (isLowPerformanceDevice()) {
-                document.querySelector('.sb-image-strip-track').style.animation = 'none';
-                document.querySelector('.sb-image-strip-track').style.transform = 'translateX(0)';
-            }
+            // if (isLowPerformanceDevice()) {
+            //     document.querySelector('.sb-image-strip-track').style.animation = 'none';
+            //     document.querySelector('.sb-image-strip-track').style.transform = 'translateX(0)';
+            // }
 
             await loadProducts(); // Pastikan produk sudah dimuat
 
