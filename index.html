@@ -3,62 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Kabel serat optik dan LAN dengan spesifikasi teknis berkualitas tinggi.">
-    <meta name="keywords" content="kabel serat optik, kabel LAN, G.657A1, CAT5E, CAT6, GLOBAL, FALCOM">
-    <title>Katalog Produk Kabel & Jaringan</title>
+    <meta name="description" content="Katalog produk kabel serat optik dan LAN, kini dengan fitur keranjang belanja dan pembuatan invoice.">
+    <meta name="keywords" content="kabel serat optik, kabel LAN, G.657A1, CAT5E, CAT6, GLOBAL, FALCOM, invoice, order, whatsapp, telegram">
+    <title>Katalog Produk & Order</title>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
     
-    <link rel="preload" href="products/product-kabel-fo-link/main.png" as="image">
-
     <script src="https://cdn.tailwindcss.com"></script>
+    
     <style>
-        /* CSS kustom kecil atau override jika diperlukan, setelah Tailwind CDN */
-        /* Pastikan untuk menguji apakah ada konflik dengan Tailwind */
-
-        /* Override font family karena Tailwind CDN tidak otomatis mengaplikasikan font */
-        body {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.5;
-            color: #1f2937; /* Default text color */
+        /* CSS kustom untuk mendekatkan gaya ke Apple */
+        body { 
+            font-family: 'Inter', sans-serif; 
+            line-height: 1.5; 
+            color: #1d1d1f; /* Warna teks gelap ala Apple */
+            background-color: #f5f5f7; /* Warna latar belakang terang ala Apple */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Scrollbar styling for modal, if Tailwind doesn't provide utilities */
-        #modalContent { overflow-y: auto; scrollbar-width: thin; scrollbar-color: #bfdbfe #f3f4f6; }
-        #modalContent::-webkit-scrollbar { width: 8px; }
-        #modalContent::-webkit-scrollbar-track { background: #f3f4f6; }
-        #modalContent::-webkit-scrollbar-thumb { background-color: #bfdbfe; border-radius: 4px; }
+        /* Kelas untuk modal */
+        .modal-overlay {
+            background-color: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(5px);
+        }
+        .modal-content {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1), 0 5px 15px rgba(0,0,0,0.05);
+            animation: modalFadeIn 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
 
-        /* Keyframes untuk animasi strip gambar dan loader */
-        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        /* Transisi untuk dropdown keranjang */
+        .cart-dropdown-enter-active, .cart-dropdown-leave-active {
+            transition: all 0.3s ease;
+        }
+        .cart-dropdown-enter-from, .cart-dropdown-leave-to {
+            opacity: 0;
+            transform: translateY(10px);
+        }
 
-        /* Prosa styling agar Markdown tetap terlihat baik */
-        .prose h2 { font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem; }
-        .prose p { margin-bottom: 1rem; }
-        .prose ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1rem; }
+        /* Gaya khusus untuk scrollbar */
+        .invoice-preview-scroll::-webkit-scrollbar {
+            width: 8px;
+        }
 
-        /* Square image container for consistent aspect ratio */
-        .square-image { position: relative; width: 100%; padding-bottom: 100%; }
-        .square-image img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+        .invoice-preview-scroll::-webkit-scrollbar-track {
+            background: #f5f5f7;
+        }
 
-        /* Loader specific styling */
-        .loader { width: 40px; height: 40px; border: 4px solid #e5e7eb; border-top-color: #3b82f6; border-radius: 50%; animation: spin 1s linear infinite; }
+        .invoice-preview-scroll::-webkit-scrollbar-thumb {
+            background-color: #d1d5db;
+            border-radius: 4px;
+            border: 2px solid #f5f5f7;
+        }
 
-        /* Styling for image strip */
-        .sb-image-strip-wrap { position: relative; width: 100%; overflow: hidden; height: 80px; }
-        .sb-image-strip { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; }
-        .sb-image-strip-track { display: flex; animation: scroll 40s linear infinite; /* Kecepatan bisa disesuaikan */ }
-        .sb-image-strip-content { flex-shrink: 0; display: flex; justify-content: space-around; align-items: center; gap: 4rem; min-width: 100%; }
-        /* Pastikan gambar di dalam sb-image-strip-content memiliki tinggi tetap agar strip tidak berantakan */
-        .sb-image-strip-content img { height: 56px; /* h-14 */ object-fit: contain; }
+        .invoice-preview-scroll::-webkit-scrollbar-thumb:hover {
+            background-color: #9ca3af;
+        }
+        
+        /* CSS untuk strip gambar yang bergerak */
+        .sb-image-strip-wrap {overflow: hidden; width: 100%;}
+        .sb-image-strip {overflow: hidden; width: 100%;}
+        .sb-image-strip-track {display: flex; animation: scroll 40s linear infinite; will-change: transform;}
+        .sb-image-strip-content {display: flex; flex: none;}
+        .sb-image-strip-content img {height: 3.5rem; margin-left: 2.5rem; margin-right: 2.5rem; object-fit: contain; transition: all 0.3s ease-out; width: 120px; max-width: 120px;}
+        
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-900">
+<body class="min-h-screen">
+
+    <!-- Header baru dari index.htm -->
     <header class="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-white to-gray-100 relative overflow-hidden shadow-sm">
         <div class="max-w-7xl mx-auto text-center">
             <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight tracking-tight">
-                Koleksi Produk Teknologi Jaringan
+                Koleksi Produk Teknologi Jaringan Kami
             </h1>
             <p class="mt-6 text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
                 Solusi konektivitas canggih untuk masa depan, dari serat optik hingga infrastruktur LAN terdepan.
@@ -68,18 +93,18 @@
                     <div class="sb-image-strip">
                         <div class="sb-image-strip-track">
                             <div class="sb-image-strip-content">
-                                <img alt="Brand Logo Link" src="data/logos/cablelink-logo.png" class="h-14 object-contain transition-all duration-300" width="120" height="60" onerror="this.onerror=null;this.src='https://via.placeholder.com/120x60?text=No+Logo';" loading="lazy">
-                                <img alt="Brand Logo Global" src="data/logos/global-logo.png" class="h-14 object-contain transition-all duration-300" width="120" height="60" onerror="this.onerror=null;this.src='https://via.placeholder.com/120x60?text=No+Logo';" loading="lazy">
-                                <img alt="Brand Logo Falcom" src="data/logos/falcom-logo.png" class="h-14 object-contain transition-all duration-300" width="120" height="60" onerror="this.onerror=null;this.src='https://via.placeholder.com/120x60?text=No+Logo';" loading="lazy">
-                                <img alt="Brand Logo Lainnya" src="data/logos/cablelink-logo.png" class="h-14 object-contain transition-all duration-300" width="120" height="60" onerror="this.onerror=null;this.src='https://via.placeholder.com/120x60?text=No+Logo';" loading="lazy">
-                                <img alt="Brand Logo Network" src="data/logos/falcom-logo.png" class="h-14 object-contain transition-all duration-300" width="120" height="60" onerror="this.onerror=null;this.src='https://via.placeholder.com/120x60?text=No+Logo';" loading="lazy">
+                                <img alt="Brand Logo Link" src="https://placehold.co/120x60/e2e8f0/64748b?text=Brand+A" class="h-14 object-contain transition-all duration-300" width="120" height="60" loading="lazy">
+                                <img alt="Brand Logo Global" src="https://placehold.co/120x60/e2e8f0/64748b?text=Brand+B" class="h-14 object-contain transition-all duration-300" width="120" height="60" loading="lazy">
+                                <img alt="Brand Logo Falcom" src="https://placehold.co/120x60/e2e8f0/64748b?text=Brand+C" class="h-14 object-contain transition-all duration-300" width="120" height="60" loading="lazy">
+                                <img alt="Brand Logo Lainnya" src="https://placehold.co/120x60/e2e8f0/64748b?text=Brand+D" class="h-14 object-contain transition-all duration-300" width="120" height="60" loading="lazy">
+                                <img alt="Brand Logo Network" src="https://placehold.co/120x60/e2e8f0/64748b?text=Brand+E" class="h-14 object-contain transition-all duration-300" width="120" height="60" loading="lazy">
                             </div>
                             <div class="sb-image-strip-content">
-                                <img alt="Brand Logo Link" src="data/logos/cablelink-logo.png" class="h-14 object-contain transition-all duration-300" width="120" height="60" onerror="this.onerror=null;this.src='https://via.placeholder.com/120x60?text=No+Logo';" loading="lazy">
-                                <img alt="Brand Logo Global" src="data/logos/global-logo.png" class="h-14 object-contain transition-all duration-300" width="120" height="60" onerror="this.onerror=null;this.src='https://via.placeholder.com/120x60?text=No+Logo';" loading="lazy">
-                                <img alt="Brand Logo Falcom" src="data/logos/falcom-logo.png" class="h-14 object-contain transition-all duration-300" width="120" height="60" onerror="this.onerror=null;this.src='https://via.placeholder.com/120x60?text=No+Logo';" loading="lazy">
-                                <img alt="Brand Logo Lainnya" src="data/logos/cablelink-logo.png" class="h-14 object-contain transition-all duration-300" width="120" height="60" onerror="this.onerror=null;this.src='https://via.placeholder.com/120x60?text=No+Logo';" loading="lazy">
-                                <img alt="Brand Logo Network" src="data/logos/falcom-logo.png" class="h-14 object-contain transition-all duration-300" width="120" height="60" onerror="this.onerror=null;this.src='https://via.placeholder.com/120x60?text=No+Logo';" loading="lazy">
+                                <img alt="Brand Logo Link" src="https://placehold.co/120x60/e2e8f0/64748b?text=Brand+A" class="h-14 object-contain transition-all duration-300" width="120" height="60" loading="lazy">
+                                <img alt="Brand Logo Global" src="https://placehold.co/120x60/e2e8f0/64748b?text=Brand+B" class="h-14 object-contain transition-all duration-300" width="120" height="60" loading="lazy">
+                                <img alt="Brand Logo Falcom" src="https://placehold.co/120x60/e2e8f0/64748b?text=Brand+C" class="h-14 object-contain transition-all duration-300" width="120" height="60" loading="lazy">
+                                <img alt="Brand Logo Lainnya" src="https://placehold.co/120x60/e2e8f0/64748b?text=Brand+D" class="h-14 object-contain transition-all duration-300" width="120" height="60" loading="lazy">
+                                <img alt="Brand Logo Network" src="https://placehold.co/120x60/e2e8f0/64748b?text=Brand+E" class="h-14 object-contain transition-all duration-300" width="120" height="60" loading="lazy">
                             </div>
                         </div>
                     </div>
@@ -88,355 +113,388 @@
         </div>
     </header>
 
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <h2 class="text-3xl sm:text-4xl font-semibold text-gray-900 mb-12 text-center">Produk Unggulan</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="productGrid">
-            <div class="col-span-full flex flex-col justify-center items-center py-16">
-                <div class="loader"></div>
-                <p class="mt-4 text-gray-500 text-base">Memuat produk...</p>
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div id="loadingIndicator" class="text-center py-20 text-gray-500">
+            <svg class="animate-spin h-10 w-10 text-indigo-600 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            <p class="mt-4">Memuat produk...</p>
+        </div>
+        <div id="productsContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 hidden">
+            <!-- Kartu produk akan dirender di sini oleh JavaScript -->
+        </div>
+    </main>
+    
+    <!-- Floating Cart & Dropdown -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <!-- Cart Dropdown -->
+        <div id="cartDropdown" class="hidden absolute bottom-full right-0 mb-4 w-80 bg-white border border-gray-200 rounded-2xl shadow-xl transition-all duration-300 ease-in-out z-50">
+            <div id="cartItemsDropdown" class="p-4 max-h-60 overflow-y-auto">
+                <!-- Item keranjang akan dirender di sini -->
+                <p class="text-center text-gray-500">Keranjang kosong.</p>
+            </div>
+            <div class="p-4 border-t border-gray-200">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-gray-600">Total:</span>
+                    <span id="cartTotalDropdown" class="font-bold text-xl text-gray-900">Rp 0</span>
+                </div>
+                <button id="checkoutButtonCart" class="w-full bg-indigo-600 text-white font-semibold py-3 px-4 rounded-xl shadow-lg hover:bg-indigo-700 transition-colors">Lihat & Checkout</button>
             </div>
         </div>
-    </section>
+        
+        <!-- Floating Cart Button -->
+        <button id="cartIcon" class="relative p-4 rounded-full bg-indigo-600 text-white shadow-2xl hover:bg-indigo-700 transition-colors transform hover:scale-110">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-7 h-7">
+                <circle cx="9" cy="21" r="1"></circle>
+                <circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            </svg>
+            <span id="cartCount" class="absolute -top-1 -right-1 bg-red-500 text-white text-sm rounded-full h-6 w-6 flex items-center justify-center font-bold">0</span>
+        </button>
+    </div>
 
-    <div class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center p-4 z-[1000] hidden" id="productModal">
-        <div class="bg-white rounded-2xl shadow-2xl p-6 sm:p-8 max-w-3xl w-full relative transform transition-all duration-400 ease-out opacity-0 translate-y-20 overflow-y-auto max-h-[90vh] border border-gray-100" id="modalContent">
-            <button class="absolute top-4 right-4 text-gray-400 hover:text-gray-800 text-3xl font-light leading-none transition-colors" onclick="closeModal()">×</button>
-            <div id="modalLoading" class="flex flex-col items-center justify-center py-10">
-                <div class="loader"></div>
-                <p class="mt-4 text-gray-500 text-base">Memuat detail produk...</p>
+    <!-- Modal Invoice -->
+    <div id="invoiceModal" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4 modal-overlay">
+        <div class="bg-white rounded-3xl w-full max-w-xl max-h-[90vh] overflow-hidden flex flex-col modal-content">
+            <!-- Header Modal -->
+            <div class="p-6 border-b border-gray-200 flex items-center justify-between">
+                <h2 class="text-2xl font-bold text-gray-900">Rincian Pesanan</h2>
+                <button id="closeModalButton" class="p-2 rounded-full text-gray-500 hover:bg-gray-100 hover:text-gray-800 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
             </div>
-            <div id="modalMainContent" class="hidden">
-                <h2 class="text-2xl sm:text-3xl font-semibold text-gray-900 mb-4" id="modalTitle"></h2>
-                <div class="mb-6">
-                    <div class="square-image">
-                        <img id="currentMainModalImage" src="" alt="Main Product Image"
-                             class="transition-opacity duration-300"
-                             onerror="this.onerror=null;this.src='https://via.placeholder.com/600x600?text=No+Image';" loading="lazy">
-                    </div>
+            
+            <!-- Konten Modal -->
+            <div class="p-6 flex-grow overflow-y-auto invoice-preview-scroll">
+                <div id="invoicePreviewContent">
+                    <!-- Invoice akan dirender di sini -->
                 </div>
-                <div class="grid grid-cols-5 sm:grid-cols-6 md:grid-cols-8 gap-2 mb-6" id="modalThumbnails"></div>
-                <div class="prose max-w-none text-gray-700 text-base leading-relaxed mb-6" id="modalDescription"></div>
-                <div id="brochureLinkContainer" class="mb-6 flex justify-center"></div>
-                <div class="mb-8 border-t pt-6 border-gray-200">
-                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Informasi Kontak & Bagikan</h3>
-                    <div class="flex flex-col sm:flex-row justify-center gap-4">
-                        <a id="whatsappLink" href="#" target="_blank" class="inline-flex items-center justify-center px-4 py-2 bg-green-600 text-white text-xs font-medium rounded-full shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-all duration-200 transform hover:scale-105 w-full sm:w-auto">
-                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12.04 2C6.58 2 2.14 6.22 2.11 11.33c-.04 1.83.48 3.58 1.48 5.09L2 22l5.31-1.38c1.47.8 3.16 1.22 4.9.96 5.56 0 10.09-4.22 10.12-9.33.02-2.73-1.07-5.26-2.92-7.16C17.3 3.06 14.73 2 12.04 2zm5.73 14.78c-.28.16-.67.25-1.09.25-.42 0-.8-.09-1.09-.25-.28-.16-.54-.45-.76-.80-.22-.35-.37-.77-.45-1.23-.09-.45-.16-.9-.07-1.35.09-.45.3-.85.57-1.16.27-.30.59-.44.92-.44.33 0 .61.12.87.37.26.25.46.59.63.99.17.4.28.84.32 1.28.04.44-.01.8-.18 1.15-.17.35-.45.64-.81.85z"/>
-                            </svg>
-                            Kirim WhatsApp
-                        </a>
-                        <a id="locationLink" href="#" target="_blank" class="inline-flex items-center justify-center px-4 py-2 bg-blue-600 text-white text-xs font-medium rounded-full shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 transform hover:scale-105 w-full sm:w-auto">
-                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-                            </svg>
-                            Lihat Lokasi di Google Maps
-                        </a>
-                        <button id="copyLinkButton" class="inline-flex items-center justify-center px-4 py-2 bg-gray-600 text-white text-xs font-medium rounded-full shadow-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-all duration-200 transform hover:scale-105 w-full sm:w-auto">
-                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M16 1H4a2 2 0 00-2 2v14h2V3h12V1zm3 4H8a2 2 0 00-2 2v14a2 2 0 002 2h11a2 2 0 002-2V7a2 2 0 00-2-2zm0 16H8V7h11v14z"/>
-                            </svg>
-                            <span id="copyLinkText">Salin Link Produk</span>
-                        </button>
-                        <button id="shareButton" class="inline-flex items-center justify-center px-4 py-2 bg-indigo-600 text-white text-xs font-medium rounded-full shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all duration-200 transform hover:scale-105 w-full sm:w-auto">
-                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.70s-.04-.47-.09-.70l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.70L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/>
-                            </svg>
-                            Bagikan Produk
-                        </button>
-                    </div>
-                </div>
-                <div class="text-3xl font-bold text-blue-900 text-center mb-6" id="modalPrice"></div>
-                <div class="text-lg font-medium text-center mb-6" id="modalStockStatus"></div>
-                <div class="flex justify-center">
-                    <button onclick="closeModal()" class="inline-flex items-center justify-center px-6 py-2.5 bg-gray-200 text-gray-800 text-sm font-medium rounded-full shadow-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 transition-all duration-200 transform hover:scale-105">
-                        Kembali
+            </div>
+
+            <!-- Footer Modal -->
+            <div class="p-6 border-t border-gray-200">
+                <div class="flex items-center justify-start space-x-4">
+                    <button id="processOrderButton" class="w-auto bg-indigo-600 text-white font-semibold py-3 px-6 rounded-xl shadow-lg hover:bg-indigo-700 transition-colors">
+                        <span id="processOrderText">Proses Order</span>
+                        <svg id="processOrderSpinner" class="animate-spin h-5 w-5 text-white hidden ml-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
                     </button>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" async></script>
-    <script defer>
-        const productModal = document.getElementById('productModal');
-        const modalContent = document.getElementById('modalContent');
-        const productGrid = document.getElementById('productGrid');
-        const brochureLinkContainer = document.getElementById('brochureLinkContainer');
-        const descriptionCache = new Map();
-
-        const DEFAULT_IMAGE_PLACEHOLDER = 'https://via.placeholder.com/600x600?text=No+Image';
-        const THUMBNAIL_PLACEHOLDER = 'https://via.placeholder.com/80x80?text=Thumb';
-
-        let allProducts = [];
+    <script>
+        // Variabel global untuk menyimpan data produk
+        let products = [];
+        
+        // Elemen DOM
+        const productsContainer = document.getElementById('productsContainer');
+        const cartCount = document.getElementById('cartCount');
+        const cartItemsDropdown = document.getElementById('cartItemsDropdown');
+        const cartTotalDropdown = document.getElementById('cartTotalDropdown');
+        const invoiceModal = document.getElementById('invoiceModal');
+        const closeModalButton = document.getElementById('closeModalButton');
+        const invoicePreviewContent = document.getElementById('invoicePreviewContent');
+        const checkoutButton = document.getElementById('checkoutButtonCart');
+        const processOrderButton = document.getElementById('processOrderButton');
+        const processOrderText = document.getElementById('processOrderText');
+        const processOrderSpinner = document.getElementById('processOrderSpinner');
+        const loadingIndicator = document.getElementById('loadingIndicator');
+        const cartDropdown = document.getElementById('cartDropdown');
+        const cartIcon = document.getElementById('cartIcon');
+        
+        let cart = {}; // Objek untuk menyimpan item di keranjang { productId: { product, quantity } }
         let isModalLoading = false;
-        const imageCache = new Map();
 
-        // **Fungsi baru untuk menutup modal**
-        function closeModal() {
-            modalContent.classList.remove('opacity-100', 'translate-y-0');
-            modalContent.classList.add('opacity-0', 'translate-y-20');
-            // Menunggu transisi selesai sebelum menyembunyikan display
-            setTimeout(() => {
-                productModal.classList.remove('flex');
-                productModal.classList.add('hidden');
-                // Opsional: Hapus hash dari URL saat modal ditutup
-                history.replaceState(null, '', window.location.pathname + window.location.search);
-            }, 400); // Sesuaikan dengan durasi transisi di CSS (transition-all duration-400)
-        }
-
-
-        async function checkImagesExist(imagePaths) {
-            const checks = imagePaths.map(async (path) => {
-                if (imageCache.has(path)) return { path, exists: imageCache.get(path) };
-                try {
-                    const response = await fetch(path, { method: 'HEAD' });
-                    const exists = response.ok;
-                    imageCache.set(path, exists);
-                    return { path, exists };
-                } catch {
-                    imageCache.set(path, false);
-                    return { path, exists: false };
-                }
-            });
-            return Promise.all(checks);
-        }
-
-        // Fungsi baru untuk mendapatkan produk berdasarkan ID
-        function getProductById(id) {
-            return allProducts.find(product => product.id === id);
-        }
-
+        // Fungsi untuk memuat data produk dari file JSON
         async function loadProducts() {
+            loadingIndicator.classList.remove('hidden');
+            productsContainer.classList.add('hidden');
+            
             try {
-                const response = await fetch('data/products.json');
-                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                allProducts = await response.json();
-                productGrid.innerHTML = '';
-
-                if (allProducts.length === 0) {
-                    productGrid.innerHTML = '<p class="col-span-full text-center text-gray-500 py-10">Tidak ada produk yang ditemukan.</p>';
-                    return;
+                // Menggunakan fetch() untuk mengambil data dari 'products.json'
+                const response = await fetch('products.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
                 }
-
-                allProducts.forEach(product => {
-                    const productCard = document.createElement('div');
-                    productCard.classList.add(
-                        'bg-white', 'rounded-xl', 'shadow-md', 'hover:shadow-xl',
-                        'transition-all', 'duration-300', 'overflow-hidden', 'group',
-                        'cursor-pointer', 'flex', 'flex-col', 'transform', 'hover:-translate-y-1',
-                        'border', 'border-gray-100', 'hover:border-blue-200'
-                    );
-                    productCard.onclick = () => showDetails(product);
-
-                    const stockStatusClass = product.stockStatus === 'ready' ? 'text-green-700 bg-green-100' : 'text-yellow-700 bg-yellow-100';
-                    productCard.innerHTML = `
-                        <div class="square-image">
-                            <img src="${product.productFolderPath}${product.mainImage}" alt="${product.name}"
-                                 class="transition-transform duration-300 group-hover:scale-105"
-                                 onerror="this.onerror=null;this.src='https://via.placeholder.com/300x300?text=No+Image';" loading="lazy">
-                        </div>
-                        <div class="p-5 flex flex-col flex-grow">
-                            <h3 class="text-lg font-semibold text-gray-900 mb-2 leading-tight line-clamp-2">${product.name}</h3>
-                            <p class="text-gray-600 text-sm mb-2 line-clamp-3 flex-grow">${product.shortDescription}</p>
-                            <p class="text-sm font-medium ${stockStatusClass} px-2 py-1 rounded-md mb-4">Status Stok: ${product.stockStatus || 'Tidak tersedia'}</p>
-                            <div class="mt-auto text-xl font-bold text-blue-900">${product.price}</div>
-                        </div>
-                    `;
-                    productGrid.appendChild(productCard);
-                });
+                products = await response.json();
+                renderProducts();
             } catch (error) {
-                console.error('Error loading products:', error);
-                productGrid.innerHTML = `
-                    <div class="col-span-full text-center py-10">
-                        <p class="text-red-500 text-base mb-2">Gagal memuat produk.</p>
-                        <p class="text-gray-500 text-sm">Silakan jalankan melalui server lokal (contoh: <code>python -m http.server</code> atau ekstensi Live Server di VS Code).</p>
+                console.error("Failed to load products:", error);
+                productsContainer.innerHTML = '<p class="text-center text-red-500">Gagal memuat produk. Silakan coba lagi nanti.</p>';
+            } finally {
+                loadingIndicator.classList.add('hidden');
+                productsContainer.classList.remove('hidden');
+            }
+        }
+
+        // Fungsi untuk merender produk
+        function renderProducts() {
+            productsContainer.innerHTML = '';
+            products.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'bg-white rounded-3xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-[1.01] flex flex-col';
+                
+                productCard.innerHTML = `
+                    <div class="relative w-full h-48 sm:h-56 overflow-hidden">
+                        <img src="${product.image}" alt="Gambar ${product.name}" class="absolute inset-0 w-full h-full object-cover">
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">${product.name}</h3>
+                        <p class="text-gray-500 mb-2 text-sm">${product.brand}</p>
+                        <p class="text-2xl font-bold text-indigo-600 mb-4">Rp ${product.price.toLocaleString('id-ID')}</p>
+                        <p class="text-gray-600 text-sm flex-grow mb-4">${product.description}</p>
+                        <button onclick="addToCart(${product.id})" class="mt-auto w-full bg-indigo-600 text-white font-semibold py-3 rounded-xl shadow-md hover:bg-indigo-700 transition-colors">Tambah ke Keranjang</button>
                     </div>
                 `;
+                productsContainer.appendChild(productCard);
+            });
+        }
+
+        // Fungsi untuk menambah produk ke keranjang
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            if (product) {
+                if (cart[productId]) {
+                    cart[productId].quantity++;
+                } else {
+                    cart[productId] = { product, quantity: 1 };
+                }
+                saveCart();
+                renderCart();
+                showTemporaryMessage('Produk ditambahkan ke keranjang!');
+            }
+        }
+        
+        // Fungsi untuk menampilkan pesan temporer
+        function showTemporaryMessage(message) {
+            const messageBox = document.createElement('div');
+            messageBox.textContent = message;
+            messageBox.className = 'fixed bottom-5 right-5 bg-gray-800 text-white px-4 py-3 rounded-xl shadow-lg z-[200] transition-all duration-300 transform translate-x-full opacity-0';
+            document.body.appendChild(messageBox);
+
+            setTimeout(() => {
+                messageBox.style.transform = 'translateX(0)';
+                messageBox.style.opacity = '1';
+            }, 10);
+
+            setTimeout(() => {
+                messageBox.style.transform = 'translateX(100%)';
+                messageBox.style.opacity = '0';
+                messageBox.addEventListener('transitionend', () => messageBox.remove());
+            }, 3000);
+        }
+
+        // Fungsi untuk merender keranjang di dropdown
+        function renderCart() {
+            const totalItems = Object.values(cart).reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.textContent = totalItems;
+            cartCount.style.display = totalItems > 0 ? 'flex' : 'none';
+
+            cartItemsDropdown.innerHTML = '';
+            let totalHarga = 0;
+            const items = Object.values(cart);
+
+            if (items.length === 0) {
+                cartItemsDropdown.innerHTML = '<p class="text-center text-gray-500">Keranjang kosong.</p>';
+                cartTotalDropdown.textContent = 'Rp 0';
+                return;
+            }
+
+            items.forEach(item => {
+                const subtotal = item.quantity * item.product.price;
+                const itemElement = document.createElement('div');
+                itemElement.className = 'flex items-center justify-between py-2 border-b border-gray-100 last:border-b-0';
+                itemElement.innerHTML = `
+                    <div class="flex items-center space-x-3">
+                        <img src="${item.product.image}" alt="Gambar ${item.product.name}" class="w-12 h-12 object-cover rounded-xl">
+                        <div>
+                            <span class="font-medium text-sm text-gray-900">${item.product.name}</span>
+                            <div class="text-xs text-gray-500 mt-1 flex items-center space-x-2">
+                                <button onclick="updateCartItem(${item.product.id}, -1)" class="p-1 rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200">-</button>
+                                <span>${item.quantity}</span>
+                                <button onclick="updateCartItem(${item.product.id}, 1)" class="p-1 rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200">+</button>
+                                <span class="ml-2">x Rp ${item.product.price.toLocaleString('id-ID')}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="font-semibold text-gray-900">
+                        Rp ${subtotal.toLocaleString('id-ID')}
+                    </div>
+                `;
+                cartItemsDropdown.appendChild(itemElement);
+                totalHarga += subtotal;
+            });
+            cartTotalDropdown.textContent = `Rp ${totalHarga.toLocaleString('id-ID')}`;
+        }
+        
+        // Fungsi untuk mengupdate kuantitas item di keranjang
+        function updateCartItem(productId, change) {
+            if (cart[productId]) {
+                cart[productId].quantity += change;
+                if (cart[productId].quantity <= 0) {
+                    delete cart[productId];
+                }
+                saveCart();
+                renderCart();
             }
         }
 
-        function getParsedDescription(product) {
-            if (descriptionCache.has(product.id)) {
-                return descriptionCache.get(product.id);
-            }
-            const parsed = product.description ? marked.parse(product.description) : '<p class="text-gray-500 italic">Deskripsi lengkap tidak tersedia.</p>';
-            descriptionCache.set(product.id, parsed);
-            return parsed;
+        // Fungsi untuk menyimpan keranjang ke localStorage
+        function saveCart() {
+            localStorage.setItem('shoppingCart', JSON.stringify(cart));
         }
 
-        async function showDetails(product) {
+        // Fungsi untuk memuat keranjang dari localStorage
+        function loadCart() {
+            const savedCart = localStorage.getItem('shoppingCart');
+            if (savedCart) {
+                cart = JSON.parse(savedCart);
+            }
+        }
+        
+        // Fungsi untuk menampilkan modal invoice
+        function showInvoicePreview() {
+            const items = Object.values(cart);
+            if (items.length === 0) {
+                showTemporaryMessage('Keranjang belanja Anda kosong.');
+                return;
+            }
+
+            let invoiceContentHtml = `
+                <h3 class="text-xl font-bold mb-4">Ringkasan Pesanan</h3>
+                <div class="space-y-4">
+            `;
+            
+            let totalHarga = 0;
+            items.forEach(item => {
+                const subtotal = item.quantity * item.product.price;
+                invoiceContentHtml += `
+                    <div class="flex justify-between items-start border-b border-gray-200 pb-2">
+                        <div>
+                            <p class="font-semibold text-gray-800">${item.product.name}</p>
+                            <p class="text-sm text-gray-500">${item.quantity} x Rp ${item.product.price.toLocaleString('id-ID')}</p>
+                        </div>
+                        <p class="font-bold text-gray-800">Rp ${subtotal.toLocaleString('id-ID')}</p>
+                    </div>
+                `;
+                totalHarga += subtotal;
+            });
+            
+            invoiceContentHtml += `
+                </div>
+                <div class="flex justify-between items-center mt-6 pt-4 border-t-2 border-gray-300">
+                    <span class="text-xl font-bold text-gray-800">Total</span>
+                    <span class="text-2xl font-bold text-indigo-600">Rp ${totalHarga.toLocaleString('id-ID')}</span>
+                </div>
+                <div class="mt-8">
+                    <p class="text-lg font-bold mb-2">Informasi Pembeli</p>
+                    <input type="text" id="buyerName" placeholder="Nama Anda" class="w-full p-3 mb-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    <textarea id="buyerNotes" placeholder="Catatan tambahan (opsional)" class="w-full p-3 h-24 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
+                </div>
+            `;
+            
+            invoicePreviewContent.innerHTML = invoiceContentHtml;
+            invoiceModal.classList.remove('hidden');
+        }
+
+        // Fungsi untuk memproses order dan mengirim ke WhatsApp
+        async function processOrder() {
             if (isModalLoading) return;
-            isModalLoading = true;
 
-            productModal.classList.remove('hidden');
-            productModal.classList.add('flex');
-            document.getElementById('modalLoading').classList.remove('hidden');
-            document.getElementById('modalMainContent').classList.add('hidden');
-
-            try {
-                document.getElementById('modalTitle').textContent = product.name;
-                const currentMainModalImage = document.getElementById('currentMainModalImage');
-                const modalThumbnails = document.getElementById('modalThumbnails');
-                modalThumbnails.innerHTML = '';
-                brochureLinkContainer.innerHTML = '';
-
-                const mainImagePath = `${product.productFolderPath}${product.mainImage}`;
-                const detailImagePaths = (product.detailImages || []).map(img => `${product.productFolderPath}${img}`);
-                const imageChecks = await checkImagesExist([mainImagePath, ...detailImagePaths]);
-                const validImages = imageChecks.filter(check => check.exists).map(check => check.path);
-
-                if (validImages.length === 0) {
-                    currentMainModalImage.src = DEFAULT_IMAGE_PLACEHOLDER;
-                } else {
-                    const thumbnailElements = [];
-                    validImages.forEach((imgPath, index) => {
-                        const thumb = document.createElement('img');
-                        thumb.src = imgPath;
-                        thumb.alt = `${product.name} Thumbnail`;
-                        thumb.classList.add(
-                            'w-full', 'h-16', 'object-cover', 'rounded-md', 'shadow-sm',
-                            'cursor-pointer', 'opacity-75', 'hover:opacity-100', 'transition-all', 'duration-200',
-                            'border-2', 'border-transparent', 'thumbnail'
-                        );
-                        thumb.onclick = () => {
-                            currentMainModalImage.src = imgPath;
-                            thumbnailElements.forEach(child => {
-                                child.classList.remove('border-blue-500', 'opacity-100');
-                                child.classList.add('border-transparent', 'opacity-75');
-                            });
-                            thumb.classList.remove('border-transparent', 'opacity-75');
-                            thumb.classList.add('border-blue-500', 'opacity-100');
-                        };
-                        thumb.onerror = () => { thumb.src = THUMBNAIL_PLACEHOLDER; };
-                        modalThumbnails.appendChild(thumb);
-                        thumbnailElements.push(thumb);
-                    });
-                    currentMainModalImage.src = validImages[0];
-                    thumbnailElements[0].classList.remove('border-transparent', 'opacity-75');
-                    thumbnailElements[0].classList.add('border-blue-500', 'opacity-100');
-                }
-
-                document.getElementById('modalDescription').innerHTML = getParsedDescription(product);
-
-                if (product.brochurePdf) {
-                    const brochureCheck = await checkImagesExist([`${product.productFolderPath}${product.brochurePdf}`]);
-                    if (brochureCheck[0].exists) {
-                        const brochureLink = document.createElement('a');
-                        brochureLink.href = `${product.productFolderPath}${product.brochurePdf}`;
-                        brochureLink.target = '_blank';
-                        brochureLink.download = `${product.name.replace(/[^a-zA-Z0-9\s]/g, '').trim().replace(/\s+/g, '_')}_Brosur.pdf`;
-                        brochureLink.classList.add(
-                            'inline-flex', 'items-center', 'px-6', 'py-2.5', 'bg-blue-600', 'text-white',
-                            'text-sm', 'font-medium', 'rounded-full', 'shadow-md', 'hover:bg-blue-700',
-                            'focus:outline-none', 'focus:ring-2', 'focus:ring-blue-500',
-                            'focus:ring-offset-2', 'transition-all', 'duration-200', 'transform', 'hover:scale-105'
-                        );
-                        brochureLink.innerHTML = `
-                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v3.586L7.707 9.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 10.586V7z" clip-rule="evenodd"></path>
-                            </svg>
-                            Unduh Brosur Produk
-                        `;
-                        brochureLinkContainer.appendChild(brochureLink);
-                    } else {
-                        brochureLinkContainer.innerHTML = '<p class="text-gray-500 text-sm text-center">Brosur tidak tersedia untuk produk ini.</p>';
-                    }
-                } else {
-                    brochureLinkContainer.innerHTML = '<p class="text-gray-500 text-sm text-center">Brosur tidak tersedia untuk produk ini.</p>';
-                }
-
-                const whatsappLink = document.getElementById('whatsappLink');
-                const locationLink = document.getElementById('locationLink');
-                const copyLinkButton = document.getElementById('copyLinkButton');
-                const copyLinkText = document.getElementById('copyLinkText');
-                const shareButton = document.getElementById('shareButton');
-
-                const phoneNumber = '62895331244803';
-                const locationAddress = 'Tuminting, Manado, Sulawesi Utara';
-
-                const currentFullUrl = window.location.origin + window.location.pathname;
-                const productUrlForMessage = `${currentFullUrl}#${product.id}`;
-                const productUrl = productUrlForMessage;
-
-                const whatsappMessage = encodeURIComponent(`Halo, saya tertarik dengan produk ${product.name} Harga: ${product.price} yang saya lihat pada link: ${productUrlForMessage}\n\nApakah Stok Ready?`);
-                whatsappLink.href = `https://wa.me/${phoneNumber}?text=${whatsappMessage}`;
-                locationLink.href = `https://www.google.com/maps/search/?api=1&query=$${encodeURIComponent(locationAddress)}`;
-
-                copyLinkButton.onclick = async () => {
-                    try {
-                        await navigator.clipboard.writeText(productUrl);
-                        copyLinkText.textContent = 'Link Disalin';
-                        setTimeout(() => {
-                            copyLinkText.textContent = 'Salin Link Produk';
-                        }, 2000);
-                    } catch (error) {
-                        console.error('Error copying link:', error);
-                        alert('Gagal menyalin link. Silakan salin secara manual: ' + productUrl);
-                    }
-                };
-
-                shareButton.onclick = async () => {
-                    try {
-                        if (navigator.share) {
-                            await navigator.share({
-                                title: product.name,
-                                text: `Lihat produk ${product.name} di Katalog Kabel & Jaringan: ${product.shortDescription} (Status Stok: ${product.stockStatus || 'Tidak tersedia'})`,
-                                url: productUrl
-                            });
-                        } else {
-                            alert('Fitur berbagi tidak didukung di browser ini. Gunakan tombol Salin Link untuk berbagi.');
-                        }
-                    } catch (error) {
-                        console.error('Error sharing product:', error);
-                        alert('Gagal membagikan produk. Silakan gunakan tombol Salin Link.');
-                    }
-                };
-
-                document.getElementById('modalPrice').textContent = product.price;
-                const stockStatusElement = document.getElementById('modalStockStatus');
-                const stockStatusClass = product.stockStatus === 'ready' ? 'text-green-700 bg-green-100' : 'text-yellow-700 bg-yellow-100';
-                stockStatusElement.innerHTML = `Status Stok: <span class="${stockStatusClass} px-2 py-1 rounded-md">${product.stockStatus || 'Tidak tersedia'}</span>`;
-
-                document.getElementById('modalLoading').classList.add('hidden');
-                document.getElementById('modalMainContent').classList.remove('hidden');
-                setTimeout(() => {
-                    modalContent.classList.remove('opacity-0', 'translate-y-20');
-                    modalContent.classList.add('opacity-100', 'translate-y-0');
-                }, 50);
-            } catch (error) {
-                console.error('Error in showDetails:', error);
-                document.getElementById('modalDescription').innerHTML = '<p class="text-red-500">Gagal memuat detail produk.</p>';
-            } finally {
-                isModalLoading = false;
+            const buyerName = document.getElementById('buyerName').value;
+            if (!buyerName.trim()) {
+                showTemporaryMessage('Nama pembeli harus diisi.');
+                return;
             }
-        }
+            
+            isModalLoading = true;
+            processOrderText.classList.add('hidden');
+            processOrderSpinner.classList.remove('hidden');
 
-        // isLowPerformanceDevice() dan logika yang menonaktifkan animasi telah dihapus/dikomentari
-        // untuk memastikan animasi selalu berjalan.
-        // function isLowPerformanceDevice() {
-        //     return navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 2;
-        // }
+            const buyerNotes = document.getElementById('buyerNotes').value;
+            const items = Object.values(cart);
+            let totalHarga = 0;
+
+            const invoiceDetails = items.map(item => {
+                const subtotal = item.quantity * item.product.price;
+                totalHarga += subtotal;
+                return `* ${item.product.name} (${item.product.brand}) - ${item.quantity} pcs - Rp ${subtotal.toLocaleString('id-ID')}`;
+            }).join('\n');
+
+            const waMessage = `
+*Pesanan Baru (GLOBAL-FALCOM)*
+
+*Nama Pembeli:* ${buyerName}
+${buyerNotes ? `*Catatan:* ${buyerNotes}\n` : ''}
+*Rincian Produk:*
+${invoiceDetails}
+
+*Total Pembayaran:*
+Rp ${totalHarga.toLocaleString('id-ID')}
+
+Terima kasih telah berbelanja!
+            `.trim();
+
+            const waUrl = `https://wa.me/?text=${encodeURIComponent(waMessage)}`;
+            window.open(waUrl, '_blank');
+            
+            // Simulasikan delay untuk UI
+            await new Promise(resolve => setTimeout(resolve, 1000));
+
+            // Reset UI dan kosongkan keranjang
+            cart = {};
+            saveCart();
+            renderCart();
+            invoiceModal.classList.add('hidden');
+            
+            processOrderText.classList.remove('hidden');
+            processOrderSpinner.classList.add('hidden');
+            isModalLoading = false;
+        }
+        
+        // Event listener untuk tombol checkout di dropdown keranjang
+        document.getElementById('checkoutButtonCart').addEventListener('click', (e) => {
+            e.preventDefault(); // Mencegah perilaku default
+            showInvoicePreview();
+            document.getElementById('cartDropdown').classList.add('hidden');
+        });
+
+        // Sembunyikan dropdown keranjang jika klik di luar
+        document.addEventListener('click', (e) => {
+            if (!cartDropdown.contains(e.target) && !cartIcon.contains(e.target)) {
+                cartDropdown.classList.add('hidden');
+            }
+        });
+
+        // Event listener untuk ikon keranjang di footer (sekarang)
+        document.getElementById('cartIcon').addEventListener('click', (e) => {
+            e.stopPropagation(); // Mencegah klik menyebar ke document
+            document.getElementById('cartDropdown').classList.toggle('hidden');
+        });
+        
+        // Event listener untuk menutup modal
+        closeModalButton.addEventListener('click', () => {
+            invoiceModal.classList.add('hidden');
+        });
 
         document.addEventListener('DOMContentLoaded', async () => {
-            // if (isLowPerformanceDevice()) {
-            //     document.querySelector('.sb-image-strip-track').style.animation = 'none';
-            //     document.querySelector('.sb-image-strip-track').style.transform = 'translateX(0)';
-            // }
-
-            await loadProducts(); // Pastikan produk sudah dimuat
-
-            // Cek hash URL setelah produk dimuat
-            if (window.location.hash) {
-                const productIdFromHash = window.location.hash.substring(1); // Hapus '#'
-                const productToShow = getProductById(productIdFromHash);
-
-                if (productToShow) {
-                    showDetails(productToShow);
-                } else {
-                    console.warn(`Produk dengan ID '${productIdFromHash}' tidak ditemukan.`);
-                }
-            }
+            console.log("DOM content loaded. Memulai aplikasi.");
+            loadCart(); // Muat keranjang dari localStorage
+            await loadProducts(); // Mengambil data produk dari JSON
+            renderCart(); // Render keranjang setelah produk dimuat
+            
+            processOrderButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                processOrder();
+            });
         });
     </script>
 </body>
