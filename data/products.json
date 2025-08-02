@@ -116,7 +116,7 @@
     ],
     "brochurePdf": "products/product-lan-ftp-global-double-cat5e/brosur.pdf",
     "description": "## Kabel LAN FTP CAT5e Global Outdoor Double Jacket (Konduktor CCA)\n\n**Spesifikasi Detail**:\n- **Tipe Kabel**: Kabel Jaringan (LAN) **FTP (Foiled Twisted Pair)**, dilengkapi lapisan foil aluminium untuk mereduksi interferensi elektromagnetik (EMI) dan interferensi frekuensi radio (RFI).\n- **Kategori**: **CAT5e (Category 5e)**, mendukung kecepatan data hingga 1 Gigabit per detik (1000 Mbps) pada jarak hingga 100 meter.\n- **Merek**: Global, menyediakan solusi kabel jaringan untuk berbagai aplikasi.\n- **Desain**: Dirancang khusus untuk penggunaan **Outdoor**, tahan terhadap paparan sinar UV, kelembapan, dan fluktuasi suhu ekstrem.\n- **Struktur Jaket**: **Double Jacket (dua lapisan selubung pelindung)**, meningkatkan ketahanan fisik terhadap abrasi, sayatan, dan kondisi lingkungan yang sangat keras, memberikan perlindungan ekstra pada konduktor.\n- **Panjang**: 305 meter (1000 kaki) dalam satu gulungan.\n- **Kemasan**: Dikemas dalam box untuk kemudahan penarikan kabel, penyimpanan, dan perlindungan.\n- **Tipe Konduktor**: **CCA (Copper Clad Aluminum)**, inti aluminium dengan lapisan tembaga, menawarkan solusi ekonomis untuk transmisi data.\n- **Ukuran Konduktor**: 4 pasang kawat (8 konduktor), berdiameter sekitar 0.51 mm.\n- **Material Jaket**: Selubung luar PVC (Polyvinyl Chloride) tahan UV, memastikan daya tahan di lingkungan luar ruangan.",
-    "stockStatus": "ready"
+    "stockStatus": "indent"
   },
   {
     "id": "lan-ftp-cat5e-global-single",
@@ -167,7 +167,7 @@
     ],
     "brochurePdf": "products/product-lan-ftp-falcom-outdoor-nonbox-cat6/brosur.pdf",
     "description": "## Kabel LAN FTP CAT6 Falcom Outdoor Double Jacket (Solid Bare Copper)\n\n**Spesifikasi Detail**:\n- **Tipe Kabel**: Kabel Jaringan (LAN) **FTP (Foiled Twisted Pair)**, dilengkapi lapisan foil aluminium untuk mereduksi interferensi elektromagnetik (EMI) dan interferensi frekuensi radio (RFI), sangat baik untuk transmisi data yang bersih.\n- **Kategori**: **CAT6 (Category 6)**, mendukung kecepatan data hingga 10 Gigabit per detik (10 Gbps) pada jarak hingga 55 meter, dan 1 Gigabit per detik (1 Gbps) hingga 100 meter.\n- **Merek**: Falcom, dikenal untuk produk kabel jaringan berkualitas.\n- **Desain**: Dirancang khusus untuk penggunaan **Outdoor**, dengan selubung yang sangat tahan terhadap paparan sinar UV, kelembapan, dan kondisi cuaca ekstrem.\n- **Struktur Jaket**: **Double Jacket (dua lapisan selubung pelindung)**, memberikan ketahanan fisik superior terhadap abrasi, sayatan, dan kondisi lingkungan yang sangat keras, cocok untuk instalasi di luar ruangan tanpa perlindungan tambahan.\n- **Panjang**: 305 meter (1000 kaki) dalam satu gulungan.\n- **Kemasan**: **Non Box**, dikemas dalam bentuk gulungan langsung untuk penanganan yang lebih mudah di lapangan atau proyek besar.\n- **Tipe Konduktor**: **Solid Bare Copper (Tembaga Murni)**, konduktor tembaga solid berkualitas tinggi 23 AWG (diameter sekitar 0.573 mm) untuk konduktivitas optimal dan performa jaringan yang superior.\n- **Ukuran Konduktor**: 4 pasang kawat (8 konduktor).\n- **Material Jaket**: Selubung luar LDPE (Low-Density Polyethylene) tahan UV, sangat cocok untuk aplikasi outdoor jangka panjang.\n- **Kepatuhan Standar**: Sesuai dengan standar industri seperti IEC/ISO 61556-5, ISO/IEC 11801, dan ANSI/TIA568C-2, menjamin kualitas dan kompatibilitas.",
-    "stockStatus": "ready"
+    "stockStatus": "indent"
   },
   {
     "id": "lan-utp-cat5e-falcom-black",
@@ -184,7 +184,7 @@
     ],
     "brochurePdf": "products/product-lan-utp-falcom-black-cat5e/brosur.pdf",
     "description": "## Kabel LAN UTP CAT5e Falcom Black Single Jacket (Konduktor CCA)\n\n**Spesifikasi Detail**:\n- **Tipe Kabel**: Kabel Jaringan (LAN) **UTP (Unshielded Twisted Pair)**, menggunakan pasangan kawat terpilin tanpa pelindung tambahan, cocok untuk lingkungan dengan interferensi elektromagnetik minimal.\n- **Kategori**: **CAT5e (Category 5e)**, mendukung kecepatan data hingga 1 Gigabit per detik (1000 Mbps) pada jarak hingga 100 meter, ideal untuk jaringan Fast Ethernet dan Gigabit Ethernet.\n- **Merek**: Falcom, penyedia kabel jaringan yang ekonomis dan fungsional.\n- **Warna Jaket**: Selubung luar berwarna **hitam**, memberikan estetika yang rapi untuk instalasi tertentu.\n- **Struktur Jaket**: **Single Jacket (satu lapisan selubung pelindung)**, dirancang untuk penggunaan **indoor**.\n- **Panjang**: 305 meter (1000 kaki) dalam satu gulungan.\n- **Kemasan**: Dikemas dalam box untuk kemudahan penarikan kabel dan perlindungan.\n- **Tipe Konduktor**: **CCA (Copper Clad Aluminum)**, inti aluminium dengan lapisan tembaga, menawarkan solusi ekonomis untuk jaringan dalam ruangan.\n- **Ukuran Konduktor**: 4 pasang kawat (8 konduktor), berdiameter sekitar 0.51 mm.\n- **Material Jaket**: Selubung luar PVC (Polyvinyl Chloride) yang tahan lama.",
-    "stockStatus": "ready"
+    "stockStatus": "indent"
   },
   {
     "id": "lan-utp-cat5e-falcom-grey",
@@ -221,3 +221,4 @@
     "stockStatus": "ready"
   }
 ]
+
